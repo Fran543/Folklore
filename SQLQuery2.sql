@@ -6,12 +6,12 @@ go
 
 --USER
 
-create table AppUser(
+CREATE table AppUser(
 	IDUser int primary key identity,
-	Username nvarchar(50),
-	Email nvarchar(50),
-	Password nvarchar(50),
-	Active bit
+	Username nvarchar(50) NOT NULL,
+	Email nvarchar(50) NOT NULL,
+	Password nvarchar(50) NOT NULL,
+	Active bit NOT NULL
 )
 go
 
