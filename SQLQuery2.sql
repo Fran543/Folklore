@@ -1,7 +1,7 @@
-create database MovieDatabase
+create database FolkloreDatabase
 go
 
-use MovieDatabase
+use FolkloreDatabase
 go
 
 --USER
