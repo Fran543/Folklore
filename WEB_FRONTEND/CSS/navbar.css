@@ -1,0 +1,8 @@
+nav {
+	background: #74CCD3;
+	background: -webkit-linear-gradient(to right, #6376C1, #74CCD3);
+	background: linear-gradient(to right, #6376C1, #74CCD3);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+}
