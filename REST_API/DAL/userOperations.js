@@ -40,7 +40,7 @@ async function createUser(username, email, password) {
             .request()
             .input('Username', sql.NVarChar(50), username)
             .input('Email', sql.NVarChar(50), email)
-            .input('Password', sql.NVarChar(50), password)
+            .input('Password', sql.NVarChar(sql.MAX), password)
             .input('Active', sql.Bit, 1)
             .output('IDUser', sql.Int)
             .execute('createUser');
@@ -51,7 +51,7 @@ async function createUser(username, email, password) {
     }
 }
 
-async function checkUserEmail(username, email) {
+async function checkUsernameAndEmail(username, email) {
     try {
         let pool = await sql.connect(config);
         let users = await pool
@@ -71,10 +71,29 @@ async function checkUserEmail(username, email) {
     } finally {
     }
 }
+async function checkEmail(email) {
+    try {
+        let pool = await sql.connect(config);
+        let users = await pool
+            .request()
+            .input('Email', sql.NVarChar(50), email)
+            .query('select * from AppUser where Email = @Email');
+        if (users !== null) {
+            if (users.rowsAffected[0] > 0) {
+                return users.recordset;
+            }
+        }
+        return null;
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+    }
+}
 
 module.exports = {
     getUsers: getUsers,
     getUser: getUser,
     createUser: createUser,
-    checkUserEmail: checkUserEmail
+    checkUsernameAndEmail: checkUsernameAndEmail,
+    checkEmail: checkEmail
 }

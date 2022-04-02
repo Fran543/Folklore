@@ -10,7 +10,7 @@ CREATE table AppUser(
 	IDUser int primary key identity,
 	Username nvarchar(50) NOT NULL,
 	Email nvarchar(50) NOT NULL,
-	Password nvarchar(50) NOT NULL,
+	Password nvarchar(max) NOT NULL,
 	Active bit NOT NULL
 )
 go

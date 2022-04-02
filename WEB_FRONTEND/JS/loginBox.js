@@ -1,3 +1,4 @@
+
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
@@ -10,7 +11,8 @@ signInButton.addEventListener('click', () => {
     container.classList.remove("right-panel-active");
 });
 
-var endPoint = "http://127.0.0.1:8091/register"
+var registerEndPoint = "http://127.0.0.1:8091/register"
+var loginEndPoint = "http://127.0.0.1:8091/login"
 
 $(document).ready(function () {
     console.log("ready!");
@@ -24,10 +26,10 @@ $(document).ready(function () {
 //         podaci.push
 //     }
 // })
-$("#loginForm").submit(function (event) {
+$("#registerForm").submit(function (event) {
     event.preventDefault()
     $.ajax({
-        url: endPoint,
+        url: registerEndPoint,
         type: "POST",
         data: {
             "username": $("#username").val(),
@@ -36,10 +38,28 @@ $("#loginForm").submit(function (event) {
             "passwordConfirm": $("#passwordConfirm").val()
         },
         success: function (response) {
+            alert(response)
+        },
+        error: function (error) {
+            alert(error.responseText)
+        }
+    });
+})
+
+$("#loginForm").submit(function (event) {
+    event.preventDefault()
+    $.ajax({
+        url: loginEndPoint,
+        type: "POST",
+        data: {
+            "email": $("#lEmail").val(),
+            "password": $("#lPassword").val()
+        },
+        success: function (response, request) {
             console.log(response)
         },
         error: function (error) {
-            console.log(error.responseText)
+            alert(error.responseText)
         }
     });
 })

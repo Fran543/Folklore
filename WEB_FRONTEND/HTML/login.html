@@ -13,7 +13,7 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form id="loginForm">
+            <form id="registerForm">
                 <h1>Create Account</h1>
                 <input type="text" placeholder="Username" name="username" id="username" required />
                 <input type="email" placeholder="Email" name="email" id="email" required />
@@ -24,10 +24,10 @@
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form action="#">
+            <form id="loginForm">
                 <h1>Sign in</h1>
-                <input type="text" placeholder="Username" />
-                <input type="password" placeholder="Password" />
+                <input type="email" placeholder="Email" id="lEmail" required />
+                <input type="password" placeholder="Password" id="lPassword" required />
                 <a href="#">Forgot your password?</a>
                 <!-- Write it down next time -->
                 <button>Sign In</button>
@@ -52,7 +52,7 @@
     <div class="alert alert-dismissible alert-danger">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
-      </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
     <script src="../JS/loginBox.js" defer></script>

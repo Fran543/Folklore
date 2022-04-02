@@ -10,4 +10,10 @@ router.get('/register', (req, res) => {
     res.send("Hello")
 });
 
+router.post('/login', authController.login);
+
+router.get('/login', (req, res) => {
+    res.send("Hello")
+});
+
 module.exports = router;
