@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog creator</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
     <link rel="stylesheet" href="../CSS/blogCreator.css">
 </head>
+
 <body>
     <div class="metaData">
-        <input type="image" placeholder="Import image..."/>
-        <input type="text" placeholder="Enter title..."/>
-        <input type="text" placeholder="Enter date"/>
+        <input type="image" placeholder="Import image..." />
+        <input type="text" placeholder="Enter title..." />
+        <input type="text" placeholder="Enter date" />
         <select>
             <option value="volvo">Volvo</option>
             <option value="saab">Saab</option>
             <option value="mercedes">Mercedes</option>
             <option value="audi">Audi</option>
-          </select>
+        </select>
     </div>
     <nav class="menu">
         <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
         <label class="menu-open-button" for="menu-open">
-         <span class="lines line-1"></span>
-         <span class="lines line-2"></span>
-         <span class="lines line-3"></span>
-       </label>
-     
+            <span class="lines line-1"></span>
+            <span class="lines line-2"></span>
+            <span class="lines line-3"></span>
+        </label>
+
         <a href="#" class="menu-item blue"><i class="fa fa-backward"></i></a>
-        <a href="#" class="menu-item green"><i class="fa fa-upload"></i></a>
+        <a href="#" class="menu-item green" id="btnCreate"><i class="fa fa-upload"></i></a>
         <a href="#" class="menu-item red"><i class="fa fa-trash"></i></a>
     </nav>
     <input type="text" class="canvas">
-        
+
     </input>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="../JS/blogCreator.js" defer></script>
 </body>
+
 </html>

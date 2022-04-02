@@ -70,3 +70,82 @@ begin
 	where IDUser = @IDUser
 end
 go
+
+
+--Warning
+
+create table Warning(
+	IDWarning int primary key identity,
+	WarningName nvarchar(max) NOT NULL
+)
+go
+
+insert into Warning values ('Rape and Sexual Assault'),
+							('Abuse (physical, mental, emotional, verbal, sexual)'),
+							('Child abuse/pedophilia'),
+							('Animal cruelty or animal death'),
+							('Self-injurious behavior (self-harm, eating disorders, etc.)'),
+							('Suicide'),
+							('Excessive or gratuitous violence'),
+							('Needles'),
+							('Depiction of pornography (including child pornography)'),
+							('Incest (including any and all elements of romantic or sexual relationships between family, tonal in theme, thought, or activity)'),
+							('Kidnapping (forceful deprivation of/disregard for personal autonomy)'),
+							('Pregnancy/Childbirth'),
+							('Miscarriages/Abortion'),
+							('Blood'),
+							('Mental illness')
+
+
+--POST
+
+create table Post(
+	IDPost int primary key identity,
+	PostName nvarchar(50) NOT NULL,
+	Content nvarchar(max),
+	PubDate date NOT NULL,
+	Summary nvarchar(500) NOT NULL,
+	UserID int foreign key references AppUser(IDUser),
+)
+go
+
+create table StoryConnection(
+	IDStoryConnection int primary key identity,
+	PreStory int foreign key references Post(IDPost),
+	SequelStory int foreign key references Post(IDPost)
+)
+go
+
+create table WarningPost(
+	IDWarningPost int primary key identity,
+	WarningID int foreign key references Warning(IDWarning),
+	PostID int foreign key references Post(IDPost)
+)
+go
+
+create table Comment (
+	IDComment int primary key identity,
+	Content nvarchar(max),
+	UserID int foreign key references AppUser(IDUser),
+	PostID int foreign key references Post(IDPost)
+)
+
+create table Review (
+	IDReview int primary key identity,
+	Score int,
+	UserID int foreign key references AppUser(IDUser),
+	PostID int foreign key references Post(IDPost)
+)
+go
+
+create proc createPost
+	@PostName nvarchar(50),
+	@Content nvarchar(max),
+	@Summary nvarchar(500),
+	@IDPost int output
+as
+begin
+	insert into Post (PostName, Content, PubDate, Summary) values (@PostName, @Content, GETDATE(), @Summary)
+	set @IDPost = SCOPE_IDENTITY()
+end
+go
