@@ -7,7 +7,7 @@ sql.on('error', err => {
     console.log(err.message);
 })
 
-async function createPost(postName, content, summary) {
+async function createPost(postName, content, summary, image) {
     try {
         let pool = await sql.connect(config);
         let users = await pool
@@ -15,6 +15,7 @@ async function createPost(postName, content, summary) {
             .input('PostName', sql.NVarChar(50), postName)
             .input('Content', sql.NVarChar(sql.MAX), content)
             .input('Summary', sql.NVarChar(500), summary)
+            .input('ImageBlob', sql.NVarChar(sql.MAX), image)
             .output('IDPost', sql.Int)
             .execute('createPost');
         return users.output.IDUserAccount;
@@ -24,6 +25,36 @@ async function createPost(postName, content, summary) {
     }
 }
 
+async function getWarnings() {
+    try {
+        let pool = await sql.connect(config);
+        let warnings = await pool
+            .request()
+            .execute('selectWarnings');
+        return warnings.recordset;
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+    }
+}
+
+async function getPosts() {
+    try {
+        let pool = await sql.connect(config);
+        let posts = await pool
+            .request()
+            .execute('selectPosts');
+        console.log(posts.recordset)
+        return posts.recordset;
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+    }
+}
+
+
 module.exports = {
-    createPost: createPost
+    createPost: createPost,
+    getWarnings: getWarnings,
+    getPosts: getPosts,
 }

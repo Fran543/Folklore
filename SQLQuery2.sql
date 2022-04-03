@@ -96,6 +96,16 @@ insert into Warning values ('Rape and Sexual Assault'),
 							('Blood'),
 							('Mental illness')
 
+go
+
+create proc selectWarnings
+as
+begin 
+	select *
+	from Warning
+end
+go
+
 
 --POST
 
@@ -105,6 +115,7 @@ create table Post(
 	Content nvarchar(max),
 	PubDate date NOT NULL,
 	Summary nvarchar(500) NOT NULL,
+	ImageBlob nvarchar(max),
 	UserID int foreign key references AppUser(IDUser),
 )
 go
@@ -142,10 +153,20 @@ create proc createPost
 	@PostName nvarchar(50),
 	@Content nvarchar(max),
 	@Summary nvarchar(500),
+	@ImageBlob nvarchar(max),
 	@IDPost int output
 as
 begin
-	insert into Post (PostName, Content, PubDate, Summary) values (@PostName, @Content, GETDATE(), @Summary)
+	insert into Post (PostName, Content, PubDate, Summary, ImageBlob) values (@PostName, @Content, GETDATE(), @Summary, @ImageBlob)
 	set @IDPost = SCOPE_IDENTITY()
+end
+
+go
+
+create proc selectPosts
+as
+begin 
+	select *
+	from Post
 end
 go

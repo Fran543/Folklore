@@ -35,21 +35,24 @@ $("#registerForm").submit(function (event) {
             $('.success').addClass("show");
             $('.success').removeClass("hide");
             $('.success').addClass("showAlert");
+            $('.msg').empty()
             $('.msg').append(response)
-            setTimeout(function(){
-            $('.success').removeClass("show");
-            $('.success').addClass("hide");
-            },5000);
+            // $('.msg').append(response)
+            setTimeout(function () {
+                $('.success').removeClass("show");
+                $('.success').addClass("hide");
+            }, 5000);
         },
         error: function (error) {
             $('.alert').addClass("show");
             $('.alert').removeClass("hide");
             $('.alert').addClass("showAlert");
+            $('.msg').empty()
             $('.msg').append(error.responseText)
-            setTimeout(function(){
-            $('.alert').removeClass("show");
-            $('.alert').addClass("hide");
-            },5000);
+            setTimeout(function () {
+                $('.alert').removeClass("show");
+                $('.alert').addClass("hide");
+            }, 5000);
         }
     });
 })
@@ -68,20 +71,20 @@ $("#loginForm").submit(function (event) {
             $('.success').removeClass("hide");
             $('.success').addClass("showAlert");
             $('.msg').append(response)
-            setTimeout(function(){
-            $('.success').removeClass("show");
-            $('.success').addClass("hide");
-            },5000);
+            setTimeout(function () {
+                $('.success').removeClass("show");
+                $('.success').addClass("hide");
+            }, 5000);
         },
         error: function (error) {
             $('.alert').addClass("show");
             $('.alert').removeClass("hide");
             $('.alert').addClass("showAlert");
             $('.msg').append(error.responseText)
-            setTimeout(function(){
-            $('.alert').removeClass("show");
-            $('.alert').addClass("hide");
-            },5000);
+            setTimeout(function () {
+                $('.alert').removeClass("show");
+                $('.alert').addClass("hide");
+            }, 5000);
         }
     });
 })

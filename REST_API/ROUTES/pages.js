@@ -1,7 +1,7 @@
 var express = require('express');
 const verify = require('./verifyToken');
 var authController = require('../CONTROLLERS/auth');
-var postCreator = require('../CONTROLLERS/postCreator');
+var postController = require('../CONTROLLERS/post');
 
 var router = express.Router();
 
@@ -17,6 +17,11 @@ router.get('/login', (req, res) => {
     res.send("Hello")
 });
 
-router.post('/createPost', postCreator.createPost);
+router.post('/createPost', postController.createPost);
+
+router.get('/getWarnings', postController.getWarnings);
+
+router.get('/getPosts', postController.getPosts);
+
 
 module.exports = router;
