@@ -7,10 +7,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="../CSS/login.css">
-    <!-- <link rel="stylesheet" href="../LIB/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../CSS/popUpNotification.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 </head>
 
 <body>
+    <div class="alert hide">
+        <span class="fas fa-exclamation-circle"></span>
+        <span class="msg"></span>
+        <div class="close-btn">
+           <span class="fas fa-times"></span>
+        </div>
+     </div>
+     <div class="success hide">
+        <span class="fas fa-exclamation-circle"></span>
+        <span class="msg"></span>
+        <div class="close-btn">
+           <span class="fas fa-times"></span>
+        </div>
+     </div>
+
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <form id="registerForm">
@@ -47,11 +63,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="alert alert-dismissible alert-danger">
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>

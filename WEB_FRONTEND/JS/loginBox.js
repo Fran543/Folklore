@@ -14,12 +14,6 @@ signInButton.addEventListener('click', () => {
 var registerEndPoint = "http://127.0.0.1:8091/register"
 var loginEndPoint = "http://127.0.0.1:8091/login"
 
-$(document).ready(function () {
-    console.log("ready!");
-
-    console.log($("#username").val());
-});
-
 // $.getJSON(endpoint, function (data) {
 //     var podaci = []
 //     for (var i = 0; i < data.length;i++) {
@@ -38,10 +32,24 @@ $("#registerForm").submit(function (event) {
             "passwordConfirm": $("#passwordConfirm").val()
         },
         success: function (response) {
-            alert(response)
+            $('.success').addClass("show");
+            $('.success').removeClass("hide");
+            $('.success').addClass("showAlert");
+            $('.msg').append(response)
+            setTimeout(function(){
+            $('.success').removeClass("show");
+            $('.success').addClass("hide");
+            },5000);
         },
         error: function (error) {
-            alert(error.responseText)
+            $('.alert').addClass("show");
+            $('.alert').removeClass("hide");
+            $('.alert').addClass("showAlert");
+            $('.msg').append(error.responseText)
+            setTimeout(function(){
+            $('.alert').removeClass("show");
+            $('.alert').addClass("hide");
+            },5000);
         }
     });
 })
@@ -55,12 +63,25 @@ $("#loginForm").submit(function (event) {
             "email": $("#lEmail").val(),
             "password": $("#lPassword").val()
         },
-        success: function (response, request) {
-            console.log(response)
+        success: function (response) {
+            $('.success').addClass("show");
+            $('.success').removeClass("hide");
+            $('.success').addClass("showAlert");
+            $('.msg').append(response)
+            setTimeout(function(){
+            $('.success').removeClass("show");
+            $('.success').addClass("hide");
+            },5000);
         },
         error: function (error) {
-            alert(error.responseText)
+            $('.alert').addClass("show");
+            $('.alert').removeClass("hide");
+            $('.alert').addClass("showAlert");
+            $('.msg').append(error.responseText)
+            setTimeout(function(){
+            $('.alert').removeClass("show");
+            $('.alert').addClass("hide");
+            },5000);
         }
     });
 })
-
