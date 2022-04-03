@@ -154,10 +154,11 @@ create proc createPost
 	@Content nvarchar(max),
 	@Summary nvarchar(500),
 	@ImageBlob nvarchar(max),
+	@UserID int,
 	@IDPost int output
 as
 begin
-	insert into Post (PostName, Content, PubDate, Summary, ImageBlob) values (@PostName, @Content, GETDATE(), @Summary, @ImageBlob)
+	insert into Post (PostName, Content, PubDate, Summary, ImageBlob, UserID) values (@PostName, @Content, GETDATE(), @Summary, @ImageBlob, @UserID)
 	set @IDPost = SCOPE_IDENTITY()
 end
 

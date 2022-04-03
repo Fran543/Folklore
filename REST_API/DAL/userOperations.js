@@ -2,7 +2,6 @@ var config = require('./dbConfig');
 const sql = require('mssql');
 const { password } = require('./dbConfig');
 
-
 sql.on('error', err => {
     console.log(err.message);
 })
@@ -25,7 +24,6 @@ async function getUser(id) {
             .request()
             .input('IDUserAccount', sql.Int, id)
             .execute('ReadUserAccount');
-        console.log(users.recordsets);
         return users.recordsets[0][0];
     } catch (err) {
         console.log(err.message);
@@ -59,7 +57,6 @@ async function checkUsernameAndEmail(username, email) {
             .input('Username', sql.NVarChar(50), username)
             .input('Email', sql.NVarChar(50), email)
             .query('select * from AppUser where Username = @Username OR Email = @Email');
-        console.log(users)
         if (users !== null) {
             if (users.rowsAffected[0] > 0) {
                 return users.recordset;

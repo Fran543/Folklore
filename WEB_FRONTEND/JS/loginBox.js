@@ -14,12 +14,6 @@ signInButton.addEventListener('click', () => {
 var registerEndPoint = "http://127.0.0.1:8091/register"
 var loginEndPoint = "http://127.0.0.1:8091/login"
 
-// $.getJSON(endpoint, function (data) {
-//     var podaci = []
-//     for (var i = 0; i < data.length;i++) {
-//         podaci.push
-//     }
-// })
 $("#registerForm").submit(function (event) {
     event.preventDefault()
     $.ajax({
@@ -62,6 +56,9 @@ $("#loginForm").submit(function (event) {
     $.ajax({
         url: loginEndPoint,
         type: "POST",
+        xhrFields: {
+            withCredentials: true
+        },
         data: {
             "email": $("#lEmail").val(),
             "password": $("#lPassword").val()

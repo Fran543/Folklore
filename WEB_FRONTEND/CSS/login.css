@@ -132,6 +132,7 @@ input {
 }
 
 @keyframes show {
+
   0%,
   49.99% {
     opacity: 0;
@@ -251,4 +252,3 @@ footer a {
     color: #3c97bf;
     text-decoration: none;
 } */
-

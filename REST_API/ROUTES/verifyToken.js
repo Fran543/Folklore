@@ -6,10 +6,10 @@ module.exports = function (req, res, next) {
 
   jwt.verify(authcookie, process.env.JWT_SECRET, (err, data) => {
     if (err) {
-      res.render('index');
+      res.status(401).send('Access denied. Login to continue...');
     }
     else if (data.id) {
-      req.user = data.id
+      req.body.userID = data.id;
       next();
     }
   })

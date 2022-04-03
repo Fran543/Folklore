@@ -1,15 +1,8 @@
 const dbOperations = require('../DAL/postOperations');
 
-
-
 exports.createPost = async (req, res) => {
-
-    const { postName, content, summary, image } = req.body;
-    // if (username === null || email === null || password === null || passwordConfirm === null) {
-    //     return;
-    // }
-    console.log(image)
-    await dbOperations.createPost(postName, content, summary, image);
+    const { postName, summary, content, image, userID } = req.body;
+    await dbOperations.createPost(postName, summary, content, image, userID);
     res.status(200).send('Post created');
 }
 

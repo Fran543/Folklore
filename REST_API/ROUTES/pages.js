@@ -17,11 +17,13 @@ router.get('/login', (req, res) => {
     res.send("Hello")
 });
 
-router.post('/createPost', postController.createPost);
+router.post('/createPost', verify, postController.createPost);
 
-router.get('/getWarnings', postController.getWarnings);
+router.get('/getWarnings', verify, postController.getWarnings);
 
 router.get('/getPosts', postController.getPosts);
+
+// router.get('/getPosts', postController.getPosts);
 
 
 module.exports = router;
