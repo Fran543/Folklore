@@ -7,19 +7,21 @@ body {
     font-family: "Lato", sans-serif;
     display: grid;
     grid-template-columns: 1fr 2fr;
+    overflow: hidden;
  }
 
  .metaData{
      display: flex;
      flex-direction: column;
-     padding: 5%;
+     padding: 0 5%;
      border-radius: 50px;
      background-color: #3290B1;
      height: 80vh;
  }
- .metaData input, select{
-     margin: 5% 0;
-     height: 30px;
+
+ #img{
+    width: 600px;
+    height: 500px;
  }
  
  @media screen and (max-width: 700px) {
@@ -115,9 +117,11 @@ body {
  
  .canvas{
      background-color: #669AE1;
-     border-radius: 50px;
+     border-radius: 20px;
      margin: 0 5%;
-     font-size: larger;
+     font-size: 1.5em;
+     height: 100vh;
+     resize: none;
  }
  
  /* .menu-item {

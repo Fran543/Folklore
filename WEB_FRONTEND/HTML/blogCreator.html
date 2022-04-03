@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
     <link rel="stylesheet" href="../CSS/blogCreator.css">
+    <link rel="stylesheet" href="../LIB/bootstrap.min.css">
 </head>
 
 <body>
     <div class="metaData">
-        <input type="image" placeholder="Import image..." />
+        <!-- <input type="image" src="../IMAGES/imgPlaceholder.png" id="img"/>
         <input type="text" placeholder="Enter title..." />
         <input type="text" placeholder="Enter date" />
         <select>
@@ -21,7 +22,31 @@
             <option value="saab">Saab</option>
             <option value="mercedes">Mercedes</option>
             <option value="audi">Audi</option>
-        </select>
+        </select> -->
+        <div class="form-group">
+            <label for="formFile" class="form-label mt-4">Default file input example</label>
+            <input class="form-control" type="file" id="formFile">
+        </div>
+        <div class="form-group">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingTitle" maxlength = "50">
+                <label for="floatingTitle">Title</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="summary" class="form-label mt-4">Summary</label>
+            <textarea class="form-control" id="summary" rows="3"  maxlength="500" style="height: 95px;"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="warnings" class="form-label mt-4">Warnings/Triggers</label>
+            <select multiple="" class="form-select" id="warnings">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
     </div>
     <nav class="menu">
         <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
@@ -35,9 +60,8 @@
         <a href="#" class="menu-item green" id="btnCreate"><i class="fa fa-upload"></i></a>
         <a href="#" class="menu-item red"><i class="fa fa-trash"></i></a>
     </nav>
-    <input type="text" class="canvas">
 
-    </input>
+    <textarea class="canvas"></textarea>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
     <script src="../JS/blogCreator.js" defer></script>

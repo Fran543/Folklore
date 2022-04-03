@@ -31,10 +31,10 @@
         <div class="form-container sign-up-container">
             <form id="registerForm">
                 <h1>Create Account</h1>
-                <input type="text" placeholder="Username" name="username" id="username" required />
-                <input type="email" placeholder="Email" name="email" id="email" required />
-                <input type="password" placeholder="Password" name="password" id="password" required />
-                <input type="password" placeholder="Confirm password" name="passwordConfirm" id="passwordConfirm"
+                <input type="text" placeholder="Username" name="username" id="username" maxlength="50" required />
+                <input type="email" placeholder="Email" name="email" id="email" maxlength="50" required />
+                <input type="password" placeholder="Password" name="password" id="password" maxlength="100" required />
+                <input type="password" placeholder="Confirm password" name="passwordConfirm" id="passwordConfirm" maxlength="100"
                     required />
                 <button>Sign Up</button>
             </form>
@@ -42,8 +42,8 @@
         <div class="form-container sign-in-container">
             <form id="loginForm">
                 <h1>Sign in</h1>
-                <input type="email" placeholder="Email" id="lEmail" required />
-                <input type="password" placeholder="Password" id="lPassword" required />
+                <input type="email" placeholder="Email" id="lEmail" maxlength="50" required />
+                <input type="password" placeholder="Password" id="lPassword" maxlength="100" required />
                 <a href="#">Forgot your password?</a>
                 <!-- Write it down next time -->
                 <button>Sign In</button>
