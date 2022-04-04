@@ -1,0 +1,52 @@
+body{
+    padding: 10%;
+}
+.cardGrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.postCard{
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    background-color: beige;
+    margin: 3%;
+    border-radius: 10px;
+    border: 5px rgb(172, 172, 43) solid;
+    transition: all 0.2s ease-in;
+    font: italic 1.2em "Fira Sans", serif;
+}
+.postCard:hover{
+    box-shadow: 0 5px 25px rgb(172, 172, 43);
+}
+.postCard p{
+    align-self: flex-end;
+}
+.postCard img{
+    width: 300px;
+    height: 300px;
+    align-self: center;
+}
+.postCard textarea{
+   border: none;
+   background-color: transparent; 
+   resize: none;
+   margin: 10% 0;
+   height: fit-content;
+}
+.postCard .btns{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5%;
+}
+.postCard .btns button{
+    border: none;
+    background-color: transparent;
+}
+.postCard .btns button i{
+    color: rgb(212, 170, 212);
+    transition: all .2s ease-in;
+}
+.postCard .btns button i:hover{
+    color: rgb(29, 59, 68);
+}
