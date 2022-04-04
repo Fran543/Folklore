@@ -110,22 +110,52 @@ body {
     font-size: 26px;
     background: transparent;
  }
+ .menu.active{
+   animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both infinite;
+ }
+
+ @keyframes shake {
+   10%,
+   90% {
+     transform: translate3d(-1px, 0, 0);
+   }
+   20%,
+   80% {
+     transform: translate3d(2px, 0, 0);
+   }
+   30%,
+   50%,
+   70% {
+     transform: translate3d(-4px, 0, 0);
+   }
+   40%,
+   60% {
+     transform: translate3d(4px, 0, 0);
+   }
+ }
  
  .canvas{
     height: fit-content;
     width: fit-content;
-    margin: auto;
+    margin-left: 40%;
     margin-top: 20%;
  }
  .storyPart{
-    background-color: #596778;
     width: 600px;
-    height: 400px;
-    margin: 5% 0;
+    height: fit-content;
     animation: pop-swirl 1s ease forwards;
+    position: absolute;
  }
  .storyPart textarea{
-     width: 100%;
+     width: 77%;
+ }
+ .ddlChoices{
+    align-self: flex-end;
+ }
+ .options{
+    display: flex;
+    justify-content: space-around;
+    width: 77%;
  }
 
  @keyframes pop-swirl {
@@ -345,4 +375,61 @@ body {
  
  .credit a:hover {
     text-decoration: underline;
+ }
+
+ .ping{
+    margin-top: 20%;
+    margin-left: 40%;
+    display: none;
+ }
+ .ping.active{
+    display: block;
+ }
+ .words {
+   color: white;
+   font-size: 0;
+   line-height: 1.5;
+   margin-top: 2%;
+ }
+ 
+ .words span {
+   font-size: 5rem;
+   display: inline-block;
+   animation: move 3s ease-in-out infinite;
+ }
+ 
+ @keyframes move {
+   0% {
+     transform: translate(-30%, 0);
+   }
+   50% {
+     text-shadow: 0 25px 50px rgba(0, 0, 0, 0.75);
+   }
+   100% {
+     transform: translate(30%, 0);
+   }
+ }
+ 
+ .words span:nth-child(2) {
+   animation-delay: 0.5s;
+ }
+ 
+ .words span:nth-child(3) {
+   animation-delay: 1s;
+ }
+ 
+ .words span:nth-child(4) {
+   animation-delay: 1.5s;
+ }
+ 
+ .words span:nth-child(5) {
+   animation-delay: 2s;
+ }
+ 
+ .words span:nth-child(6) {
+   animation-delay: 2.5s;
+ }
+ 
+ .words span:nth-child(7) {
+   animation-delay: 3s;
  }

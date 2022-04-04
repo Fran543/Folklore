@@ -12,17 +12,6 @@ $(document).ready(function () {
         success: function (response) {
             response.forEach(element => {
                 $("#postsContainer").append(
-<<<<<<< Updated upstream
-                    "<li>"
-                    + "<a class='card'>"
-                    + "<img src='" + element.ImageBlob + "' class='card__image' alt=''/>"
-                    + "<h3 class='card__title'>" + element.PostName + "</h3>"
-                    + "<span class='card__pubDate'>" + element.PubDate + "</span>"
-                    + "<span class='card__summary'>" + element.Summary + "</span>"
-                    + "<p class='card__content'>" + element.Content + "</p >"
-                    + "</a>"
-                    + "</li >"
-=======
                     "<div class='postCard'>"
                         + "<p>" + element.PubDate + "</p>"
                         + "<img src='data:image/png;base64," + element.ImageBlob + "'/>"
@@ -47,7 +36,6 @@ $(document).ready(function () {
                     //         + "<p class='card__content'>" + element.Content + "</p >"
                     //     + "<div>"
                     // + "</div >"
->>>>>>> Stashed changes
                 )
             });
         },
