@@ -181,7 +181,8 @@ var options = [
 ];
 
 var myDrop = new drop({
-   selector: '#myMulti',
+   selector: '.myMulti',
    preselected: [0, 2]
 });
+alert(counter)
 myDrop.toggle();

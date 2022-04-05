@@ -1,31 +1,40 @@
+// ADDING DIVS
+var numberOfOptions=2;
+var counter=1;
 $("#btnAdd").on('click',() => {
     $(".canvas").append(
         "<div class='holder'>"
+            +"<div name='ddlHolder'>"
+                +"<select multiple='multiple' id='chooser" + counter + "' class='ddlChoices'>"
+                +"</select>"
+            +"</div>"
             +"<div class='storyPart' class='ui-widget-content'>"
-                + "<textarea>sdfdsfsfsfsf</textarea>"
+                + "<textarea id='paragraph" + counter + "'>sdfdsfsfsfsf</textarea>"
                 + "<hr>"
                 +"<div class='options'>"
-                    + "<button type='button' class='btn btn-secondary' title='sdfsf' data-bs-container='body' data-bs-toggle='popover' data-bs-placement='bottom' data-bs-content='sdfs' data-bs-original-title='OPTION 01'>OPTION 01</button>"
-                    + "<button type='button' class='btn btn-secondary' title='' data-bs-container='body' data-bs-toggle='popover' data-bs-placement='bottom' data-bs-content='' data-bs-original-title='OPTION 02'>OPTION 02</button>"
+                    + "<div class='number'>" + counter + "</div>"
+                    + "<textarea class='option' id='option" + counter + "'></textarea>"
+                    + "<div class='number'>" + (++counter) + "</div>"
+                    + "<textarea class='option' id='option" + counter + "'></textarea>"
                 +"</div>"
-            +"</div>"
-            +"<div>"
-                +"<select multiple='multiple' id='myMulti' class='ddlChoices'>"
-                    +"<option>1</option>"
-                    +"<option>2</option>"
-                    +"<option>3</option>"
-                    +"<option>4</option>"
-                    +"<option>5</option>"
-                +"</select>"
             +"</div>"
         +"</div>"
     )
-    
+    counter++
     $( ".holder" ).draggable();
+    
+    $(".ddlChoices").empty()
+    for(var i=1; i<=numberOfOptions; i++){
 
-    dynamicallyLoadScript("../JS/multiselectDropDown.js")
+        $(".ddlChoices").append(
+            "<option>" + i + "</option>"
+        )
+    }
+    numberOfOptions+=2;
 })
 
+
+// DETECT USER ACTIVE/INACTIVE
 var ms = 1000; // 1000 = 1 Sec | 60000 = 1 Min
 var IdleTime;
 $(document).ready(function () {
@@ -43,7 +52,7 @@ $( "body" ).mousemove( ()=> {
   });
 
 
-
+// ADD SCRIPTS DYNAMICALLY
 function dynamicallyLoadScript(url) {
     var script = document.createElement("script");  // create a script DOM node
     script.src = url;  // set its src to the provided URL

@@ -147,16 +147,30 @@ body {
     position: absolute;
  }
  .storyPart textarea{
-     width: 77%;
+     width: 100%;
  }
  .ddlChoices{
     align-self: flex-end;
+    position: absolute;
  }
  .options{
     display: flex;
-    justify-content: space-around;
-    width: 77%;
+    justify-content: space-evenly;
+    width: 100%;
  }
+.option{
+   border-radius: 5px;
+   margin: 2%;
+   resize: none;
+}
+.number{
+   border-radius: 50%;
+   background-color: #295c9b;
+   color: white;
+   height: 30px;
+   width: 70px;
+   text-align: center;
+}
 
  @keyframes pop-swirl {
     0% {
