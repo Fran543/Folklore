@@ -1,5 +1,5 @@
 
-var createPostEndPoint = "http://127.0.0.1:8091/createPost"
+var createStoryEndPoint = "http://127.0.0.1:8091/createStory"
 var getWarningsEndPoint = "http://127.0.0.1:8091/getWarnings"
 
 $(document).ready(function () {
@@ -35,16 +35,16 @@ $("#btnCreate").on("click", async function (event) {
         image = await toBase64(file);
     }
     $.ajax({
-        url: createPostEndPoint,
+        url: createStoryEndPoint,
         type: "POST",
         xhrFields: {
             withCredentials: true
         },
         data: {
-            "postName": $("#floatingTitle").val(),
-            "content": $("#summary").val(),
-            "summary": $("#content").val(),
-            "image": image
+            "title": $("#floatingTitle").val(),
+            "summary": $("#summary").val(),
+            "image": image,
+            'posts': $.parseJSON('[{"content":"' + $("#content").val() + '"}]')
         },
         success: function (response) {
             console.log(response)

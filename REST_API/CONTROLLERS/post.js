@@ -1,9 +1,16 @@
 const dbOperations = require('../DAL/postOperations');
 
-exports.createPost = async (req, res) => {
-    const { postName, summary, content, image, userID } = req.body;
-    await dbOperations.createPost(postName, summary, content, image, userID);
-    res.status(200).send('Post created');
+exports.createStory = async (req, res) => {
+    const { title, summary, posts, userID, image } = req.body;
+    var storyID = await dbOperations.createStory(title, summary, image, userID);
+    posts.forEach(async post => {
+        var postID = await dbOperations.createPost(post.content, null, storyID);
+        if (post.choice) {
+            post.choice.forEach(async choice => {
+                await dbOperations.createChoice(choice.choiceValue, postID);
+            });
+        }
+    })
 }
 
 exports.getWarnings = async (req, res) => {
@@ -12,4 +19,8 @@ exports.getWarnings = async (req, res) => {
 
 exports.getPosts = async (req, res) => {
     res.status(200).send(await dbOperations.getPosts());
+}
+
+exports.getStories = async (req, res) => {
+    res.status(200).send(await dbOperations.getStories());
 }

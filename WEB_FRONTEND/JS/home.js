@@ -1,10 +1,10 @@
-var getPostsEndPoint = "http://127.0.0.1:8091/getPosts"
+var getStoriesEndPoint = "http://127.0.0.1:8091/getStories"
 
 
 
 $(document).ready(function () {
     $.ajax({
-        url: getPostsEndPoint,
+        url: getStoriesEndPoint,
         type: "GET",
         xhrFields: {
             withCredentials: true
@@ -15,7 +15,7 @@ $(document).ready(function () {
                     "<div class='postCard'>"
                     + "<p>" + element.PubDate + "</p>"
                     + "<img src='" + element.ImageBlob + "'/>"
-                    + "<h2>" + element.PostName + "</h2>"
+                    + "<h2>" + element.StoryName + "</h2>"
                     + "<div class='warnings'>"
                     + "<button type=button' class='btn btn-success disabled' disabled>Success</button>"
                     + "<button type='button' class='btn btn-info disabled' disabled>Info</button>"

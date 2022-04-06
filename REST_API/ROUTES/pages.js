@@ -7,23 +7,12 @@ var router = express.Router();
 
 router.post('/register', authController.register);
 
-router.get('/register', (req, res) => {
-    res.send("Hello")
-});
-
 router.post('/login', authController.login);
 
-router.get('/login', (req, res) => {
-    res.send("Hello")
-});
+router.post('/createStory', verify, postController.createStory);
 
-router.post('/createPost', verify, postController.createPost);
+router.get('/getStories', verify, postController.getStories);
 
 router.get('/getWarnings', verify, postController.getWarnings);
-
-router.get('/getPosts', postController.getPosts);
-
-// router.get('/getPosts', postController.getPosts);
-
 
 module.exports = router;

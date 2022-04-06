@@ -106,63 +106,114 @@ begin
 end
 go
 
-
---POST
-
-create table Post(
-	IDPost int primary key identity,
-	PostName nvarchar(50) NOT NULL,
-	Content nvarchar(max),
+create table Story(
+	IDStory int primary key identity,
+	StoryName nvarchar(50) NOT NULL,
 	PubDate date NOT NULL,
 	Summary nvarchar(500) NOT NULL,
 	ImageBlob nvarchar(max),
-	UserID int foreign key references AppUser(IDUser),
+	UserID int foreign key references AppUser(IDUser)
+
 )
 go
 
-create table StoryConnection(
-	IDStoryConnection int primary key identity,
-	PreStory int foreign key references Post(IDPost),
-	SequelStory int foreign key references Post(IDPost)
-)
-go
-
-create table WarningPost(
-	IDWarningPost int primary key identity,
+create table WarningStory(
+	IDWarningStory int primary key identity,
 	WarningID int foreign key references Warning(IDWarning),
-	PostID int foreign key references Post(IDPost)
+	StoryID int foreign key references Story(IDStory)
 )
 go
+
+create proc createStory
+	@StoryName nvarchar(50),
+	@Summary nvarchar(500),
+	@ImageBlob nvarchar(max),
+	@UserID int,
+	@IDStory int output
+as
+begin
+	insert into Story (StoryName, PubDate, Summary, ImageBlob, UserID) values (@StoryName, GETDATE(), @Summary, @ImageBlob, @UserID)
+	set @IDStory = SCOPE_IDENTITY()
+end
+
+go
+
+--POST
 
 create table Comment (
 	IDComment int primary key identity,
 	Content nvarchar(max),
 	UserID int foreign key references AppUser(IDUser),
-	PostID int foreign key references Post(IDPost)
+	StoryID int foreign key references Story(IDStory)
 )
 
 create table Review (
 	IDReview int primary key identity,
 	Score int,
 	UserID int foreign key references AppUser(IDUser),
+	StoryID int foreign key references Story(IDStory)
+)
+go
+
+create table Post(
+	IDPost int primary key identity,
+	Content nvarchar(max),
+	ImageBlob nvarchar(max),
+	StoryID int foreign key references Story(IDStory)
+)
+go
+
+create table Choice(
+	IDChoice int primary key identity,
+	Content nvarchar(max),
 	PostID int foreign key references Post(IDPost)
 )
 go
 
+create table PostChoice(
+	IDPostChoice int primary key identity,
+	PostID int foreign key references Post(IDPost),
+	ChoiceID int foreign key references Choice(IDChoice)
+)
+go
+
 create proc createPost
-	@PostName nvarchar(50),
 	@Content nvarchar(max),
-	@Summary nvarchar(500),
 	@ImageBlob nvarchar(max),
-	@UserID int,
+	@StoryID int,
 	@IDPost int output
 as
 begin
-	insert into Post (PostName, Content, PubDate, Summary, ImageBlob, UserID) values (@PostName, @Content, GETDATE(), @Summary, @ImageBlob, @UserID)
+	insert into Post (Content, ImageBlob, StoryID) values (@Content, @ImageBlob, @StoryID)
 	set @IDPost = SCOPE_IDENTITY()
 end
 
 go
+
+create proc createChoice
+	@Content nvarchar(max),
+	@PostID int,
+	@IDChoice int output
+as
+begin
+	insert into Choice (Content, PostID) values (@Content, @PostID)
+	set @IDChoice = SCOPE_IDENTITY()
+end
+
+go
+
+create proc addOptionToPost
+	@PostID int,
+	@ChoiceID int,
+	@IDPostChoice int output
+as
+begin
+	insert into PostChoice (PostID, ChoiceID) values (@PostID, @ChoiceID)
+	set @IDPostChoice = SCOPE_IDENTITY()
+end
+
+go
+
 
 create proc selectPosts
 as
@@ -171,3 +222,12 @@ begin
 	from Post
 end
 go
+
+create proc selectStories
+as
+begin 
+	select *
+	from Story
+end
+go
+
