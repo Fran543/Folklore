@@ -77,19 +77,31 @@ $(document).ready(()=>{
 
 // GATHERING VARIABLES FOR UPLOAD
 var allParagraphs;
-var textareas;
+var allOptions;
+var allConditions;
+var holders;
 $("#btnCreate").on('click', () => {
-    textareas = $("textarea").map(function() {
+    $("textarea").map(function() {
         if($(this).val().trim().length === 0){
             $(this).css( "background-color", "red" );
         }
-        return this.innerHTML;
+    });
+
+    allOptions = $(".option").map(function() {
+        return $(this).val();
     }).get();
-    
-    console.log(textareas)
+    console.log(allOptions)
+
+    holders = $(".holder").map(function() {
+        return $(this);
+    }).get();
+    console.log(holders)
+
+    allConditions = $('.ddlChoices').find(":selected").text();
+    console.log(allConditions)
 
     allParagraphs = $(".paragraph").map(function() {
-        return this.innerHTML;
+        return $(this).val();
     }).get();
     console.log(allParagraphs)
 })
