@@ -171,6 +171,12 @@ body {
    width: 70px;
    text-align: center;
 }
+.hidingNav {
+   margin-top: -10%;
+  }
+  .hidingNav.show {
+   margin-top: 0;
+  }
 
  @keyframes pop-swirl {
     0% {
