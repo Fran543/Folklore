@@ -1,3 +1,24 @@
+var createStoryEndPoint = "http://127.0.0.1:8091/createStory"
+var getWarningsEndPoint = "http://127.0.0.1:8091/getWarnings"
+
+$(document).ready(function () {
+    $.ajax({
+        url: getWarningsEndPoint,
+        type: "GET",
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function (response) {
+            response.forEach(element => {
+                $("#myMulti").append("<option>" + element.WarningName + "</option>")
+            });
+        },
+        error: function (error) {
+            alert(error.responseText)
+        }
+    });
+})
+
 // ADDING DIVS
 var numberOfOptions=2;
 var counter=1;
@@ -76,9 +97,9 @@ $(document).ready(()=>{
 })
 
 // GATHERING VARIABLES FOR UPLOAD
-var allParagraphs;
-var allOptions;
-var allConditions;
+// var allParagraphs;
+// var allOptions;
+// var allConditions;
 var holders;
 $("#btnCreate").on('click', () => {
     $("textarea").map(function() {
@@ -87,12 +108,15 @@ $("#btnCreate").on('click', () => {
         }
     });
 
-    allOptions = $(".option").map(function() {
-        return $(this).val();
-    }).get();
-    console.log(allOptions)
+    // allOptions = $(".option").map(function () {
+    //     return $(this).val();
+    // }).get();
+    // console.log(allOptions)
 
-    holders = $(".holder").map(function() {
+    // allConditions = $('.ddlChoices').find(":selected").text();
+    // console.log(allConditions)
+
+    holders = $(".holder").map(function () {
         return $(this);
     }).get();
     console.log(holders)
