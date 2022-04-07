@@ -202,19 +202,6 @@ end
 
 go
 
-create proc addOptionToPost
-	@PostID int,
-	@ChoiceID int,
-	@IDPostChoice int output
-as
-begin
-	insert into PostChoice (PostID, ChoiceID) values (@PostID, @ChoiceID)
-	set @IDPostChoice = SCOPE_IDENTITY()
-end
-
-go
-
-
 create proc selectPosts
 as
 begin 
@@ -229,5 +216,18 @@ begin
 	select *
 	from Story
 end
+go
+
+
+create proc addConditionToPost
+	@PostID int,
+	@ChoiceID int,
+	@IDPostChoice int output
+as
+begin
+	insert into PostChoice (PostID, ChoiceID) values (@PostID, @ChoiceID)
+	set @IDPostChoice = SCOPE_IDENTITY()
+end
+
 go
 

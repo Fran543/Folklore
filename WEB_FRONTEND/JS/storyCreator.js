@@ -48,7 +48,7 @@ $("#btnAdd").on('click', () => {
     for (var i = 1; i <= numberOfOptions; i++) {
 
         $(".ddlChoices").append(
-            "<option>" + i + "</option>"
+            "<option value='" + i + "'>" + i + "</option>"
         )
     }
     numberOfOptions += 2;
@@ -107,12 +107,19 @@ function createJsonString(holders) {
     holders.forEach(function (holder, i) {
         json += '{'
             + '"content":"' + $(holder[0].children[1].children[2]).val() + '",'
-            + '"choice":[{ "choiceValue":"' + $(holder[0].children[1].children[4].children[1]).val() + '"},'
-            + '{"choiceValue":"' + $(holder[0].children[1].children[4].children[3]).val() + '"}]'
-        json += '}'
+            + '"choices":[{ "choiceValue":"' + $(holder[0].children[1].children[4].children[1]).val() + '"},'
+            + '{"choiceValue":"' + $(holder[0].children[1].children[4].children[3]).val() + '"}],'
+            + '"conditions":['
+
+        for (let j = 0; j < $(holder[0].children[0].children[0]).find(":selected").length; j++) {
+            json += $(holder[0].children[0].children[0]).find(":selected")[j].value - 1;
+            if (!(j === $(holder[0].children[0].children[0]).find(":selected").length - 1)) json += ',';
+        }
+        json += ']}'
         if (!(i === holders.length - 1)) json += ',';
     })
     json += ']';
+    console.log(json);
     return json;
 }
 
@@ -122,9 +129,20 @@ $("#btnCreate").on('click', () => {
             $(this).css("background-color", "red");
         }
     });
+
+    allOptions = $(".option").map(function () {
+        return $(this).val();
+    }).get();
+    console.log(allOptions)
+
+    allConditions = $('.ddlChoices').find(":selected").text();
+    console.log(allConditions)
+
     holders = $(".holder").map(function () {
         return $(this);
     }).get();
+
+
 
     $.ajax({
         url: createStoryEndPoint,
