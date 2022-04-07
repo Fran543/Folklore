@@ -97,9 +97,9 @@ $(document).ready(() => {
 })
 
 // GATHERING VARIABLES FOR UPLOAD
-var allParagraphs;
-var allOptions;
-var allConditions;
+// var allParagraphs;
+// var allOptions;
+// var allConditions;
 var holders;
 
 function createJsonString(holders) {
@@ -130,13 +130,13 @@ $("#btnCreate").on('click', () => {
         }
     });
 
-    allOptions = $(".option").map(function () {
-        return $(this).val();
-    }).get();
-    console.log(allOptions)
+    // allOptions = $(".option").map(function () {
+    //     return $(this).val();
+    // }).get();
+    // console.log(allOptions)
 
-    allConditions = $('.ddlChoices').find(":selected").text();
-    console.log(allConditions)
+    // allConditions = $('.ddlChoices').find(":selected").text();
+    // console.log(allConditions)
 
     holders = $(".holder").map(function () {
         return $(this);

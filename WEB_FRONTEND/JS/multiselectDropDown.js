@@ -170,19 +170,7 @@ var drop = function (info) {
    return o;
 }
 
-
-//Set up some data
-var options = [
-   { html: 'cats', value: 'cats' },
-   { html: 'fish', value: 'fish' },
-   { html: 'squids', value: 'squids' },
-   { html: 'cats', value: 'whales' },
-   { html: 'cats', value: 'bikes' },
-];
-
 var myDrop = new drop({
-   selector: '.myMulti',
-   preselected: [0, 2]
+   selector: '#myMulti'
 });
-alert(counter)
 myDrop.toggle();
