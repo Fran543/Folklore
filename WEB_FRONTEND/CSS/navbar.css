@@ -1,8 +1,32 @@
-nav {
+/* nav {
 	background: #74CCD3;
 	background: -webkit-linear-gradient(to right, #6376C1, #74CCD3);
 	background: linear-gradient(to right, #6376C1, #74CCD3);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
+} */
+
+#mainNavbar {
+    font-size: 1.5rem;
+    font-weight: 100;
 }
+
+#mainNavbar .nav-link {
+    color: #F5F4EF;
+}
+
+#mainNavbar .nav-link:hover {
+    color: #6376C1;
+}
+
+#mainNavbar .navbar-brand {
+    color: #6376C1;
+	font-size: 1.5rem;
+}
+
+.navbar.scrolled {
+    background: #9EC0ED;
+    transition: background 500ms;
+}
+
