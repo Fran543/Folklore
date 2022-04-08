@@ -1,5 +1,6 @@
 body{
     padding: 10%;
+    background: #222831;
 }
 .cardGrid{
     display: grid;

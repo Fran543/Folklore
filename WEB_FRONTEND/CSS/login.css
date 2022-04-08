@@ -5,7 +5,7 @@
 }
 
 body {
-  background: #ffffff;
+  background: #222831;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,9 +46,9 @@ a {
 
 button {
   border-radius: 20px;
-  border: 1px solid #6376c1;
-  background-color: #6376c1;
-  color: #ffffff;
+  border: 1px solid #00ADB5;
+  background-color: #00ADB5;
+  color: #EEEEEE;
   font-size: 12px;
   font-weight: bold;
   padding: 12px 45px;
@@ -67,11 +67,11 @@ button:focus {
 
 button.ghost {
   background-color: transparent;
-  border-color: #ffffff;
+  border-color: #EEEEEE;
 }
 
 form {
-  background-color: #f5f4ef;
+  background-color: #EEEEEE;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,7 +82,7 @@ form {
 }
 
 input {
-  background-color: #f5f4ef;
+  background-color: #EEEEEE;
   border: none;
   padding: 12px 15px;
   margin: 8px 0;
@@ -90,7 +90,7 @@ input {
 }
 
 .container {
-  background-color: #f5f4ef;
+  background-color: #EEEEEE;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
@@ -162,13 +162,13 @@ input {
 }
 
 .overlay {
-  background: #74ccd3;
-  background: -webkit-linear-gradient(to right, #6376c1, #74ccd3);
-  background: linear-gradient(to right, #6376c1, #74ccd3);
+  background: #00ADB5;
+  /* background: -webkit-linear-gradient(to right, #005b60, #00ADB5);
+  background: linear-gradient(to right, #005b60, #00ADB5); */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
-  color: #ffffff;
+  color: #EEEEEE;
   position: relative;
   left: -100%;
   height: 100%;
@@ -218,7 +218,7 @@ input {
 }
 
 .social-container a {
-  border: 1px solid #dddddd;
+  border: 1px solid #EEEEEE;
   border-radius: 50%;
   display: inline-flex;
   justify-content: center;
