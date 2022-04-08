@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:anroid="http://schemas.android.com/apk/res/android"
+    anroid:shape="rectangle">
+
+    <solid anroid:color="@color/deeper_sea_bluee"/>
+    <corners anroid:radius="30dp"/>
+
+
+</shape>

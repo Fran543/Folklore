@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_drawable"
+    tools:context=".BlogFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/ivBlog"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            tools:src="@drawable/logomodified" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etTitle"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:hint="@string/the_great" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/summary"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etSummary"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:hint="@string/to_sum_up" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/warnings"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spWarning"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:spinnerMode="dropdown"
+            android:background="@drawable/spinner_drawable"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/event"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etEvent"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:hint="@string/it_happened" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="120dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:text="@string/cancel"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"/>
+
+            <Button
+                android:id="@+id/btnPost"
+                android:layout_width="120dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:text="@string/post"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

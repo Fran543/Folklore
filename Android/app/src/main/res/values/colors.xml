@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="light_bluee">#38CBD5</color>
+    <color name="dark_purplee">#312B6F</color>
+    <color name="cyann">#C3E7EB</color>
+    <color name="isabelee">#F5F4EF</color>
+    <color name="sea_bluee">#9EC0ED</color>
+    <color name="deeper_sea_bluee">#63A8CA</color>
+    <color name="deep_see_bluee">#6376C1</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
