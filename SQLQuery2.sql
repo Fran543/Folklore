@@ -22,7 +22,7 @@ go
 create proc createUser
 	@Username nvarchar(50),
 	@Email nvarchar(50),
-	@Password nvarchar(50),
+	@Password nvarchar(max),
 	@Active bit,
 	@IDUser int output
 as
@@ -51,7 +51,7 @@ end
 go
 
 create proc updatePassword
-	@Password nvarchar(50),
+	@Password nvarchar(max),
 	@IDUser int 
 as
 begin
