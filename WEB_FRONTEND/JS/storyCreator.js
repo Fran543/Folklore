@@ -68,7 +68,6 @@ function dynamicallyLoadScript(url) {
 var viewPortHeight = $(window).height();
 var activate = $(window).height() - 1200;
 $(document).ready(() => {
-    console.log(activate)
     document.addEventListener('mousemove', (event) => {
         if ($(event.clientY)[0] < activate) {
             $(".hidingNav").addClass("show")
