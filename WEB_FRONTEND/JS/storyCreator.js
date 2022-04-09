@@ -2,7 +2,7 @@ var createStoryEndPoint = "http://127.0.0.1:8091/createStory"
 var getWarningsEndPoint = "http://127.0.0.1:8091/getWarnings"
 
 
-// ADDING DIVS
+// ADDING PARAGRAPHS
 var numberOfOptions = 2;
 var counter = 1;
 $("#btnAdd").on('click', () => {
@@ -48,12 +48,19 @@ $(document).ready(function () {
 document.onIdle = function () {
     console.log("user inactive")
     $(".ping").addClass('active')
-    $(".menu").addClass('active')
+    $(".myMenu").addClass('active')
 }
 $("body").mousemove(() => {
     $(".ping").removeClass('active')
-    $(".menu").removeClass('active')
+    $(".myMenu").removeClass('active')
 });
+
+
+//PREVIEWING IMAGE
+var loadFile = function(event) {
+	var image = document.getElementById('imgPreview');
+	image.src = URL.createObjectURL(event.target.files[0]);
+};
 
 
 // ADD SCRIPTS DYNAMICALLY
@@ -64,24 +71,7 @@ function dynamicallyLoadScript(url) {
     document.head.appendChild(script);  // add it to the end of the head section of the page (could change 'head' to 'body' to add it to the end of the body section instead)
 }
 
-// MENU SLIDER
-var viewPortHeight = $(window).height();
-var activate = $(window).height() - 1200;
-$(document).ready(() => {
-    document.addEventListener('mousemove', (event) => {
-        if ($(event.clientY)[0] < activate) {
-            $(".hidingNav").addClass("show")
-        } else {
-
-            $(".hidingNav").removeClass("show")
-        }
-    });
-})
-
 // GATHERING VARIABLES FOR UPLOAD
-// var allParagraphs;
-// var allOptions;
-// var allConditions;
 var holders;
 
 function createJsonString(holders) {
@@ -111,11 +101,6 @@ $("#btnCreate").on('click', () => {
             $(this).css("background-color", "red");
         }
     });
-
-    // allOptions = $(".option").map(function () {
-    //     return $(this).val();
-    // }).get();
-    // console.log(allOptions)
     holders = $(".holder").map(function () {
         return $(this);
     }).get();
