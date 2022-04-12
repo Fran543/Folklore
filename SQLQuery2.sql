@@ -231,3 +231,26 @@ end
 
 go
 
+
+create proc getUserBlogs
+	@IDUser int
+as
+begin
+	select * from Story 
+	where UserID = @IDUser 
+	and (select COUNT(*) from Post where Post.StoryID = Story.IDStory) = 1
+end
+
+go
+
+create proc getUserStories
+	@IDUser int
+as
+begin
+	select * from Story 
+	where UserID = @IDUser 
+	and (select COUNT(*) from Post where Post.StoryID = Story.IDStory) > 1
+end
+
+go
+

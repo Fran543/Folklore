@@ -1,8 +1,205 @@
-body{
-    padding: 10%;
-    background: #222831;
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
 }
-.cardGrid{
+
+html,
+body {
+  margin: 0;
+  background: #222831;
+  font-family: 'Montserrat', helvetica, arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+h1 {
+  color: white;
+  padding: 5%;
+}
+
+.bi-share-fill {
+  color: white;
+}
+
+.story_card {
+  position: relative;
+  display: block;
+  width: 800px;
+  height: 350px;
+  margin: 100px auto;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: all 0.4s;
+}
+
+.story_card:hover {
+  transform: scale(1.02);
+  transition: all 0.4s;
+}
+
+.info_section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-blend-mode: multiply;
+  z-index: 2;
+  border-radius: 10px;
+}
+
+/* .info-section .story_header{
+        position: relative;
+        padding: 10%;
+        height: 40%;
+      }
+
+      .info-section .story_header h1{
+        color: white;
+        font-weight: 400;
+        padding: 20%;
+      }
+
+      .info-section .story_header h4{
+        color: #9ac7fa;
+        font-weight: 400;
+      }
+
+      .info-section .story_header .minutes{
+        display: inline-block;
+        margin-top: 10px;
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid rgba(255,255,255,0.13);
+      }
+
+      .info-section .story_header .type{
+        display: inline-block;
+        color: #cee4fd;
+        margin-left: 10px;
+      }
+
+      .info-section .story_header.locandina{
+        position: relative;
+        float: left;
+        margin-right: 20px;
+        height: 120px;
+        box-shadow: 0 0 20px -10px rgba(0,0,0,0.5);
+      } */
+
+.story_desc {
+  padding: 25px;
+  height: 50%;
+}
+
+.story_desc .text {
+  color: white;
+}
+
+.story_social {
+  height: 10%;
+  padding-left: 15px;
+  padding-bottom: 20px;
+}
+
+.story_social ul {
+  list-style: none;
+  padding: 0;
+}
+
+.story_social ul li {
+  display: inline-block;
+  color: white;
+  transition: color 0.3s;
+  transition-delay: 0.15s;
+  margin: 0 10px;
+}
+
+.story_social ul li:hover {
+  transition: color 0.3s;
+  color: white;
+}
+
+.story_social ul li i {
+  font-size: 19px;
+  cursor: pointer;
+}
+
+.blur_back {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  height: 100%;
+  right: 0;
+  background-size: cover;
+  border-radius: 11px;
+}
+
+@media screen and (min-width: 768px) {
+  .story_header {
+    width: 60%;
+  }
+
+  .story_desc {
+    width: 50%;
+  }
+
+  .info_section {
+    background: linear-gradient(to right, #0d0d0c 50%, transparent 100%);
+  }
+
+  .blur_back {
+    width: 80%;
+    background-position: -100% 10% !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .story_card {
+    width: 95%;
+    margin: 70px auto;
+    min-height: 350px;
+    height: auto;
+  }
+
+  .story_back {
+    width: 100%;
+    background-position: 50% 50% !important;
+  }
+
+  .story_header {
+    width: 100%;
+    margin-top: 85px;
+  }
+
+  .story_desc {
+    width: 100%;
+  }
+
+  .info_section {
+    background: linear-gradient(to top, rgb(20, 20, 19) 50%, transparent 100%);
+    display: inline-grid;
+  }
+}
+
+
+#cardGlow {
+  box-shadow: 0px 0px 150px -45px #9ac7fa;
+}
+
+#cardGlow:hover {
+  box-shadow: 0px 0px 120px -55px #9ac7fa;
+}
+
+.card_back {
+  background: url("../IMAGES/storiesPlaceholder.avif");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+
+/* .cardGrid{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
@@ -50,4 +247,4 @@ body{
 }
 .postCard .btns button i:hover{
     color: rgb(29, 59, 68);
-}
+} */

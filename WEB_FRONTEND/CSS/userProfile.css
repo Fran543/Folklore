@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Cinzel&display=swap');
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: white;
+    overflow-x: hidden;
+  }
+  
+  h1 {
+    font-size: 10vw;
+    padding-left: 7vw;
+    margin-bottom: 0;
+  }
+  
+  h3 {
+    margin-top: 0;
+    padding-left: 7vw;
+  }
+  
+  section {
+    display: flex;
+    height: 101vh;
+    font-family: 'Cinzel', serif;
+    font-size: larger;
+    align-items: center;
+  }
+  section div p{
+    text-align: center;
+  }
+  .first{
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .imgPlaceholder{
+    background-image: url("../IMAGES/logoLight.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .list-group-mine .list-group-item{
+      background-color: transparent!important;
+      color: white;
+  }
+  .card-mine{
+    background-color: transparent!important;
+  }
+
+  .leftContainer {
+    cursor: url('../IMAGES/leftArrow.svg'), auto;	
+  }
+  .rightContainer {
+    cursor: url('../IMAGES/rightArrow.svg'), auto;	
+    height: 100%;
+  }

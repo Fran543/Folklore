@@ -22,8 +22,8 @@ async function getUser(id) {
         let pool = await sql.connect(config);
         let users = await pool
             .request()
-            .input('IDUserAccount', sql.Int, id)
-            .execute('ReadUserAccount');
+            .input('IDUser', sql.Int, id)
+            .execute('selectUser');
         return users.recordsets[0][0];
     } catch (err) {
         console.log(err.message);
@@ -87,10 +87,40 @@ async function checkEmail(email) {
     }
 }
 
+async function getUserBlogs(id) {
+    try {
+        let pool = await sql.connect(config);
+        let users = await pool
+            .request()
+            .input('IDUser', sql.Int, id)
+            .execute('getUserBlogs');
+        return users.recordsets[0];
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+    }
+}
+
+async function getUserStories(id) {
+    try {
+        let pool = await sql.connect(config);
+        let users = await pool
+            .request()
+            .input('IDUser', sql.Int, id)
+            .execute('getUserStories');
+        return users.recordsets[0];
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+    }
+}
+
 module.exports = {
     getUsers: getUsers,
     getUser: getUser,
     createUser: createUser,
     checkUsernameAndEmail: checkUsernameAndEmail,
-    checkEmail: checkEmail
+    checkEmail: checkEmail,
+    getUserBlogs: getUserBlogs,
+    getUserStories: getUserStories
 }

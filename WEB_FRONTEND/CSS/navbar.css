@@ -10,6 +10,7 @@
 #mainNavbar {
     font-size: 1.5rem;
     font-weight: 100;
+    /* background-color: #222831; */
 }
 
 #mainNavbar .nav-link {
@@ -26,7 +27,23 @@
 }
 
 .navbar.scrolled {
-    background: black;
+    background: #222831;
     transition: background 500ms;
 }
 
+#mainNavbar .btn-outline-success {
+    border-color: #EEEEEE;
+    color: #EEEEEE;
+}
+
+#mainNavbar .btn-outline-success:hover {
+    border-color: #00ADB5;
+    color: #00ADB5;
+    background: none;
+}
+
+/* @media screen and (min-width: 768px) {
+    #mainNavbar {
+        background: none;
+    }
+} */
