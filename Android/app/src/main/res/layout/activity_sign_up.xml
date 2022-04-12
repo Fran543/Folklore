@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_drawable"
-    tools:context=".MainActivity">
+    tools:context=".SignUpActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -38,6 +38,17 @@
                 android:padding="10dp" />
 
             <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/username_drawable"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="10dp"
+                android:hint="@string/email"
+                android:padding="10dp" />
+
+            <EditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,33 +60,37 @@
                 android:inputType="textPassword"
                 android:padding="10dp" />
 
-            <TextView
-                android:id="@+id/twForgotPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:padding="10dp"
-                android:text="@string/forgot_password"
-                android:textColor="@color/white"
-                android:textSize="15sp" />
-
-            <Button
-                android:id="@+id/btnLogIn"
+            <EditText
+                android:id="@+id/etPasswordConfirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_drawable"
-                android:text="@string/log_in"
-                android:textSize="18sp" />
+                android:layout_marginTop="10dp"
+                android:background="@drawable/username_drawable"
+                android:drawableStart="@drawable/ic_password"
+                android:drawablePadding="10dp"
+                android:hint="@string/confirm_password"
+                android:inputType="textPassword"
+                android:padding="10dp" />
+
 
             <Button
                 android:id="@+id/btnSignUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/button_drawable"
                 android:text="@string/sign_up"
                 android:textSize="18sp" />
 
+            <TextView
+                android:id="@+id/tvLogIn"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="@string/have_an_account_already_log_in"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:layout_marginTop="20dp"/>
 
 
         </LinearLayout>

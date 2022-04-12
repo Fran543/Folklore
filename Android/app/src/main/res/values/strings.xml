@@ -2,7 +2,6 @@
     <string name="app_name">Folklore</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="forgot_password">Forgot Password?</string>
     <string name="log_in">Log in</string>
     <string name="sign_up">Sign up</string>
     <string name="confirm_password">Confirm Password</string>
@@ -31,4 +30,7 @@
     <string name="story">STORY</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="have_an_account_already_log_in">HAVE AN ACCOUNT ALREADY! LOG IN :)</string>
+    <string name="dont_have_an_account_create_one">DONT HAVE AN ACCOUNT? CREATE ONE.</string>
+    <string name="continue_as_a_guest">CONTINUE AS A GUEST</string>
 </resources>

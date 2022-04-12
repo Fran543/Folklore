@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_drawable"
-    tools:context=".SignUpFragment">
+    tools:context=".LoginActivity">
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,25 +28,14 @@
                 android:src="@drawable/logomodified" />
 
             <EditText
-                android:id="@+id/etUsername"
+                android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/username_drawable"
-                android:drawableStart="@drawable/ic_user"
-                android:drawablePadding="10dp"
-                android:hint="@string/username"
-                android:padding="10dp" />
-
-            <EditText
-                android:id="@+id/etEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/username_drawable"
                 android:drawableStart="@drawable/ic_email"
                 android:drawablePadding="10dp"
-                android:hint="@string/email"
+                android:hint="Email"
                 android:padding="10dp" />
 
             <EditText
@@ -60,36 +50,34 @@
                 android:inputType="textPassword"
                 android:padding="10dp" />
 
-            <EditText
-                android:id="@+id/etPasswordConfirm"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tvGuest"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/username_drawable"
-                android:drawableStart="@drawable/ic_password"
-                android:drawablePadding="10dp"
-                android:hint="@string/confirm_password"
-                android:inputType="textPassword"
-                android:padding="10dp" />
-
-
-            <Button
-                android:id="@+id/btnSignUp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/button_drawable"
-                android:text="@string/sign_up"
-                android:textSize="18sp" />
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:text="@string/continue_as_a_guest"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
 
             <Button
                 android:id="@+id/btnLogIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:background="@drawable/button_drawable"
                 android:text="@string/log_in"
                 android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvSignUp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="@string/dont_have_an_account_create_one"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:layout_marginTop="20dp"/>
+
 
 
         </LinearLayout>
