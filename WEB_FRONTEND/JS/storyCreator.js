@@ -5,27 +5,37 @@ var getWarningsEndPoint = "http://127.0.0.1:8091/getWarnings"
 // ADDING PARAGRAPHS
 var numberOfOptions = 2;
 var counter = 1;
+var imgPlaceholder = 'imgHolder' + counter ;
 $("#btnAdd").on('click', () => {
     $(".canvas").append(
-        "<div class='holder'>"
-        + "<div name='ddlHolder' class='ddlHolder'>"
-        + "<select multiple='multiple' id='chooser" + counter + "' class='ddlChoices'>"
-        + "</select>"
-        + "</div>"
-        + "<div class='storyPart' class='ui-widget-content'>"
-        + "<textarea id='paragraph" + counter + "' class='paragraph'></textarea>"
-        + "<hr>"
-        + "<div class='options'>"
-        + "<div class='number'>" + counter + "</div>"
-        + "<textarea class='option' id='option" + counter + "'></textarea>"
-        + "<div class='number'>" + (++counter) + "</div>"
-        + "<textarea class='option' id='option" + counter + "'></textarea>"
-        + "</div>"
-        + "</div>"
+        "<div class='movableParagraph'>"
+            + "<div id='imgHolder"+ counter +"'></div>"
+            + "<div class='paragraphImg'>"
+                + "<input type='file' id='paragraphImg' accept='image/*' onchange='loadFile(event,\""+imgPlaceholder+"\")'></input>"
+            + "</div>"
+            + "<div class='holder'>"
+                + "<div name='ddlHolder' class='ddlHolder'>"
+                    + "<select multiple='multiple' id='chooser" + counter + "' class='ddlChoices'>"
+                    + "</select>"
+                + "</div>"
+                + "<div class='storyPart' class='ui-widget-content'>"
+                    + "<textarea id='paragraph" + counter + "' class='paragraph'></textarea>"
+                    + "<hr>"
+                    + "<div class='options'>"
+                        + "<div class='number'>" + counter + "</div>"
+                        + "<textarea class='option' id='option" + counter + "'></textarea>"
+                        + "<div class='number'>" + (++counter) + "</div>"
+                        + "<textarea class='option' id='option" + counter + "'></textarea>"
+                    + "</div>"
+                + "</div>"
+            + "</div>"
         + "</div>"
     )
     counter++
-    $(".holder").draggable();
+    imgPlaceholder = 'imgHolder' + counter 
+    $(".movableParagraph").draggable({
+        containment: 'body'
+    });
 
     $(".ddlChoices").empty()
     for (var i = 1; i <= numberOfOptions; i++) {
@@ -57,9 +67,15 @@ $("body").mousemove(() => {
 
 
 //PREVIEWING IMAGE
-var loadFile = function(event) {
-	var image = document.getElementById('imgPreview');
-	image.src = URL.createObjectURL(event.target.files[0]);
+var loadFile = function(event, element) {
+	var image = document.getElementById(element);
+	//image.src = URL.createObjectURL(event.target.files[0]);
+    $("#" + element).css('background-image', 'url(' + URL.createObjectURL(event.target.files[0]) + ')');
+    $("#" + element).css('background-size', 'cover');
+    $("#" + element).css('background-position', 'center');
+    $("#" + element).css('background-repeat', 'no-repeat');
+    $("#" + element).css('width', '600px');
+    $("#" + element).css('height', '200px');
 };
 
 
