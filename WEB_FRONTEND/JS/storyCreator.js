@@ -59,10 +59,12 @@ document.onIdle = function () {
     console.log("user inactive")
     $(".ping").addClass('active')
     $(".myMenu").addClass('active')
+    $(".canvas").css('opacity', '0')
 }
 $("body").mousemove(() => {
     $(".ping").removeClass('active')
     $(".myMenu").removeClass('active')
+    $(".canvas").css('opacity', '1')
 });
 
 
@@ -111,34 +113,43 @@ function createJsonString(holders) {
     return json;
 }
 
+
+//BTN EVENTS
 $("#btnCreate").on('click', () => {
     $("textarea").map(function () {
         if ($(this).val().trim().length === 0) {
-            $(this).css("background-color", "red");
-        }
-    });
-    holders = $(".holder").map(function () {
-        return $(this);
-    }).get();
+            $(this).css("background-color", "#FAA0A0");
 
+        }else{
+            holders = $(".holder").map(function () {
+                return $(this);
+            }).get();
+        
+            $.ajax({
+                url: createStoryEndPoint,
+                type: "POST",
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: {
+                    'title': $("#floatingTitle").val(),
+                    'summary': $("#summary").val(),
+                    'posts': $.parseJSON(createJsonString(holders))
+                },
+                success: function (response) {
+                    alert(response)
+                },
+                error: function (error) {
+                    alert(error.responseText)
+                }
+            });
 
-
-    $.ajax({
-        url: createStoryEndPoint,
-        type: "POST",
-        xhrFields: {
-            withCredentials: true
-        },
-        data: {
-            'title': $("#floatingTitle").val(),
-            'summary': $("#summary").val(),
-            'posts': $.parseJSON(createJsonString(holders))
-        },
-        success: function (response) {
-            alert(response)
-        },
-        error: function (error) {
-            alert(error.responseText)
         }
     });
 })
+$("#btnDelete").click(function() {
+    var answer = window.confirm("By countinuing your progress will be lost? Plese confirm:");
+    if (answer) {
+        $('.canvas').empty();
+    }
+});
