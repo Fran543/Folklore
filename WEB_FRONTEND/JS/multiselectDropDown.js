@@ -1,4 +1,5 @@
 
+
 //Varun Dewan 2019
 var dd = {
    get: function (selector) {
@@ -170,7 +171,33 @@ var drop = function (info) {
    return o;
 }
 
+
 var myDrop = new drop({
    selector: '#myMulti'
 });
 myDrop.toggle();
+
+
+var getWarningsEndPoint = "http://127.0.0.1:8091/getWarnings"
+var warnings = []
+$(document).ready(function () {
+   $.ajax({
+       url: getWarningsEndPoint,
+       type: "GET",
+       xhrFields: {
+           withCredentials: true
+       },
+       success: function (response) {
+           response.forEach(element => {
+               $("#myMulti").append("<option>" + element.WarningName + "</option>")
+               // warnings.push(element.WarningName)
+               // myDrop.addOption(element.WarningName)
+           });
+         //   console.log(response)
+         //   console.log(warnings)
+       },
+       error: function (error) {
+           alert(error.responseText)
+       }
+   });
+})

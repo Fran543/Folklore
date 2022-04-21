@@ -1,6 +1,4 @@
 var createStoryEndPoint = "http://127.0.0.1:8091/createStory"
-var getWarningsEndPoint = "http://127.0.0.1:8091/getWarnings"
-
 
 // ADDING PARAGRAPHS
 var numberOfOptions = 2;
@@ -37,9 +35,8 @@ $("#btnAdd").on('click', () => {
         containment: 'body'
     });
 
-    $(".ddlChoices").empty()
+    //$(".ddlChoices").empty()
     for (var i = 1; i <= numberOfOptions; i++) {
-
         $(".ddlChoices").append(
             "<option value='" + i + "'>" + i + "</option>"
         )
