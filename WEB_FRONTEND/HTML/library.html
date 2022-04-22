@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700" rel="stylesheet">
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../CSS/navbar.css">
+    <link rel="stylesheet" href="../CSS/library.css">
+
+</head>
+
+<body>
+    <nav id="mainNavbar" class="navbar navbar-dark navbar-expand-md px-5 py-0 fixed-top">
+        <a href="#" class="navbar-brand">FOLKLORE</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navLinks" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-md-flex justify-content-between pb-3  pb-md-0" id="navLinks">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="" class="nav-link">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link">LIBRARY</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../HTML/userProfile.html" class="nav-link">MY PROFILE</a>
+                </li>
+                <li class="nav-item" id="btnLogOut">
+                    <a href="#" class="nav-link">LOG OUT</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="story_card" id="cardGlow">
+                    <div class="info_section">
+                        <div class="row">
+                            <div class="col-12 d-md-none">
+                                <img src="../IMAGES/storiesPlaceholder.avif" alt="image" class="img-fluid">
+                            </div>
+                            <div class="col-12 col-md-6 text-start">
+                                <h1 id="lbTitle">Story Name</h1>
+                                <div class="warnings">
+                                    <span>Warning</span>
+                                    <span> | </span>
+                                    <span>Warning</span>
+                                    <span> | </span>
+                                    <span>Warning</span>
+                                    <span> | </span>
+                                    <span>Warning</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="story_desc">
+                            <p class="text">
+                                Set in a world where fantasy creatures live side by side with humans. A human cop is
+                                forced to
+                                work with an Orc to find a weapon everyone is prepared to kill for.
+                            </p>
+                        </div>
+                        <div class="story_social">
+                            <ul>
+                                <li><i class="material-icons-outlined"><span class="material-icons">share</span></i>
+                                </li>
+                                <li><i class="material-icons-outlined"><span
+                                            class="material-icons">favorite_border</span></i>
+                                </li>
+                                <li><i class="material-icons-outlined"><span
+                                            class="material-icons">chat_bubble_outline</span></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="blur_back card_back"></div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="story_card" id="cardGlow">
+                    <div class="info_section">
+                        <div class="row">
+                            <div class="col-12 d-md-none">
+                                <img src="../IMAGES/storiesPlaceholder.avif" alt="image" class="img-fluid">
+                            </div>
+                            <div class="col-12 col-md-6 text-start">
+                                <h1 id="lbTitle">Story Name</h1>
+                                <div class="warnings">
+                                    <span>Warning</span>
+                                    <span> | </span>
+                                    <span>Warning</span>
+                                    <span> | </span>
+                                    <span>Warning</span>
+                                    <span> | </span>
+                                    <span>Warning</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="story_desc">
+                            <p class="text">
+                                Set in a world where fantasy creatures live side by side with humans. A human cop is
+                                forced to
+                                work with an Orc to find a weapon everyone is prepared to kill for.
+                            </p>
+                        </div>
+                        <div class="story_social">
+                            <ul>
+                                <li><i class="material-icons-outlined"><span class="material-icons">share</span></i>
+                                </li>
+                                <li><i class="material-icons-outlined"><span
+                                            class="material-icons">favorite_border</span></i>
+                                </li>
+                                <li><i class="material-icons-outlined"><span
+                                            class="material-icons">chat_bubble_outline</span></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="blur_back card_back"></div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="story_card" id="cardGlow">
+                    <div class="info_section">
+                        <div class="row">
+                            <div class="col-12 d-md-none">
+                                <img src="../IMAGES/storiesPlaceholder.avif" alt="image" class="img-fluid">
+                            </div>
+                            <div class="col-12 col-md-6 text-start">
+                                <h1 id="lbTitle">Story Name</h1>
+                                <div class="warnings">
+                                    <span>Warning</span>
+                                    <span> | </span>
+                                    <span>Warning</span>
+                                    <span> | </span>
+                                    <span>Warning</span>
+                                    <span> | </span>
+                                    <span>Warning</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="story_desc">
+                            <p class="text">
+                                Set in a world where fantasy creatures live side by side with humans. A human cop is
+                                forced to
+                                work with an Orc to find a weapon everyone is prepared to kill for.
+                            </p>
+                        </div>
+                        <div class="story_social">
+                            <ul>
+                                <li><i class="material-icons-outlined"><span class="material-icons">share</span></i>
+                                </li>
+                                <li><i class="material-icons-outlined"><span
+                                            class="material-icons">favorite_border</span></i>
+                                </li>
+                                <li><i class="material-icons-outlined"><span
+                                            class="material-icons">chat_bubble_outline</span></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="blur_back card_back"></div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+
+    <script src="../JS/home.js" defer></script>
+
+    <script src="../JS/navbar.js" defer></script>
+</body>
+
+</html>
