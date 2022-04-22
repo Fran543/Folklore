@@ -57,3 +57,8 @@ exports.login = async (req, res) => {
     }
 }
 
+exports.logout = (req, res) => {
+    res.clearCookie("jwt");
+    res.send("log out successful");
+}
+

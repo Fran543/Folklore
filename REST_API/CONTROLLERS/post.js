@@ -17,14 +17,14 @@ async function addPostsToStory(storyID, posts) {
         var postID = await dbOperations.createPost(post.content, null, storyID);
         postsOBJs.push({ "postID": postID, "conditions": post.conditions });
         if (post.choices) {
-            post.choices.forEach(async choice => {
-                let id = await dbOperations.createChoice(choice.choiceValue, postID)
-                choiceIDs.push(id);
-            });
-            // for (const choice in post.choices) {
+            // post.choices.forEach(async choice => {
             //     let id = await dbOperations.createChoice(choice.choiceValue, postID)
             //     choiceIDs.push(id);
-            // }
+            // });
+            for (const choice of post.choices) {
+                let id = await dbOperations.createChoice(choice.choiceValue, postID)
+                choiceIDs.push(id);
+            }
         }
     }
     addConditionsToPost(postsOBJs, choiceIDs)
@@ -67,4 +67,14 @@ exports.getPosts = async (req, res) => {
 
 exports.getStories = async (req, res) => {
     res.status(200).send(await dbOperations.getStories());
+}
+
+exports.getStoryById = async (req, res) => {
+    const idStory = req.query.idStory;
+    res.status(200).send(await dbOperations.getStoryById(idStory));
+}
+
+exports.getPostByChoiceId = async (req, res) => {
+    const idChoice = req.query.idChoice;
+    res.status(200).send(await dbOperations.getPostByChoiceId(idChoice));
 }

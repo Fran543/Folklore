@@ -1,36 +1,37 @@
+
 var createStoryEndPoint = "http://127.0.0.1:8091/createStory"
 
 // ADDING PARAGRAPHS
 var numberOfOptions = 2;
 var counter = 1;
-var imgPlaceholder = 'imgHolder' + counter ;
+var imgPlaceholder = 'imgHolder' + counter;
 $("#btnAdd").on('click', () => {
     $(".canvas").append(
         "<div class='movableParagraph'>"
-            + "<div id='imgHolder"+ counter +"'></div>"
-            + "<div class='paragraphImg'>"
-                + "<input type='file' id='paragraphImg' accept='image/*' onchange='loadFile(event,\""+imgPlaceholder+"\")'></input>"
-            + "</div>"
-            + "<div class='holder'>"
-                + "<div name='ddlHolder' class='ddlHolder'>"
-                    + "<select multiple='multiple' id='chooser" + counter + "' class='ddlChoices'>"
-                    + "</select>"
-                + "</div>"
-                + "<div class='storyPart' class='ui-widget-content'>"
-                    + "<textarea id='paragraph" + counter + "' class='paragraph'></textarea>"
-                    + "<hr>"
-                    + "<div class='options'>"
-                        + "<div class='number'>" + counter + "</div>"
-                        + "<textarea class='option' id='option" + counter + "'></textarea>"
-                        + "<div class='number'>" + (++counter) + "</div>"
-                        + "<textarea class='option' id='option" + counter + "'></textarea>"
-                    + "</div>"
-                + "</div>"
-            + "</div>"
+        + "<div class='holder'>"
+        + "<div id='imgHolder" + counter + "'></div>"
+        + "<div class='paragraphImg'>"
+        + "<input type='file' id='paragraphImg' accept='image/*' onchange='loadFile(event,\"" + imgPlaceholder + "\")'></input>"
+        + "</div>"
+        + "<div name='ddlHolder' class='ddlHolder'>"
+        + "<select multiple='multiple' id='chooser" + counter + "' class='ddlChoices'>"
+        + "</select>"
+        + "</div>"
+        + "<div class='storyPart' class='ui-widget-content'>"
+        + "<textarea id='paragraph" + counter + "' class='paragraph'></textarea>"
+        + "<hr>"
+        + "<div class='options'>"
+        + "<div class='number'>" + counter + "</div>"
+        + "<textarea class='option' id='option" + counter + "'></textarea>"
+        + "<div class='number'>" + (++counter) + "</div>"
+        + "<textarea class='option' id='option" + counter + "'></textarea>"
+        + "</div>"
+        + "</div>"
+        + "</div>"
         + "</div>"
     )
     counter++
-    imgPlaceholder = 'imgHolder' + counter 
+    imgPlaceholder = 'imgHolder' + counter
     $(".movableParagraph").draggable({
         containment: 'body'
     });
@@ -66,9 +67,9 @@ $("body").mousemove(() => {
 
 
 //PREVIEWING IMAGE
-var loadFile = function(event, element) {
-	var image = document.getElementById(element);
-	//image.src = URL.createObjectURL(event.target.files[0]);
+var loadFile = function (event, element) {
+    var image = document.getElementById(element);
+    //image.src = URL.createObjectURL(event.target.files[0]);
     $("#" + element).css('background-image', 'url(' + URL.createObjectURL(event.target.files[0]) + ')');
     $("#" + element).css('background-size', 'cover');
     $("#" + element).css('background-position', 'center');
@@ -89,62 +90,83 @@ function dynamicallyLoadScript(url) {
 // GATHERING VARIABLES FOR UPLOAD
 var holders;
 
-function createJsonString(holders) {
+var toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
+
+async function createJsonString(holders) {
+    debugger
+    console.log(holders);
     var json = '[';
-    holders.forEach(function (holder, i) {
+
+    for (const [i, holder] of holders.entries()) {
+        console.log(holder)
+        let file = holder[0].children[1].children[0].files[0]
+        let image = null
+        if (file != null) {
+            image = await toBase64(file);
+        }
         json += '{'
-            + '"content":"' + $(holder[0].children[1].children[2]).val() + '",'
-            + '"choices":[{ "choiceValue":"' + $(holder[0].children[1].children[4].children[1]).val() + '"},'
-            + '{"choiceValue":"' + $(holder[0].children[1].children[4].children[3]).val() + '"}],'
+            + '"content":"' + $(holder[0].children[3].children[2]).val() + '",'
+            + '"imageBlob":"' + image + '",'
+            + '"choices":[{ "choiceValue":"' + $(holder[0].children[3].children[4].children[1]).val() + '"},'
+            + '{"choiceValue":"' + $(holder[0].children[3].children[4].children[3]).val() + '"}],'
             + '"conditions":['
 
-        for (let j = 0; j < $(holder[0].children[0].children[0]).find(":selected").length; j++) {
-            json += $(holder[0].children[0].children[0]).find(":selected")[j].value - 1;
-            if (!(j === $(holder[0].children[0].children[0]).find(":selected").length - 1)) json += ',';
+        for (let j = 0; j < $(holder[0].children[2].children[0]).find(":selected").length; j++) {
+            json += $(holder[0].children[2].children[0]).find(":selected")[j].value - 1;
+            if (!(j === $(holder[0].children[2].children[0]).find(":selected").length - 1)) json += ',';
         }
         json += ']}'
         if (!(i === holders.length - 1)) json += ',';
-    })
+    }
     json += ']';
     console.log(json);
     return json;
 }
 
-
 //BTN EVENTS
-$("#btnCreate").on('click', () => {
-    $("textarea").map(function () {
+$("#btnCreate").on('click', async () => {
+    if ($("textarea").map(function () {
         if ($(this).val().trim().length === 0) {
             $(this).css("background-color", "#FAA0A0");
-
-        }else{
+            return false
+        } else {
             holders = $(".holder").map(function () {
                 return $(this);
             }).get();
-        
-            $.ajax({
-                url: createStoryEndPoint,
-                type: "POST",
-                xhrFields: {
-                    withCredentials: true
-                },
-                data: {
-                    'title': $("#floatingTitle").val(),
-                    'summary': $("#summary").val(),
-                    'posts': $.parseJSON(createJsonString(holders))
-                },
-                success: function (response) {
-                    alert(response)
-                },
-                error: function (error) {
-                    alert(error.responseText)
-                }
-            });
-
         }
-    });
+    }) != false) {
+        let file = document.querySelector('#img').files[0]
+        let image = null
+        if (file != null) {
+            image = await toBase64(file);
+        }
+        $.ajax({
+            url: createStoryEndPoint,
+            type: "POST",
+            xhrFields: {
+                withCredentials: true
+            },
+            data: {
+                'title': $("#title").val(),
+                'summary': $("#summary").val(),
+                "image": image,
+                'posts': $.parseJSON(await createJsonString(holders))
+            },
+            success: function (response) {
+                alert(response)
+            },
+            error: function (error) {
+                alert(error.responseText)
+            }
+        });
+    }
 })
-$("#btnDelete").click(function() {
+$("#btnDelete").click(function () {
     var answer = window.confirm("By countinuing your progress will be lost? Plese confirm:");
     if (answer) {
         $('.canvas').empty();

@@ -93,6 +93,37 @@ async function getStories() {
     } finally {
     }
 }
+
+async function getStoryById(idStory) {
+    try {
+        let pool = await sql.connect(config);
+        let posts = await pool
+            .request()
+            .input('IDStory', sql.Int, idStory)
+            .execute('selectStory');
+        console.log(posts.recordsets)
+        return posts.recordsets;
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+    }
+}
+
+async function getPostByChoiceId(idChoice) {
+    try {
+        let pool = await sql.connect(config);
+        let posts = await pool
+            .request()
+            .input('IDChoice', sql.Int, idChoice)
+            .execute('selectPostByChoiceId');
+        console.log(posts.recordsets)
+        return posts.recordsets;
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+    }
+}
+
 async function addConditionToPost(postID, choiceID) {
     try {
         let pool = await sql.connect(config);
@@ -116,5 +147,7 @@ module.exports = {
     getWarnings: getWarnings,
     getPosts: getPosts,
     getStories: getStories,
+    getStoryById: getStoryById,
+    getPostByChoiceId: getPostByChoiceId,
     addConditionToPost: addConditionToPost,
 }

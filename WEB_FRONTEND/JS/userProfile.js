@@ -11,8 +11,9 @@ $(document).ready(function () {
     },
     success: function (response) {
       console.log(response)
-      $("#userName").html(response.Username)
-      $("#email").html(response.Email)
+      console.log(response.username)
+      $("#userName").html(response.username)
+      $("#email").html(response.email)
     },
     error: function (error) {
       alert(error.responseText)

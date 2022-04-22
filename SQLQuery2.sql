@@ -218,6 +218,27 @@ begin
 end
 go
 
+create proc selectStory
+@IDStory int
+as
+begin 
+	select *
+	from Story as s
+	where IDStory = @IDStory
+	select top 1 * 
+	from Post 
+	Where StoryID = @IDStory
+	declare @idPost int
+	set @idPost = (select top 1 IDPost 
+	from Post 
+	Where StoryID = @IDStory)
+	select * 
+	from Choice 
+	where PostID = @idPOst	
+end
+go
+
+
 
 create proc addConditionToPost
 	@PostID int,
@@ -254,3 +275,21 @@ end
 
 go
 
+
+create proc selectPostByChoiceId
+@IDChoice int
+as
+begin 
+	select p.*
+	from Post as p
+	inner join PostChoice as pc on p.IDPost = pc.PostID
+	where pc.ChoiceID = @IDChoice
+	select * from Choice where PostID = (select p.IDPost
+	from Post as p
+	inner join PostChoice as pc on p.IDPost = pc.PostID
+	where pc.ChoiceID = @IDChoice)
+end
+go
+exec selectStory 125
+
+exec selectPostByChoiceId 465

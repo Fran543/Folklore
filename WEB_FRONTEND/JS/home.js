@@ -1,6 +1,9 @@
 var getStoriesEndPoint = "http://127.0.0.1:8091/getStories"
+var getLogOutPoint = "http://127.0.0.1:8091/logout"
 
-
+function showPost(ID) {
+    window.location.href = "../HTML/postFullScreen.html?idStory=" + ID;
+}
 
 $(document).ready(function () {
     $.ajax({
@@ -11,10 +14,11 @@ $(document).ready(function () {
         },
         success: function (response) {
             response.forEach(element => {
+                console.log(element)
                 var image = element.ImageBlob ? element.ImageBlob : '../IMAGES/imgPlaceholder.png'
                 $("#postsContainer").append(
                     "<div class='story_card' id='cardGlow'>"
-                    + "<div class='info_section'>"
+                    + "<div class='info_section' onClick='showPost(" + element.IDStory + ")'>"
                     + "<div class='row'>"
                     + "<div class='col-12 d-md-none'>"
                     + "<img src='" + image + " 'alt='image' class='img-fluid'>"
@@ -46,6 +50,22 @@ $(document).ready(function () {
 
                 )
             });
+        },
+        error: function (error) {
+            alert(error.responseText)
+        }
+    });
+})
+
+$("#option1").on("click", () => {
+    $.ajax({
+        url: getLogOutPoint,
+        type: "GET",
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function (response) {
+            alert(response)
         },
         error: function (error) {
             alert(error.responseText)
