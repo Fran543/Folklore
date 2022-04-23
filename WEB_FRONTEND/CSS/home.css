@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800');
 
+@import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Cinzel&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,8 +11,8 @@ html,
 body {
   margin: 0;
   background: black;
-  font-family: 'Montserrat', helvetica, arial, sans-serif;
-  font-size: 14px;
+  font-family: 'Cinzel', serif;
+  /* font-size: 14px; */
   font-weight: 400;
 }
 
@@ -146,7 +148,7 @@ h1 {
   }
 
   .info_section {
-    background: linear-gradient(to right, #0d0d0c 50%, transparent 100%);
+    background: linear-gradient(to right, black 50%, transparent 100%);
   }
 
   .blur_back {
@@ -185,11 +187,11 @@ h1 {
 
 
 #cardGlow {
-  box-shadow: 0px 0px 150px -45px #9ac7fa;
+  box-shadow: 0px 0px 60px -45px #e0b78a;
 }
 
 #cardGlow:hover {
-  box-shadow: 0px 0px 120px -55px #9ac7fa;
+  box-shadow: 0px 0px 160px -55px #e0b78a;
 }
 
 .card_back {
