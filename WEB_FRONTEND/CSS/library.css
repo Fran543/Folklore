@@ -44,6 +44,26 @@ body {
         padding-left: 10%;
     }
 
+    .btns{
+      background-color: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.438);
+      color: white;
+      padding: 1%;
+      display: flex;
+      align-items: center; 
+    }
+
+    .first{
+      background-color: #e0b78a;
+      transition: all .5s ease;
+    }
+    .second{
+      opacity: 0.4;
+    }
+    .first:hover{
+      transform: scale(1.1);
+    }
+
   #bg{
     position: absolute;
     top: 0;
@@ -97,32 +117,9 @@ body {
   }
   
   .story_social {
-    height: 10%;
-    padding-left: 15px;
-    padding-bottom: 20px;
-  }
-  
-  .story_social ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .story_social ul li {
-    display: inline-block;
-    color: white;
-    transition: color 0.3s;
-    transition-delay: 0.15s;
-    margin: 0 10px;
-  }
-  
-  .story_social ul li:hover {
-    transition: color 0.3s;
-    color: white;
-  }
-  
-  .story_social ul li i {
-    font-size: 19px;
-    cursor: pointer;
+    padding-left: 25px;
+    display: flex;
+    gap: 2%;
   }
   
   .blur_back {
@@ -136,11 +133,6 @@ body {
   }
   
   @media screen and (min-width: 768px) {
-
-        /* #carouselExampleControls {
-            margin-top: 10%;
-        } */
-
 
     .story_header {
       width: 60%;
@@ -192,15 +184,6 @@ body {
       display: inline-grid;
     }
   }
-  
-  
-  /* #cardGlow {
-    box-shadow: 0px 0px 150px -45px #9ac7fa;
-  }
-  
-  #cardGlow:hover {
-    box-shadow: 0px 0px 120px -55px #9ac7fa;
-  } */
   
   .card_back {
     background: url("../IMAGES/storiesPlaceholder.avif");

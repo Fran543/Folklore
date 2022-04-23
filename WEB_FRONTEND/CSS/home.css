@@ -198,53 +198,91 @@ h1 {
   background-size: 100% 100%;
 }
 
+.trendingContainer{
+  padding-top: 10%;
+  height: 50vh;
+  color: #e0b78a;
+}
+.trendingContainer legend{
+  padding-left: 20%;
+}
+.postHolder{
+  display: flex;
+  gap: 20px;
+}
 
-/* .cardGrid{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+::selection{
+  color: #fff;
+  background: #664AFF;
 }
-.postCard{
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    background-color: beige;
-    margin: 3%;
-    border-radius: 10px;
-    border: 5px rgb(172, 172, 43) solid;
-    transition: all 0.2s ease-in;
-    font: italic 1.2em "Fira Sans", serif;
+
+.wrapper{
+  max-width: 500px;
+  margin: 10% auto;
 }
-.postCard:hover{
-    box-shadow: 0 5px 25px rgb(172, 172, 43);
+
+.wrapper .search-input{
+  background: #fff;
+  width: 100%;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0px 1px 5px 3px rgba(0,0,0,0.12);
 }
-.postCard p{
-    align-self: flex-end;
+
+.search-input input{
+  height: 55px;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 0 60px 0 20px;
+  font-size: 18px;
+  box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
 }
-.postCard img{
-    width: 300px;
-    height: 300px;
-    align-self: center;
+
+.search-input.active input{
+  border-radius: 5px 5px 0 0;
 }
-.postCard textarea{
-   border: none;
-   background-color: transparent; 
-   resize: none;
-   margin: 10% 0;
-   height: fit-content;
+
+.search-input .autocom-box{
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  max-height: 280px;
+  overflow-y: auto;
 }
-.postCard .btns{
-    display: flex;
-    justify-content: space-between;
-    padding: 0 5%;
+
+.search-input.active .autocom-box{
+  padding: 10px 8px;
+  opacity: 1;
+  pointer-events: auto;
 }
-.postCard .btns button{
-    border: none;
-    background-color: transparent;
+
+.autocom-box li{
+  list-style: none;
+  padding: 8px 12px;
+  display: none;
+  width: 100%;
+  cursor: default;
+  border-radius: 3px;
 }
-.postCard .btns button i{
-    color: rgb(212, 170, 212);
-    transition: all .2s ease-in;
+
+.search-input.active .autocom-box li{
+  display: block;
 }
-.postCard .btns button i:hover{
-    color: rgb(29, 59, 68);
-} */
+.autocom-box li:hover{
+  background: #efefef;
+}
+
+.search-input .icon{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  height: 55px;
+  width: 55px;
+  text-align: center;
+  line-height: 55px;
+  font-size: 20px;
+  color: #e0b78a;
+  cursor: pointer;
+}
