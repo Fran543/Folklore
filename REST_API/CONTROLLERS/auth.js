@@ -31,7 +31,7 @@ exports.login = async (req, res) => {
         }
 
         dbOperations.checkEmail(email).then(async result => {
-            if (result === null || !(await bcrypt.compare(password, result[0].Password))) {
+            if (result === null || !(await bcrypt.compare(password, result[0].Password)) || !result[0].Active) {
                 res.status(401).send('Username or Password is incorrect')
             } else {
                 const id = result[0].IDUser;
@@ -53,6 +53,7 @@ exports.login = async (req, res) => {
             }
         })
     } catch (error) {
+        return res.status(400).send(error);
         console.log(error);
     }
 }

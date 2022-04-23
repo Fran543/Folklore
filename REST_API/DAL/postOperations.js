@@ -101,7 +101,6 @@ async function getStoryById(idStory) {
             .request()
             .input('IDStory', sql.Int, idStory)
             .execute('selectStory');
-        console.log(posts.recordsets)
         return posts.recordsets;
     } catch (err) {
         console.log(err.message);
@@ -116,7 +115,6 @@ async function getPostByChoiceId(idChoice) {
             .request()
             .input('IDChoice', sql.Int, idChoice)
             .execute('selectPostByChoiceId');
-        console.log(posts.recordsets)
         return posts.recordsets;
     } catch (err) {
         console.log(err.message);

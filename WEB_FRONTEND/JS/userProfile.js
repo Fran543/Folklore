@@ -1,4 +1,5 @@
 var getUserEndPoint = "http://127.0.0.1:8091/getUser"
+var deleteUserEndPoint = "http://127.0.0.1:8091/deleteUser"
 
 
 
@@ -20,6 +21,23 @@ $(document).ready(function () {
     }
   });
 })
+
+$('#btnDelete').on('click', () => {
+  $.ajax({
+    url: deleteUserEndPoint,
+    type: "GET",
+    xhrFields: {
+      withCredentials: true
+    },
+    success: function (response) {
+      window.location.href = "../html/home.html"
+    },
+    error: function (error) {
+      alert(error.responseText)
+    }
+  });
+});
+
 
 
 //////////////ARROWS ///////////////////

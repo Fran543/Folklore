@@ -90,7 +90,7 @@ function dynamicallyLoadScript(url) {
 // GATHERING VARIABLES FOR UPLOAD
 var holders;
 
-var toBase64 = file => new Promise((resolve, reject) => {
+const toBase64 = file => new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => resolve(reader.result);
@@ -128,18 +128,23 @@ async function createJsonString(holders) {
     return json;
 }
 
-//BTN EVENTS
-$("#btnCreate").on('click', async () => {
-    if ($("textarea").map(function () {
+function validateFields() {
+    let valid = true;
+    $("textarea").map(function () {
         if ($(this).val().trim().length === 0) {
             $(this).css("background-color", "#FAA0A0");
-            return false
-        } else {
-            holders = $(".holder").map(function () {
-                return $(this);
-            }).get();
+            let valid = false;
         }
-    }) != false) {
+    })
+    return valid
+}
+
+//BTN EVENTS
+$("#btnCreate").on('click', async () => {
+    if (validateFields()) {
+        holders = $(".holder").map(function () {
+            return $(this);
+        }).get();
         let file = document.querySelector('#img').files[0]
         let image = null
         if (file != null) {

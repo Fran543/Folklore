@@ -14,7 +14,7 @@ async function addPostsToStory(storyID, posts) {
     var choiceIDs = []
     var postsOBJs = []
     for (const post of posts) {
-        var postID = await dbOperations.createPost(post.content, null, storyID);
+        var postID = await dbOperations.createPost(post.content, post.imageBlob, storyID);
         postsOBJs.push({ "postID": postID, "conditions": post.conditions });
         if (post.choices) {
             // post.choices.forEach(async choice => {

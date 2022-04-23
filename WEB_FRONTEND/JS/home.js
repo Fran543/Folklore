@@ -1,5 +1,8 @@
 var getStoriesEndPoint = "http://127.0.0.1:8091/getStories"
+var getSearchItemsEndPoint = "http://127.0.0.1:8091/getSearchItems"
 var getLogOutPoint = "http://127.0.0.1:8091/logout"
+
+var searchItems = []
 
 function showPost(ID) {
     window.location.href = "../HTML/postFullScreen.html?idStory=" + ID;
@@ -50,6 +53,25 @@ $(document).ready(function () {
 
                 )
             });
+        },
+        error: function (error) {
+            alert(error.responseText)
+        }
+    });
+    $.ajax({
+        url: getSearchItemsEndPoint,
+        type: "GET",
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function (response) {
+            for (const user of response[0]) {
+                searchItems.push({ id: user.IDUser, name: user.Username, isUser: true })
+            }
+            for (const story of response[1]) {
+                searchItems.push({ id: story.IDStory, title: story.StoryName, name: story.Username, isUser: false })
+            }
+            console.log(searchItems)
         },
         error: function (error) {
             alert(error.responseText)

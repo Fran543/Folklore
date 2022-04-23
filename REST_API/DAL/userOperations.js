@@ -31,6 +31,20 @@ async function getUser(id) {
     }
 }
 
+async function deleteUser(id) {
+    try {
+        let pool = await sql.connect(config);
+        let users = await pool
+            .request()
+            .input('IDUser', sql.Int, id)
+            .execute('deleteUser');
+        return users.recordsets[0][0];
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+    }
+}
+
 async function createUser(username, email, password) {
     try {
         let pool = await sql.connect(config);
@@ -115,12 +129,58 @@ async function getUserStories(id) {
     }
 }
 
+async function getUserLibrary(id) {
+    try {
+        let pool = await sql.connect(config);
+        let users = await pool
+            .request()
+            .input('IDUser', sql.Int, id)
+            .execute('getUserLibrary');
+        return users.recordsets[0];
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+    }
+}
+
+async function getSearchItems(id) {
+    try {
+        let pool = await sql.connect(config);
+        let users = await pool
+            .request()
+            .execute('getSearchItems');
+        return users.recordsets;
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+    }
+}
+
+async function removeStoryFromUser(userID, storyID) {
+    console.log(userID + " " + storyID)
+    try {
+        let pool = await sql.connect(config);
+        let users = await pool
+            .request()
+            .input('UserID', sql.Int, userID)
+            .input('StoryID', sql.Int, storyID)
+            .execute('removeStoryFromUser');
+        return users.recordsets;
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
 module.exports = {
     getUsers: getUsers,
     getUser: getUser,
+    deleteUser: deleteUser,
     createUser: createUser,
     checkUsernameAndEmail: checkUsernameAndEmail,
     checkEmail: checkEmail,
     getUserBlogs: getUserBlogs,
-    getUserStories: getUserStories
+    getUserStories: getUserStories,
+    getUserLibrary: getUserLibrary,
+    getSearchItems: getSearchItems,
+    removeStoryFromUser: removeStoryFromUser
 }

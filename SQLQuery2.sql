@@ -177,6 +177,15 @@ create table PostChoice(
 )
 go
 
+create table UserStory(
+	IDUserStory int primary key identity,
+	UserID int foreign key references AppUser(IDUser),
+	StoryID int foreign key references Story(IDStory)
+)
+go
+
+
+
 create proc createPost
 	@Content nvarchar(max),
 	@ImageBlob nvarchar(max),
@@ -252,6 +261,13 @@ end
 
 go
 
+create proc getUserLibrary
+	@IDUser int
+as
+	select * from Story as s
+	inner join UserStory as us on s.IDStory = us.StoryID
+	where us.UserID = @IDUser
+go
 
 create proc getUserBlogs
 	@IDUser int
@@ -290,6 +306,36 @@ begin
 	where pc.ChoiceID = @IDChoice)
 end
 go
-exec selectStory 125
 
-exec selectPostByChoiceId 465
+create proc getSearchItems
+as
+select IDUser, Username from AppUser
+select s.IDStory, s.StoryName, u.Username
+from Story as s
+inner join AppUser as u on s.UserID = u.IDUser
+go
+
+select * from post 
+select * from PostChoice
+select * from Choice
+
+exec selectStory 128
+
+exec selectPostByChoiceId 466
+exec getSearchItems
+
+select * from Story 
+	
+select * from post 
+select * from PostChoice
+select * from Choice
+
+select * from AppUser
+go
+
+exec getUserLibrary 8
+	update AppUser set
+		Active = 1
+	where IDUser = 8
+
+	insert into UserStory values (8, 125), (8, 127), (8,128)
