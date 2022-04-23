@@ -18,16 +18,16 @@
 }
 
 #mainNavbar .nav-link:hover {
-    color: #00ADB5;
+    color: #e0b78a;
 }
 
 #mainNavbar .navbar-brand {
-    color: #00ADB5;
+    color: #e0b78a;
 	font-size: 1.5rem;
 }
 
 .navbar.scrolled {
-    background: #222831;
+    background: black;
     transition: background 500ms;
 }
 
@@ -37,8 +37,8 @@
 }
 
 #mainNavbar .btn-outline-success:hover {
-    border-color: #00ADB5;
-    color: #00ADB5;
+    border-color: #e0b78a;
+    color: #e0b78a;
     background: none;
 }
 
