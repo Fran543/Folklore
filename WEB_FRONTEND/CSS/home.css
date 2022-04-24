@@ -12,7 +12,6 @@ body {
   margin: 0;
   background: black;
   font-family: 'Cinzel', serif;
-  /* font-size: 14px; */
   font-weight: 400;
 }
 
@@ -49,46 +48,6 @@ h1 {
   z-index: 2;
   border-radius: 10px;
 }
-
-/* .info-section .story_header{
-        position: relative;
-        padding: 10%;
-        height: 40%;
-      }
-
-      .info-section .story_header h1{
-        color: white;
-        font-weight: 400;
-        padding: 20%;
-      }
-
-      .info-section .story_header h4{
-        color: #9ac7fa;
-        font-weight: 400;
-      }
-
-      .info-section .story_header .minutes{
-        display: inline-block;
-        margin-top: 10px;
-        color: #fff;
-        padding: 5px;
-        border-radius: 5px;
-        border: 1px solid rgba(255,255,255,0.13);
-      }
-
-      .info-section .story_header .type{
-        display: inline-block;
-        color: #cee4fd;
-        margin-left: 10px;
-      }
-
-      .info-section .story_header.locandina{
-        position: relative;
-        float: left;
-        margin-right: 20px;
-        height: 120px;
-        box-shadow: 0 0 20px -10px rgba(0,0,0,0.5);
-      } */
 
 .story_desc {
   padding: 25px;
@@ -200,10 +159,23 @@ h1 {
   background-size: 100% 100%;
 }
 
+/* ///////////////TRENDING///////////////*/
+/* ///////////////TRENDING///////////////*/
+/* ///////////////TRENDING///////////////*/
+
 .trendingContainer{
-  padding-top: 10%;
+  margin-top: 5%;
   height: 50vh;
+  position:relative;
+  overflow: hidden;
   color: #e0b78a;
+  border: 25px solid #B88846;
+  border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='75' height='75'%3E%3Cg fill='none' stroke='%23B88846' stroke-width='2'%3E%3Cpath d='M1 1h73v73H1z'/%3E%3Cpath d='M8 8h59v59H8z'/%3E%3Cpath d='M8 8h16v16H8zM51 8h16v16H51zM51 51h16v16H51zM8 51h16v16H8z'/%3E%3C/g%3E%3Cg fill='%23B88846'%3E%3Ccircle cx='16' cy='16' r='2'/%3E%3Ccircle cx='59' cy='16' r='2'/%3E%3Ccircle cx='59' cy='59' r='2'/%3E%3Ccircle cx='16' cy='59' r='2'/%3E%3C/g%3E%3C/svg%3E") 25;
+
+}
+.trendingContainer::after{
+  position: absolute;
+  content: "";
 }
 .trendingContainer legend{
   padding-left: 20%;
@@ -215,16 +187,22 @@ h1 {
 
 ::selection{
   color: #fff;
-  background: #664AFF;
+  background: #e0b78a;
 }
 
-.wrapper{
+
+/* ///////////////SEARCH BAR///////////////*/
+/* ///////////////SEARCH BAR///////////////*/
+/* ///////////////SEARCH BAR///////////////*/
+
+.search_wrapper{
   max-width: 500px;
-  margin: 10% auto;
+  margin: 5% auto;
 }
 
-.wrapper .search-input{
-  background: #fff;
+.search_wrapper .search-input{
+  background-color: transparent;
+  border: 1px solid #e0b78a;
   width: 100%;
   border-radius: 5px;
   position: relative;
@@ -232,6 +210,8 @@ h1 {
 }
 
 .search-input input{
+  background-color: transparent;
+  color: white;
   height: 55px;
   width: 100%;
   outline: none;
@@ -242,38 +222,23 @@ h1 {
   box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
 }
 
-.search-input.active input{
-  border-radius: 5px 5px 0 0;
-}
-
 .search-input .autocom-box{
   padding: 0;
-  opacity: 0;
   pointer-events: none;
   max-height: 280px;
   overflow-y: auto;
 }
 
-.search-input.active .autocom-box{
-  padding: 10px 8px;
-  opacity: 1;
-  pointer-events: auto;
-}
-
 .autocom-box li{
   list-style: none;
+  color: white;
   padding: 8px 12px;
-  display: none;
   width: 100%;
-  cursor: default;
   border-radius: 3px;
 }
-
-.search-input.active .autocom-box li{
-  display: block;
-}
 .autocom-box li:hover{
-  background: #efefef;
+  background: beige;
+  color: white;
 }
 
 .search-input .icon{

@@ -47,3 +47,10 @@
         background: none;
     }
 } */
+
+.dropdown-menu{
+    background-color: #e0b78a;
+}
+.dropdown-menu a{
+    color: white;
+}

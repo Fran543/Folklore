@@ -23,19 +23,22 @@ $(document).ready(function () {
 })
 
 $('#btnDelete').on('click', () => {
-  $.ajax({
-    url: deleteUserEndPoint,
-    type: "GET",
-    xhrFields: {
-      withCredentials: true
-    },
-    success: function (response) {
-      window.location.href = "../html/home.html"
-    },
-    error: function (error) {
-      alert(error.responseText)
-    }
-  });
+  var answer = window.confirm("Are you sure you want to delete this account?");
+  if (answer) {
+    $.ajax({
+      url: deleteUserEndPoint,
+      type: "GET",
+      xhrFields: {
+        withCredentials: true
+      },
+      success: function (response) {
+        window.location.href = "../html/home.html"
+      },
+      error: function (error) {
+        alert(error.responseText)
+      }
+    });
+  }
 });
 
 
