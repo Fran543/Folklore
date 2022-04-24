@@ -1,5 +1,3 @@
-var getUserLibraryEndPoint = "http://127.0.0.1:8091/getUserLibrary"
-var removeStoryFromUserEndPoint = "http://127.0.0.1:8091/removeStoryFromUser"
 
 function showPost(ID) {
     window.location.href = "../HTML/postFullScreen.html?idStory=" + ID;

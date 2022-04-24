@@ -69,6 +69,10 @@ exports.getStories = async (req, res) => {
     res.status(200).send(await dbOperations.getStories());
 }
 
+exports.getTrendingStories = async (req, res) => {
+    res.status(200).send(await dbOperations.getTrendingStories());
+}
+
 exports.getStoryById = async (req, res) => {
     const idStory = req.query.idStory;
     res.status(200).send(await dbOperations.getStoryById(idStory));

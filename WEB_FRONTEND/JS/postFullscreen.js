@@ -18,9 +18,6 @@
 
 }).call(this);
 
-var getStoryByIdEndPoint = "http://127.0.0.1:8091/getStoryById"
-var getPostByChoiceIdEndPoint = "http://127.0.0.1:8091/getPostByChoiceId"
-
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const idStory = urlParams.get('idStory')

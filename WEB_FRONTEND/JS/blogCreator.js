@@ -1,7 +1,4 @@
 
-var createStoryEndPoint = "http://127.0.0.1:8091/createStory"
-var getWarningsEndPoint = "http://127.0.0.1:8091/getWarnings"
-
 $(document).ready(function () {
     $.ajax({
         url: getWarningsEndPoint,

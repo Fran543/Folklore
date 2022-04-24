@@ -1,9 +1,8 @@
-var getUserEndPoint = "http://127.0.0.1:8091/getUser"
-var deleteUserEndPoint = "http://127.0.0.1:8091/deleteUser"
 
-
-
-$(document).ready(function () {
+function showPost(ID) {
+  window.location.href = "../HTML/postFullScreen.html?idStory=" + ID;
+}
+function getUser() {
   $.ajax({
     url: getUserEndPoint,
     type: "GET",
@@ -11,8 +10,6 @@ $(document).ready(function () {
       withCredentials: true
     },
     success: function (response) {
-      console.log(response)
-      console.log(response.username)
       $("#userName").html(response.username)
       $("#email").html(response.email)
     },
@@ -20,6 +17,114 @@ $(document).ready(function () {
       alert(error.responseText)
     }
   });
+}
+
+function getUserBlogs() {
+  $.ajax({
+    url: getUserBlogsEndPoint,
+    type: "GET",
+    xhrFields: {
+      withCredentials: true
+    },
+    success: function (response) {
+      response.forEach(element => {
+        var image = element.ImageBlob ? element.ImageBlob : '../IMAGES/imgPlaceholder.png'
+        $("#blogContainer").append(
+          "<div class='story_card' id='cardGlow'>"
+          + "<div class='info_section' onClick='showPost(" + element.IDStory + ")'>"
+          + "<div class='row'>"
+          + "<div class='col-12 d-md-none'>"
+          + "<img src='" + image + " 'alt='image' class='img-fluid'>"
+          + "</div>"
+          + "<div class='col-12 col-md-6 text-center'>"
+          + "<h1>" + element.StoryName + "</h1>"
+          //+ "<h4>" + element.PubDate + "</h4>"
+          + "<div class='warnings'>"
+          + "<button type=button' class='btn btn-success disabled' disabled>Success</button>"
+          + "<button type='button' class='btn btn-info disabled' disabled>Info</button>"
+          + "<button type='button' class='btn btn-warning disabled' disabled>Warning</button>"
+          + "<button type='button' class='btn btn-danger disabled' disabled>Danger</button>"
+          + "</div>"
+          + "</div>"
+          + "</div>"
+          + "<div class='story_desc'>"
+          + "<p class='text'>" + element.Summary + "</p>"
+          + "</div>"
+          + "<div class='story_social'>"
+          + "<ul>"
+          + "<li><i class='material-icons-outlined'><span class='material-icons'>share</span></i></li>"
+          + "<li><i class='material-icons-outlined'><span class='material-icons'>favorite_border</span></i></li>"
+          + "<li><i class='material-icons-outlined'><span class= 'material-icons' > chat_bubble_outline</span ></i ></li >"
+          + "</ul>"
+          + "</div>"
+          + "</div>"
+          + "<div class='blur_back card_back'></div>"
+          + "</div>"
+
+        )
+      });
+    },
+    error: function (error) {
+      alert(error.responseText)
+    }
+  });
+}
+
+function getUserStories() {
+  $.ajax({
+    url: getUserStoriesEndPoint,
+    type: "GET",
+    xhrFields: {
+      withCredentials: true
+    },
+    success: function (response) {
+      response.forEach(element => {
+        var image = element.ImageBlob ? element.ImageBlob : '../IMAGES/imgPlaceholder.png'
+        $("#storyContainer").append(
+          "<div class='story_card' id='cardGlow'>"
+          + "<div class='info_section' onClick='showPost(" + element.IDStory + ")'>"
+          + "<div class='row'>"
+          + "<div class='col-12 d-md-none'>"
+          + "<img src='" + image + " 'alt='image' class='img-fluid'>"
+          + "</div>"
+          + "<div class='col-12 col-md-6 text-center'>"
+          + "<h1>" + element.StoryName + "</h1>"
+          //+ "<h4>" + element.PubDate + "</h4>"
+          + "<div class='warnings'>"
+          + "<button type=button' class='btn btn-success disabled' disabled>Success</button>"
+          + "<button type='button' class='btn btn-info disabled' disabled>Info</button>"
+          + "<button type='button' class='btn btn-warning disabled' disabled>Warning</button>"
+          + "<button type='button' class='btn btn-danger disabled' disabled>Danger</button>"
+          + "</div>"
+          + "</div>"
+          + "</div>"
+          + "<div class='story_desc'>"
+          + "<p class='text'>" + element.Summary + "</p>"
+          + "</div>"
+          + "<div class='story_social'>"
+          + "<ul>"
+          + "<li><i class='material-icons-outlined'><span class='material-icons'>share</span></i></li>"
+          + "<li><i class='material-icons-outlined'><span class='material-icons'>favorite_border</span></i></li>"
+          + "<li><i class='material-icons-outlined'><span class= 'material-icons' > chat_bubble_outline</span ></i ></li >"
+          + "</ul>"
+          + "</div>"
+          + "</div>"
+          + "<div class='blur_back card_back'></div>"
+          + "</div>"
+
+        )
+      });
+    },
+    error: function (error) {
+      alert(error.responseText)
+    }
+  });
+}
+
+$(document).ready(function () {
+  getUser()
+  getUserBlogs()
+  getUserStories()
 })
 
 $('#btnDelete').on('click', () => {

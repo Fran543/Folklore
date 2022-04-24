@@ -16,6 +16,8 @@ router.post('/createStory', verify, postController.createStory);
 
 router.get('/getStories', postController.getStories);
 
+router.get('/getTrendingStories', postController.getTrendingStories);
+
 router.get('/getUserLibrary', verify, userController.getUserLibrary);
 
 router.get('/removeStoryFromUser', verify, userController.removeStoryFromUser);
@@ -29,6 +31,10 @@ router.get('/getPostByChoiceId', postController.getPostByChoiceId);
 router.get('/getWarnings', verify, postController.getWarnings);
 
 router.get('/getUser', verify, userController.getUser);
+
+router.get('/getUserBlogs', verify, userController.getUserBlogs);
+
+router.get('/getUserStories', verify, userController.getUserStories);
 
 router.get('/deleteUser', verify, userController.deleteUser);
 

@@ -81,12 +81,26 @@ async function getPosts() {
     } finally {
     }
 }
+
 async function getStories() {
     try {
         let pool = await sql.connect(config);
         let posts = await pool
             .request()
             .execute('selectStories');
+        return posts.recordset;
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+    }
+}
+
+async function getTrendingStories() {
+    try {
+        let pool = await sql.connect(config);
+        let posts = await pool
+            .request()
+            .execute('getTop10StoriesByReview');
         return posts.recordset;
     } catch (err) {
         console.log(err.message);
@@ -145,6 +159,7 @@ module.exports = {
     getWarnings: getWarnings,
     getPosts: getPosts,
     getStories: getStories,
+    getTrendingStories: getTrendingStories,
     getStoryById: getStoryById,
     getPostByChoiceId: getPostByChoiceId,
     addConditionToPost: addConditionToPost,

@@ -1,5 +1,4 @@
 
-var createStoryEndPoint = "http://127.0.0.1:8091/createStory"
 
 // ADDING PARAGRAPHS
 var numberOfOptions = 2;
@@ -98,8 +97,6 @@ const toBase64 = file => new Promise((resolve, reject) => {
 });
 
 async function createJsonString(holders) {
-    debugger
-    console.log(holders);
     var json = '[';
 
     for (const [i, holder] of holders.entries()) {
@@ -124,7 +121,6 @@ async function createJsonString(holders) {
         if (!(i === holders.length - 1)) json += ',';
     }
     json += ']';
-    console.log(json);
     return json;
 }
 

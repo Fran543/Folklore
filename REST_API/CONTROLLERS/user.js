@@ -50,6 +50,14 @@ exports.getUserLibrary = async (req, res) => {
     res.status(200).send(await dbOperations.getUserLibrary(req.body.userID));
 }
 
+exports.getUserBlogs = async (req, res) => {
+    res.status(200).send(await dbOperations.getUserBlogs(req.body.userID));
+}
+
+exports.getUserStories = async (req, res) => {
+    res.status(200).send(await dbOperations.getUserStories(req.body.userID));
+}
+
 exports.removeStoryFromUser = async (req, res) => {
     try {
         await dbOperations.removeStoryFromUser(req.body.userID, req.query.storyID)
