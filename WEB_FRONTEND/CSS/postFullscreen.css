@@ -4,6 +4,8 @@ body {
     background-color: #130d0a;
     font-family: "Playfair Display", serif;
     color: #fff;
+    
+    animation: showFullscreen 5s;
 }
 #hero {
     height: 800px;
@@ -82,3 +84,12 @@ p {
 .tutorial-link:hover {
     color: #ede0d5;
 }
+
+.effect{
+    animation: opening 10s;
+} 
+
+@keyframes opening {
+    0%   {background-color: black; opacity: 1;}
+    100% {opacity: 0;}
+  }

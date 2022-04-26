@@ -14,7 +14,7 @@ function getStories() {
         success: function (response) {
             response.forEach(element => {
                 var image = element.ImageBlob ? element.ImageBlob : '../IMAGES/imgPlaceholder.png'
-                $("#postsContainer").append(
+                $(".cardGrid").append(
                     "<div class='story_card' id='cardGlow'>"
                     + "<div class='info_section' onClick='showPost(" + element.IDStory + ")'>"
                     + "<div class='row'>"
@@ -150,12 +150,14 @@ $(document).ready(function () {
 //     autocomplete()
 // })
 
-
+///////////SEARCH//////////////
+//////////////////////////////
 function autocomplete() {
     const searchBox = document.getElementById("searchBox")
     searchBox.onkeyup = (e) => {
         if (!$(searchBox).val()) {
-            $('.autocom-box').empty();
+            $('.autocomBox').empty();
+            $('.autocomBox').css('display', 'none');
         }
 
         let userData = e.target.value;
@@ -166,7 +168,7 @@ function autocomplete() {
                 return (data.name).toLocaleLowerCase().startsWith(userData.toLocaleLowerCase());
             })
             emptyArray = emptyArray.map((data) => {
-                return data = '<li class="match" onclick="select()">' + data.name + '</li>';
+                return data = '<li class="match" onClick="replace(this)">' + data.name + '</li>';
             });
             ShowSuggestions(emptyArray);
         }
@@ -176,16 +178,22 @@ function autocomplete() {
 function ShowSuggestions(list) {
     let listData;
     listData = list.join('');
-    $('.autocom-box').html(listData);
-    $('.autocom-box').css('display', 'block');
+    $('.autocomBox').html(listData);
+    $('.autocomBox').css('display', 'block');
 }
 
-// $(".match").on('click', () => {
-//     alert(this);
-//     searchBox.value = this.innerHTML;
-// });
+function replace(element){
+    console.log(element)
+    searchBox.value = element.innerHTML;
+}
 
-
+$('#btnSearch').on('click', () => {
+    searchItems.forEach(element =>{
+        if(element.name.toLocaleLowerCase() === searchBox.value.toLocaleLowerCase()){
+            console.log(element)
+        }
+    })
+})
 
 //////////// TRENDING CONTAINER
 function animation() {

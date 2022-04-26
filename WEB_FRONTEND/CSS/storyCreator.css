@@ -124,9 +124,12 @@
    width: 100%;
 }
 
-.ddlChoices {
+.ddlHolder{
    position: absolute;
-   transform: translateX(1750%);
+   margin-left: 605px;
+}
+.ddlChoices {
+   padding: 10px;
 }
 
 .options {

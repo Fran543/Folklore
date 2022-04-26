@@ -35,7 +35,7 @@ $("#btnAdd").on('click', () => {
         containment: 'body'
     });
 
-    //$(".ddlChoices").empty()
+    $(".ddlChoices").empty()
     for (var i = 1; i <= numberOfOptions; i++) {
         $(".ddlChoices").append(
             "<option value='" + i + "'>" + i + "</option>"
