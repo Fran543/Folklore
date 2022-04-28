@@ -256,11 +256,29 @@ h1 {
   justify-content: center;
 }
 
+.cardLink {
+  font-weight: 600;
+  text-decoration: none;
+  color: black;
+}
+
+.card-title {
+  font-weight: 700;
+}
+
+.cardLink:hover {
+  color: black;
+}
+
 .card {
+  background-color: #B88846;
   border: none;
   height: fit-content;
   width: 500px;
 }
-.card .text-muted i {
+
+.card i {
+  color: black;
   margin: 0 10px;
 }
+
