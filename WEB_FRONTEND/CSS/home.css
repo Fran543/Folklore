@@ -207,13 +207,7 @@ body{
 .searchInput {
   display: flex;
 }
-
-.searchInput i {
-  position: absolute;
-}
-
 .searchInput input {
-  text-align: center;
   height: 55px;
   width: 100%;
   outline: none;
@@ -266,29 +260,12 @@ body{
   justify-content: center;
 }
 
-.cardLink {
-  font-weight: 600;
-  text-decoration: none;
-  color: black;
-}
-
-.card-title {
-  font-weight: 700;
-}
-
-.cardLink:hover {
-  color: black;
-}
-
 .card {
-  background-color: #B88846;
   border: none;
   height: fit-content;
   width: 500px;
 }
-
-.card i {
-  color: black;
+.card .text-muted i {
   margin: 0 10px;
 }
 
