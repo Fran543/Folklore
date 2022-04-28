@@ -240,9 +240,9 @@ function animation() {
     gsap.to(".trendingCard", {
         duration: 20,
         ease: "none",
-        x: "+=500", //move each box 500px to right
+        x: "+=1100", //move each box 500px to right
         modifiers: {
-            x: gsap.utils.unitize(x => parseFloat(x) % 500) //force x value to be between 0 and 500 using modulus
+            x: gsap.utils.unitize(x => parseFloat(x) % 1100) //force x value to be between 0 and 500 using modulus
         },
         repeat: -1
     });
