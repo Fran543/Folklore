@@ -4,6 +4,14 @@ function showPost(ID) {
     window.location.href = "../HTML/postFullScreen.html?idStory=" + ID;
 }
 
+function toggleStars(id){
+    $('#star-rating' + id).toggle("slow");
+}
+
+function toggleComments(id){
+    $('#comment-rating' + id).toggle("slow");
+}
+
 function getStories() {
     $.ajax({
         url: getStoriesEndPoint,
@@ -15,35 +23,64 @@ function getStories() {
             response.forEach(element => {
                 var image = element.ImageBlob ? element.ImageBlob : '../IMAGES/imgPlaceholder.png'
                 $(".cardGrid").append(
-                    "<div class='story_card' id='cardGlow'>"
-                    + "<div class='info_section' onClick='showPost(" + element.IDStory + ")'>"
-                    + "<div class='row'>"
-                    + "<div class='col-12 d-md-none'>"
-                    + "<img src='" + image + " 'alt='image' class='img-fluid'>"
+                    "<div class='card'>"
+                    + "<img class='card-img-top' src='" + image + " alt='Card image cap'>"
+                    + "<div class='card-body'>"
+                    + "<h5 class='card-title'>" + element.StoryName + "</h5>"
+                    + "<p class='text-muted'>"
+                    + "<span>Warning |</span>"
+                    + "</p>"
+                    + "<p class='card-text'>" + element.Summary + "</p>"
+                    + "<p class='card-text'>"
+                    + "<small class='text-muted'>"
+                    + "<i class='fas fa-star star' onClick='toggleStars("+ element.IDStory +")'></i>1000"
+                    + "<i class='far fa-user'></i>admin"
+                    + "<i class='fas fa-calendar-alt'></i>" + new Date(element.PubDate).toDateString()
+                    + "<i class='fas fa-comment comment' onClick='toggleComments("+ element.IDStory +")'></i> 4 comments"
+                    + "</small>"
+                    + "</p>"
+                    + "<div class='star-rating' id='star-rating" + element.IDStory + "'>"
+                        + "<input id='star-5' type='radio' name='rating' value='star-5' />"
+                        + "<label for='star-5' title='5 stars'>"
+                            + "<i class='active fa fa-star' aria-hidden='true'></i>"
+                        + "</label>"
+                        + "<input id='star-4' type='radio' name='rating' value='star-4' />"
+                        + "<label for='star-4' title='4 stars'>"
+                            + "<i class='active fa fa-star' aria-hidden='true'></i>"
+                        + "</label>"
+                        + "<input id='star-3' type='radio' name='rating' value='star-3' />"
+                        + "<label for='star-3' title='3 stars'>"
+                            + "<i class='active fa fa-star' aria-hidden='true'></i>"
+                        + "</label>"
+                        + "<input id='star-2' type='radio' name='rating' value='star-2' />"
+                        + "<label for='star-2' title='2 stars'>"
+                            + "<i class='active fa fa-star' aria-hidden='true'></i>"
+                        + "</label>"
+                        + "<input id='star-1' type='radio' name='rating' value='star-1' />"
+                        + "<label for='star-1' title='1 star'>"
+                           + "<i class='active fa fa-star' aria-hidden='true'></i>"
+                        + "</label>"
                     + "</div>"
-                    + "<div class='col-12 col-md-6 text-center'>"
-                    + "<h1>" + element.StoryName + "</h1>"
-                    //+ "<h4>" + element.PubDate + "</h4>"
-                    + "<div class='warnings'>"
-                    + "<button type=button' class='btn btn-success disabled' disabled>Success</button>"
-                    + "<button type='button' class='btn btn-info disabled' disabled>Info</button>"
-                    + "<button type='button' class='btn btn-warning disabled' disabled>Warning</button>"
-                    + "<button type='button' class='btn btn-danger disabled' disabled>Danger</button>"
+                    + "<section class='mt-5 comments' id='comment-rating" + element.IDStory + "'>"
+                        + "<div class='container'>"   
+                            + "<div class='row'>"
+                                + "<div class='col-sm-12'>"  
+                                    + "<form>"
+                                        + "<p class='pull-left'>Add new Comment</p>"
+                                        + "<textarea class='form-control' id='message' placeholder='Your message...' required='' maxlength='250'></textarea>"
+                                        + "<button type='submit' class='btn btn-normal btnSubmit'>Submit</button>"
+                                    + "</form>"
+                                    + "<hr>"
+                                    + "<p>Comments</p>"
+                                    +" <div class='media'>"
+                                        + "<h4>John Doe</h4>"
+                                        + "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>"
+                                    + "</div>"
+                                + "</div>"
+                            + "</div>"
+                        + "</div>"
+                    + "</section>"
                     + "</div>"
-                    + "</div>"
-                    + "</div>"
-                    + "<div class='story_desc'>"
-                    + "<p class='text'>" + element.Summary + "</p>"
-                    + "</div>"
-                    + "<div class='story_social'>"
-                    + "<ul>"
-                    + "<li><i class='material-icons-outlined'><span class='material-icons'>share</span></i></li>"
-                    + "<li><i class='material-icons-outlined'><span class='material-icons'>favorite_border</span></i></li>"
-                    + "<li><i class='material-icons-outlined'><span class= 'material-icons' > chat_bubble_outline</span ></i ></li >"
-                    + "</ul>"
-                    + "</div>"
-                    + "</div>"
-                    + "<div class='blur_back card_back'></div>"
                     + "</div>"
 
                 )
@@ -182,14 +219,14 @@ function ShowSuggestions(list) {
     $('.autocomBox').css('display', 'block');
 }
 
-function replace(element){
+function replace(element) {
     console.log(element)
     searchBox.value = element.innerHTML;
 }
 
 $('#btnSearch').on('click', () => {
-    searchItems.forEach(element =>{
-        if(element.name.toLocaleLowerCase() === searchBox.value.toLocaleLowerCase()){
+    searchItems.forEach(element => {
+        if (element.name.toLocaleLowerCase() === searchBox.value.toLocaleLowerCase()) {
             console.log(element)
         }
     })

@@ -30,62 +30,43 @@
                     <span class="profession">Story creator</span>
                 </div>
             </div>
-
             <i class='bx bx-chevron-right toggle'></i>
         </header>
-
         <div class="menu-bar">
             <div class="menu">
-
                 <li class="search-box">
                     <i class='bx bx-pen icon'></i>
                     <input type="text" placeholder="Title..." maxlength="50" id="title">
                 </li>
-
-                <ul class="menu-links">
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-text icon' ></i>
-                            <span class="text nav-text">Summary</span>
-                        </a>
-                    </li>
                     <li class="search-box">
-                        <textarea type="text" maxlength="500" id="summary" placeholder="Summary..."></textarea>
+                            <i class='bx bx-text icon' ></i>
+                            <textarea type="text" maxlength="5000" id="summary" placeholder="Summary..."></textarea>
                     </li>
 
-                    <li class="nav-link">
-                        <a href="#">
+                    <li class="search-box">
                             <i class='bx bx-shield icon' ></i>
-                            <span class="text nav-text">Warnings</span>
-                        </a>
+                            <span class="text nav-text lblWarning">Warnings</span>
                     </li>
-                    <li>
-                        <select class="warnings" id="myMulti"></select>
+                    <li class="choosers">
+                        <select class="warnings" id="myMulti" ></select>
                     </li>
 
-                    <li class="nav-link">
-                        <a href="#">
+                    <li class="search-box">
                             <i class='bx bx-image icon' ></i>
                             <span class="text nav-text">Image</span>
-                        </a>
                     </li>
-                    <li>
+                    <li class="choosers">
                         <input type="file" id="img" accept="image/*" onchange="loadFile(event, 'imgHolder')"></input>
                     </li>
-                </ul>
             </div>
-            
-
             <div id="imgHolder"></div>
-
             <div class="bottom-content">
                 <li class="">
-                    <a href="#">
+                    <a href="../HTML/postCreator.html">
                         <i class='bx bx-log-out icon' ></i>
                         <span class="text nav-text">Exit</span>
                     </a>
                 </li>
-
                 <li class="mode">
                     <div class="sun-moon">
                         <i class='bx bx-moon icon moon'></i>
@@ -97,11 +78,10 @@
                         <span class="switch"></span>
                     </div>
                 </li>
-                
             </div>
         </div>
-
     </nav>
+
     <section class="home">
         <div class="text">Canvas</div>
         <nav class="myMenu">
@@ -112,42 +92,17 @@
                 <span class="lines line-3"></span>
             </label>
     
-            <a href="#" class="myMenu-item purple" id="btnAdd"><i class="fa fa-backward"></i></a>
-            <a href="../HTML/postCreator.html" class="myMenu-item blue"><i class="fa fa-upload"></i></a>
+            <a href="../HTML/postCreator.html" class="myMenu-item purple" id="btnAdd"><i class="fa fa-backward"></i></a>
+            <a href="#" class="myMenu-item blue"><i class="fa fa-upload"></i></a>
             <a href="#" class="myMenu-item red"  id="btnDelete"><i class="fa fa-trash"></i></a>
     
         </nav>
-        <div class="canvas">
-            <textarea id="content" class="blogContent"></textarea>
-        </div>
+        <textarea id="content" class="blogContent"></textarea>
     </section>
 
-
-    <div class="metaData">
-        <img class="form-group">
-        <label for="formFile" class="form-label mt-4">Default file input example</label>
-        <input class="form-control" type="file" id="formFile" accept="">
-        <div class="form-group">
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingTitle" maxlength="50">
-                <label for="floatingTitle">Title</label>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="summary" class="form-label mt-4">Summary</label>
-            <textarea class="form-control" id="summary" rows="3" maxlength="500" style="height: 95px;"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="warnings" class="form-label mt-4">Warnings/Triggers</label>
-            <select multiple="" class="form-select" id="warnings">
-
-            </select>
-        </div>
-    </div>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
-    <script src="../JS/constants.js" defer></script>
     <script src="../JS/checkForCookie.js" defer></script>
+    <script src="../JS/constants.js" defer></script>
     <script src="../JS/blogCreator.js" defer></script>
     <script src="../JS/sideNavbar.js" defer></script>
 </body>
