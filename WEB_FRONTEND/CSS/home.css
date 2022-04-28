@@ -203,7 +203,13 @@ h1 {
 .searchInput {
   width: 800px;
 }
+
+.searchInput i {
+  position: absolute;
+}
+
 .searchInput input {
+  text-align: center;
   height: 55px;
   width: 100%;
   outline: none;
