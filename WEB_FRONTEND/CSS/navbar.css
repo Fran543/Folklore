@@ -48,6 +48,12 @@
     }
 } */
 
+.collapse {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+}
+
 .dropdown-menu{
     background-color: #e0b78a;
 }

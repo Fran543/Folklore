@@ -1,11 +1,13 @@
+
 body {
+    animation: transitionIn 1.5s;
     padding: 0;
     margin: 0;
     background-color: #130d0a;
     font-family: "Playfair Display", serif;
     color: #fff;
     
-    animation: showFullscreen 5s;
+    /* animation: showFullscreen 5s; */
 }
 #hero {
     height: 800px;
@@ -85,11 +87,21 @@ p {
     color: #ede0d5;
 }
 
-.effect{
+/* .effect{
     animation: opening 10s;
 } 
 
 @keyframes opening {
     0%   {background-color: black; opacity: 1;}
     100% {opacity: 0;}
-  }
+  } */
+
+  @keyframes transitionIn {
+    from{
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
