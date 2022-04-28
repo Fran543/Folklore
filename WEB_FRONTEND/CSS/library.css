@@ -46,22 +46,27 @@ body {
 
     .btns{
       background-color: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.438);
+      border: 1px solid white;
+      border-radius: 10%;
       color: white;
       padding: 1%;
       display: flex;
+      justify-content: center;
       align-items: center; 
     }
 
-    .first{
+    .btns:hover{
       background-color: #e0b78a;
       transition: all .5s ease;
-    }
-    .second{
-      opacity: 0.4;
-    }
-    .first:hover{
       transform: scale(1.1);
+    }
+
+    .btns p {
+      margin: 0;
+    }
+
+    .carousel-control-next, .carousel-control-prev {
+      width: 10%;
     }
 
   #bg{
