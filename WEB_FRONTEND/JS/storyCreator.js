@@ -1,4 +1,23 @@
 
+var getWarningsEndPoint = "http://127.0.0.1:8091/getWarnings"
+var warnings = []
+$(document).ready(function () {
+    $.ajax({
+        url: getWarningsEndPoint,
+        type: "GET",
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function (response) {
+            response.forEach(element => {
+                $("#myMulti").append("<option>" + element.WarningName + "</option>")
+            });
+        },
+        error: function (error) {
+            alert(error.responseText)
+        }
+    });
+})
 
 // ADDING PARAGRAPHS
 var numberOfOptions = 2;
@@ -35,7 +54,7 @@ $("#btnAdd").on('click', () => {
         containment: 'body'
     });
 
-    $(".ddlChoices").empty()
+    //$(".ddlChoices").empty()
     for (var i = 1; i <= numberOfOptions; i++) {
         $(".ddlChoices").append(
             "<option value='" + i + "'>" + i + "</option>"
@@ -43,6 +62,30 @@ $("#btnAdd").on('click', () => {
     }
     numberOfOptions += 2;
 })
+
+//ADD/REMOVE WARNINGS
+$('#myMulti').change(() => {
+    var e = document.getElementById("myMulti");
+    var selectedWarning = e.value;
+
+    $('.lblWarning').append(
+        "<div class='btnWarning'>"
+        + "<p>" + selectedWarning + "</p>"
+        + "<i class='bx bx-x icon' onClick='removeWarning(this)' id='" + selectedWarning + "'></i>"
+        + "</div>"
+    )
+
+    $('option:selected', '#myMulti').remove();
+    
+    	
+    $('#' + selectedWarning).mouseenter(() => {$('#' + selectedWarning).addClass('bx-spin bx-rotate-90')})
+                .mouseleave(() => {$('#' + selectedWarning).removeClass('bx-spin bx-rotate-90')});
+})
+
+function removeWarning(warning){
+    $(warning).parent('div').remove();
+    $('#myMulti').append("<option>" + $(warning).attr('id') + "</option>")
+}
 
 
 // DETECT USER ACTIVE/INACTIVE
@@ -170,6 +213,12 @@ $("#btnCreate").on('click', async () => {
 $("#btnDelete").click(function () {
     var answer = window.confirm("By countinuing your progress will be lost? Plese confirm:");
     if (answer) {
+        $('.cont').css('display', 'block');
+        $('.home').css('background-color', 'rgba(255, 107, 129,.2)');
+        setTimeout(function(){
+            $('.cont').css('display', 'none');
+            $('.home').css('background-color', '#E4E9F7');
+        },5000)
         $('.canvas').empty();
     }
 });

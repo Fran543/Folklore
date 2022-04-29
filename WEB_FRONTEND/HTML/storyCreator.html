@@ -12,13 +12,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../CSS/sideNavbar.css">
     <link rel="stylesheet" href="../CSS/storyCreator.css">
-    <link rel="stylesheet" href="../CSS/multiselectDropDown.css">
+    <link rel="stylesheet" href="../CSS/deletingAnimation.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 
 <body>
-
     <nav class="sidebar close">
         <header>
             <div class="image-text">
@@ -31,62 +30,43 @@
                     <span class="profession">Story creator</span>
                 </div>
             </div>
-
             <i class='bx bx-chevron-right toggle'></i>
         </header>
-
         <div class="menu-bar">
             <div class="menu">
-
                 <li class="search-box">
                     <i class='bx bx-pen icon'></i>
                     <input type="text" placeholder="Title..." maxlength="50" id="title">
                 </li>
-
-                <ul class="menu-links">
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-text icon'></i>
-                            <span class="text nav-text">Summary</span>
-                        </a>
-                    </li>
                     <li class="search-box">
-                        <textarea type="text" maxlength="500" id="summary" placeholder="Summary..."></textarea>
+                            <i class='bx bx-text icon' ></i>
+                            <textarea type="text" maxlength="5000" id="summary" placeholder="Summary..."></textarea>
                     </li>
 
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-shield icon'></i>
-                            <span class="text nav-text">Warnings</span>
-                        </a>
+                    <li class="search-box">
+                            <i class='bx bx-shield icon' ></i>
+                            <span class="text nav-text lblWarning">Warnings</span>
                     </li>
-                    <li>
-                        <select class="warnings" id="myMulti"></select>
+                    <li class="choosers">
+                        <select class="warnings" id="myMulti" ></select>
                     </li>
 
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-image icon'></i>
+                    <li class="search-box">
+                            <i class='bx bx-image icon' ></i>
                             <span class="text nav-text">Image</span>
-                        </a>
                     </li>
-                    <li>
+                    <li class="choosers">
                         <input type="file" id="img" accept="image/*" onchange="loadFile(event, 'imgHolder')"></input>
                     </li>
-                </ul>
             </div>
-
-
             <div id="imgHolder"></div>
-
             <div class="bottom-content">
                 <li class="">
-                    <a href="#">
-                        <i class='bx bx-log-out icon'></i>
+                    <a href="../HTML/postCreator.html">
+                        <i class='bx bx-log-out icon' ></i>
                         <span class="text nav-text">Exit</span>
                     </a>
                 </li>
-
                 <li class="mode">
                     <div class="sun-moon">
                         <i class='bx bx-moon icon moon'></i>
@@ -98,11 +78,10 @@
                         <span class="switch"></span>
                     </div>
                 </li>
-
             </div>
         </div>
-
     </nav>
+
     <section class="home">
         <div class="text">Canvas</div>
         <nav class="myMenu">
@@ -122,6 +101,8 @@
         <div class="canvas"></div>
     </section>
 
+    <!-- ANIMATIONS -->
+    <!-- USER INACTIVE ANIMATION -->
     <div class="ping">
         <div class="words word-1">
             <span>D</span>
@@ -148,6 +129,29 @@
         </div>
     </div>
 
+    <!-- DELETING ANIMATION -->
+    <div class="cont">
+        <div class="paper"></div>
+        <button><div class='loader'>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          </div>Deleting</button>
+        <div class="g-cont">
+          <div class="garbage"></div>
+          <div class="garbage"></div>
+          <div class="garbage"></div>
+          <div class="garbage"></div>
+          <div class="garbage"></div>
+          <div class="garbage"></div>
+          <div class="garbage"></div>
+          <div class="garbage"></div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.js" defer></script>
     <script src="../JS/idle.js" defer></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js" defer></script>
@@ -155,7 +159,6 @@
     <script src="../JS/constants.js" defer></script>
     <script src="../JS/storyCreator.js" defer></script>
     <script src="../JS/sideNavbar.js" defer></script>
-    <script src="../JS/multiselectDropDown.js" defer></script>
 </body>
 
 </html>

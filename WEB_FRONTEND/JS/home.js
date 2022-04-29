@@ -27,7 +27,7 @@ function getStories() {
                     + "<img class='card-img-top' src='" + image + " alt='Card image cap'>"
                     + "<div class='card-body'>"
                     + "<h5 class='card-title'>" + element.StoryName + "</h5>"
-                    + "<p class='text-muted'>"
+                    + "<p class='warnings'>"
                     + "<span>Warning |</span>"
                     + "</p>"
                     + "<p class='card-text'>" + element.Summary + "</p>"
@@ -240,7 +240,7 @@ function animation() {
     gsap.to(".trendingCard", {
         duration: 20,
         ease: "none",
-        x: "+=1100", //move each box 500px to right
+        x: "+=1500", //move each box 500px to right
         modifiers: {
             x: gsap.utils.unitize(x => parseFloat(x) % 1100) //force x value to be between 0 and 500 using modulus
         },

@@ -318,12 +318,12 @@ body.dark .home .text{
     width: 500px;
 }
 
-select{
+.choosers select{
     background-color: transparent;
     border: none;
     width: 90%;
 }
-select:focus{
+.choosers select:focus{
     outline: none;
 }
 

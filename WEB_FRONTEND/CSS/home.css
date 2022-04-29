@@ -25,9 +25,9 @@ body{
 
 .bi-share-fill {
   color: white;
-}
+}*/
 
-.story_card {
+/* .story_card {
   position: relative;
   display: block;
   width: 800px;
@@ -36,9 +36,9 @@ body{
   overflow: hidden;
   border-radius: 10px;
   transition: all 0.4s;
-}
+} */
 
-.story_card:hover {
+/*.story_card:hover {
   transform: scale(1.02);
   transition: all 0.4s;
 }
@@ -169,8 +169,8 @@ body{
 .trendingContainer{
   margin-top: 5%;
   height: 50vh;
-  position:relative;
   overflow: hidden;
+  position:relative;
   color: #e0b78a;
   box-shadow: 0px 0px 160px -55px #e0b78a;
   border: 25px solid #B88846;
@@ -187,6 +187,8 @@ body{
 .postHolder{
   display: flex;
   gap: 20px;
+  position: relative;
+  left:-550px;
 }
 
 ::selection{
@@ -194,6 +196,38 @@ body{
   background: #e0b78a;
 }
 
+
+
+
+
+
+
+/* .trendingContainer{
+  width:450px;
+  height:50vh;
+  position:relative;
+  margin:auto;
+  background:#ccc;
+}
+
+.trendingContainer::after {
+  width:448px;
+  height:50vh;
+  content:"";
+  position:absolute;
+  border:solid 1px white;
+}
+
+.trendingCard{
+  width:450px;
+  height:350px;
+  position:absolute;
+}
+
+.postHolder {
+  position: relative;
+  left:-450px;
+} */
 
 /* ///////////////SEARCH BAR///////////////*/
 /* ///////////////SEARCH BAR///////////////*/
@@ -271,6 +305,10 @@ body{
 
 .action{
   cursor: pointer;
+}
+
+.warnings{
+  color: red;
 }
 
 /* ///////////////STARS///////////////*/
