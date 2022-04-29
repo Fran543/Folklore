@@ -10,7 +10,7 @@ $(document).ready(function () {
         },
         success: function (response) {
             response.forEach(element => {
-                $("#myMulti").append("<option>" + element.WarningName + "</option>")
+                $("#myMulti").append("<option id='" + element.IDWarning + "'>" + element.WarningName + "</option>")
             });
         },
         error: function (error) {
@@ -67,22 +67,24 @@ $("#btnAdd").on('click', () => {
 $('#myMulti').change(() => {
     var e = document.getElementById("myMulti");
     var selectedWarning = e.value;
+    console.log(e.value.id)
+    console.log($(e).children(":selected").attr("id"))
 
     $('.lblWarning').append(
         "<div class='btnWarning'>"
-        + "<p>" + selectedWarning + "</p>"
+        + "<p id='" + $(e).children(":selected").attr("id") + "'>" + selectedWarning + "</p>"
         + "<i class='bx bx-x icon' onClick='removeWarning(this)' id='" + selectedWarning + "'></i>"
         + "</div>"
     )
 
     $('option:selected', '#myMulti').remove();
-    
-    	
-    $('#' + selectedWarning).mouseenter(() => {$('#' + selectedWarning).addClass('bx-spin bx-rotate-90')})
-                .mouseleave(() => {$('#' + selectedWarning).removeClass('bx-spin bx-rotate-90')});
+
+
+    $('#' + selectedWarning).mouseenter(() => { $('#' + selectedWarning).addClass('bx-spin bx-rotate-90') })
+        .mouseleave(() => { $('#' + selectedWarning).removeClass('bx-spin bx-rotate-90') });
 })
 
-function removeWarning(warning){
+function removeWarning(warning) {
     $(warning).parent('div').remove();
     $('#myMulti').append("<option>" + $(warning).attr('id') + "</option>")
 }
@@ -178,8 +180,17 @@ function validateFields() {
     return valid
 }
 
+async function createWArningsJsonString() {
+    var warnings = [];
+    for (const warning of document.getElementById("lblWarning").children) {
+        warnings.push(warning.children[0].id)
+    }
+    return warnings
+}
+
 //BTN EVENTS
 $("#btnCreate").on('click', async () => {
+    createWArningsJsonString()
     if (validateFields()) {
         holders = $(".holder").map(function () {
             return $(this);
@@ -199,9 +210,11 @@ $("#btnCreate").on('click', async () => {
                 'title': $("#title").val(),
                 'summary': $("#summary").val(),
                 "image": image,
-                'posts': $.parseJSON(await createJsonString(holders))
+                'posts': $.parseJSON(await createJsonString(holders)),
+                'warnings': await createWArningsJsonString()
             },
             success: function (response) {
+
                 alert(response)
             },
             error: function (error) {
@@ -215,10 +228,10 @@ $("#btnDelete").click(function () {
     if (answer) {
         $('.cont').css('display', 'block');
         $('.home').css('background-color', 'rgba(255, 107, 129,.2)');
-        setTimeout(function(){
+        setTimeout(function () {
             $('.cont').css('display', 'none');
             $('.home').css('background-color', '#E4E9F7');
-        },5000)
+        }, 5000)
         $('.canvas').empty();
     }
 });

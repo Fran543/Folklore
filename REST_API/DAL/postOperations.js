@@ -152,6 +152,20 @@ async function addConditionToPost(postID, choiceID) {
     }
 }
 
+async function addWarningToPost(postID, choiceID) {
+    try {
+        let pool = await sql.connect(config);
+        let postCondition = await pool
+            .request()
+            .input('WarningID', sql.Int, postID)
+            .input('StoryID', sql.Int, choiceID)
+            .execute('addWarningToStory');
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+    }
+}
+
 module.exports = {
     createPost: createPost,
     createStory: createStory,
@@ -163,4 +177,5 @@ module.exports = {
     getStoryById: getStoryById,
     getPostByChoiceId: getPostByChoiceId,
     addConditionToPost: addConditionToPost,
+    addWarningToPost: addWarningToPost
 }

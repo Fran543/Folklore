@@ -30,10 +30,22 @@ async function addPostsToStory(storyID, posts) {
     addConditionsToPost(postsOBJs, choiceIDs)
 }
 
+async function addWarningsToStory(storyID, warnings) {
+    for (const warningID of warnings) {
+        await dbOperations.addWarningToPost(warningID, storyID)
+    }
+
+}
+
 exports.createStory = async (req, res) => {
-    const { title, summary, posts, userID, image } = req.body;
+    const { title, summary, posts, userID, image, warnings } = req.body;
     var storyID = await dbOperations.createStory(title, summary, image, userID);
-    addPostsToStory(storyID, posts)
+    if (posts != null) {
+        addPostsToStory(storyID, posts)
+    }
+    if (warnings != null) {
+        addWarningsToStory(storyID, warnings)
+    }
     // for (const post of posts) {
     //     var postID = await dbOperations.createPost(post.content, null, storyID);
     //     postsOBJs.push({ "postID": postID, "conditions": post.conditions });
