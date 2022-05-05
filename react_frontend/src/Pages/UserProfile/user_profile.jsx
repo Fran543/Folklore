@@ -1,12 +1,13 @@
 import React from "react";
+import './userProfile.css';
 
 function User_Profile() {
     return (
         <div >
-            <section class="first">
-                <div class="col-md-6">
+            <section className="first">
+                <div className="col-md-6">
                     <h1 id="userName">Username</h1>
-                    <div class="btnDelete">
+                    <div className="btnDelete">
                         <h3 id="email">email</h3>
                         <button id="btnDelete">
                             <h3>Delete</h3>
@@ -26,7 +27,7 @@ function User_Profile() {
                         consectetur?
                     </p>
                 </div>
-                <div class="imgPlaceholder col-md-6">
+                <div className="imgPlaceholder col-md-6">
                     {/* <img src="../IMAGES/logoLight.png"> */}
                 </div>
             </section>
