@@ -3,7 +3,33 @@ import React from "react";
 function User_Profile() {
     return (
         <div >
-            <h1>User profile</h1>
+            <section class="first">
+                <div class="col-md-6">
+                    <h1 id="userName">Username</h1>
+                    <div class="btnDelete">
+                        <h3 id="email">email</h3>
+                        <button id="btnDelete">
+                            <h3>Delete</h3>
+                        </button>
+                    </div>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita eius, ipsam asperiores adipisci ut molestias
+                        animi necessitatibus et totam consectetur rerum eligendi. Enim odit molestiae incidunt veniam iste repellendus
+                        consectetur?
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita eius, ipsam asperiores adipisci ut molestias
+                        animi necessitatibus et totam consectetur rerum eligendi. Enim odit molestiae incidunt veniam iste repellendus
+                        consectetur?
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita eius, ipsam asperiores adipisci ut molestias
+                        animi necessitatibus et totam consectetur rerum eligendi. Enim odit molestiae incidunt veniam iste repellendus
+                        consectetur?
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita eius, ipsam asperiores adipisci ut molestias
+                        animi necessitatibus et totam consectetur rerum eligendi. Enim odit molestiae incidunt veniam iste repellendus
+                        consectetur?
+                    </p>
+                </div>
+                <div class="imgPlaceholder col-md-6">
+                    {/* <img src="../IMAGES/logoLight.png"> */}
+                </div>
+            </section>
         </div>
     );
 }

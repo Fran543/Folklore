@@ -3,9 +3,9 @@ import { Stories, TrendingStories } from "../../Components";
 import './home.css';
 
 function Home() {
-    
+
     return (
-        <div class="home">
+        <div className="home">
             <TrendingStories />
             <Stories />
         </div>
