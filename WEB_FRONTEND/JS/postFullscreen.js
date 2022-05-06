@@ -104,7 +104,7 @@ $("#btnLogOut").on("click", () => {
 //Scroll down on load
 $(document).ready(function(){
     setTimeout(function() { 
-        $('html, body').animate({scrollTop:180}, 'slow');
+        $('html, body').animate({scrollTop:180}, 0);
         //$("html,body").scrollTop(180);
     }, 2000);
 });

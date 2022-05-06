@@ -7,6 +7,7 @@ import {
   Library,
   Login
 } from "./Pages";
+import PostCreator from './Pages/PostCreator/postCreator';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/library" element={<Library />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/postCreator" element={<PostCreator />} />
       </Routes>
     </Router>
   );
