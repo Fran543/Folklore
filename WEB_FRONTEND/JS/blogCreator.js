@@ -54,6 +54,7 @@ $("#btnCreate").on("click", async function (event) {
 
 //PREVIEWING IMAGE
 var loadFile = function (event, element) {
+    console.log(event);
     var image = document.getElementById(element);
     //image.src = URL.createObjectURL(event.target.files[0]);
     $("#" + element).css('background-image', 'url(' + URL.createObjectURL(event.target.files[0]) + ')');
