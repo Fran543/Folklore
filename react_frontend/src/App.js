@@ -6,7 +6,8 @@ import {
   Profile,
   Library,
   Login,
-  PostCreator
+  PostCreator,
+  StoryCreator
 } from "./Pages";
 
 function App() {

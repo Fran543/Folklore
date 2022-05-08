@@ -4,3 +4,6 @@ export { default as Sidebar } from "./Sidebar/sidebar";
 export { default as Canvas } from "./Canvas/canvas";
 export { default as RegisterForm } from "./RegisterForm/register_form";
 export { default as LoginForm } from "./LoginForm/login_form";
+export { default as Paragraph } from "./Paragraph/paragraph";
+export { default as Warning } from "./Warning/warning";
+export { default as DeleteAnimation } from "./DeleteAnimation/deleteAnimation";

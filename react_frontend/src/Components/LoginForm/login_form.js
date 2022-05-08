@@ -68,7 +68,7 @@ function Login_Form() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
             />
-            <a href="../HTML/home.html">Continue as guest</a>
+            <a href="/">Continue as guest</a>
             {/* <!-- Write it down next time --> */}
             <button>Sign In</button>
         </form>

@@ -1,13 +1,12 @@
 import React from "react";
-import { Sidebar, Canvas } from "../../Components";
+import { Sidebar, Canvas, DeleteAnimation } from "../../Components";
 
 export default function StoryCreator() {
     return (
         <div className="storyCreator">
             <Sidebar/>
             <Canvas/>
-            {/* <InactiveAnimation/>
-            <DeleteAnimation/> */}
+            <DeleteAnimation/>
         </div>
     );
 }

@@ -28,7 +28,7 @@ router.get('/getStoryById', postController.getStoryById);
 
 router.get('/getPostByChoiceId', postController.getPostByChoiceId);
 
-router.get('/getWarnings', verify, postController.getWarnings);
+router.get('/getWarnings', postController.getWarnings);
 
 router.get('/getUser', verify, userController.getUser);
 

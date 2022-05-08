@@ -1,0 +1,3 @@
+$(".movableParagraph").draggable({
+    containment: 'body'
+});

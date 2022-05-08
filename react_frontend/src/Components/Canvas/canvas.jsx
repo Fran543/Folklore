@@ -1,50 +1,16 @@
-import React from "react";
-import './canvas.css';
-import $ from 'jquery';
+import React, { Suspense, useEffect }from "react";
+import { Helmet } from "react-helmet";
+const Paragraph = React.lazy(() => import("../../Components/Paragraph/paragraph"))
 
 export default function Canvas() {
+    useEffect(() => {
+        import("./canvas.css")
+    }, [])
     
-    var numberOfOptions = 2;
-    var counter = 1;
-    var imgPlaceholder = 'imgHolder' + counter;
-    const addParagraph = () => {
-        $(".canvas").append(
-            "<div class='movableParagraph'>"
-            + "<div class='holder'>"
-            + "<div id='imgHolder" + counter + "'></div>"
-            + "<div class='paragraphImg'>"
-            + "<input type='file' id='paragraphImg' accept='image/*' onchange='loadFile(event,\"" + imgPlaceholder + "\")'></input>"
-            + "</div>"
-            + "<div name='ddlHolder' class='ddlHolder'>"
-            + "<select multiple='multiple' id='chooser" + counter + "' class='ddlChoices'>"
-            + "</select>"
-            + "</div>"
-            + "<div class='storyPart' class='ui-widget-content'>"
-            + "<textarea id='paragraph" + counter + "' class='paragraph'></textarea>"
-            + "<hr>"
-            + "<div class='options'>"
-            + "<div class='number'>" + counter + "</div>"
-            + "<textarea class='option' id='option" + counter + "'></textarea>"
-            + "<div class='number'>" + (++counter) + "</div>"
-            + "<textarea class='option' id='option" + counter + "'></textarea>"
-            + "</div>"
-            + "</div>"
-            + "</div>"
-            + "</div>"
-        )
-        counter++
-        imgPlaceholder = 'imgHolder' + counter
-        $(".movableParagraph").draggable({
-            containment: 'body'
-        });
-    
-        //$(".ddlChoices").empty()
-        for (var i = 1; i <= numberOfOptions; i++) {
-            $(".ddlChoices").append(
-                "<option value='" + i + "'>" + i + "</option>"
-            )
-        }
-        numberOfOptions += 2;
+    const [paragraphs, setDynamicParagraphs] = React.useState(0);
+
+    const callAjax = () => {
+        
     }
 
     return (
@@ -58,13 +24,23 @@ export default function Canvas() {
                 <span className="lines line-3"></span>
             </label>
 
-            <a href="#" className="myMenu-item purple" id="btnAdd" onClick={addParagraph}><i className="fa fa-plus"></i></a>
-            <a href="../HTML/postCreator.html" className="myMenu-item blue"><i className="fa fa-backward"></i></a>
-            <a href="#" className="myMenu-item green" id="btnCreate"><i className="fa fa-upload"></i></a>
+            <a href="#" className="myMenu-item purple" id="btnAdd" onClick={() => setDynamicParagraphs(1)}><i className="fa fa-plus"></i></a>
+            <a href="postCreator" className="myMenu-item blue"><i className="fa fa-backward"></i></a>
+            <a href="#" className="myMenu-item green" id="btnCreate" onClick={callAjax}><i className="fa fa-upload"></i></a>
             <a href="#" className="myMenu-item red" id="btnDelete"><i className="fa fa-trash"></i></a>
 
         </nav>
-        <div className="canvas"></div>
+        <div className="canvas">
+            {paragraphs ? (
+                <Suspense fallback={<div>Loading Component....</div>}>
+                    <Paragraph />
+                </Suspense>
+            ) : null} 
+        </div>
+
+    <Helmet>
+        <script src="storyCreator.js"></script>
+    </Helmet>
     </section>
     );
 }

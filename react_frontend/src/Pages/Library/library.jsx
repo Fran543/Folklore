@@ -9,7 +9,7 @@ function Library() {
                         <div class="info_section">
                             <div class="row">
                                 <div class="col-12 d-md-none">
-                                    <img src="../IMAGES/storiesPlaceholder.avif" alt="image" class="img-fluid">
+                                    <img src="../IMAGES/storiesPlaceholder.avif" alt="image" class="img-fluid"/>
                                 </div>
                                 <div class="col-12 col-md-6 text-start">
                                     <h1 id="lbTitle">Story Name</h1>
