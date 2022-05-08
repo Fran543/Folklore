@@ -1,8 +1,12 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import './navigation.css';
+import { useEffect } from "react";
 
 function Navigation() {
+
+    useEffect(() => {
+        import('./navigation.css');
+    })
+
     return (
         <div className="navigation">
             <nav id="mainNavbar" className="navbar navbar-dark navbar-expand-md px-5 py-0 fixed-top">
@@ -16,7 +20,7 @@ function Navigation() {
                             <a href="/" className="nav-link">HOME</a>
                         </li>
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="" id="dropdown04" data-toggle="dropdown"
+                            <a className="nav-link dropdown-toggle" href="*" id="dropdown04" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 <span className="fa fa-user"></span>
                             </a>

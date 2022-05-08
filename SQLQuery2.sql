@@ -243,25 +243,35 @@ create proc selectStory
 @IDStory int
 as
 begin 
-	select *
+	select *, (select AVG(Cast(Score as decimal)) from Review 
+	where StoryID = 125)as Score
 	from Story as s
-	where IDStory = @IDStory
+	where IDStory = 125
 	select * from WarningStory
-	where StoryID = @IDStory
+	where StoryID = 125
 	select top 1 * 
 	from Post 
-	Where StoryID = @IDStory
+	Where StoryID = 125
 	declare @idPost int
 	set @idPost = (select top 1 IDPost 
 	from Post 
-	Where StoryID = @IDStory)
+	Where StoryID = 125)
 	select * 
 	from Choice 
-	where PostID = @idPOst	
+	where PostID = @idPost	
 end
 go
 
-
+create proc selectStoryComments
+@IDStory int
+as
+begin 
+	select c.Content, u.Username
+	from Comment as c
+	inner join AppUser as u on c.UserID = u.IDUser
+	where c.StoryID = @IDStory
+end
+go
 
 create proc addConditionToPost
 	@PostID int,

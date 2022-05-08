@@ -1,6 +1,6 @@
-import React, {useEffect, Suspense, useState} from "react";
+import React, { useEffect, Suspense, useState } from "react";
 import { Helmet } from "react-helmet";
-import {Warning} from "../../Components"
+import { Warning } from "../../Components"
 
 export default function Sidebar() {
 
@@ -22,16 +22,18 @@ export default function Sidebar() {
                 }
             )
     }
-        
+
     useEffect(() => {
         import('./sidebar.css');
         getWarnings()
-    }, []) 
+    }, [])
 
-    const [checkedWarning, setCheckedWarning] = useState('')
-    const addWarning = (event) =>{
+    const [checkedWarning, setCheckedWarning] = useState([])
+
+    const addWarning = (event) => {
         console.log(event.target)
-        setCheckedWarning(event.target.value)
+        // checkedWarning.push(event.target.value)
+        setCheckedWarning(checkedWarning => [...checkedWarning, event.target.value])
     }
 
     return (
@@ -39,7 +41,7 @@ export default function Sidebar() {
             <header>
                 <div className="image-text">
                     <span className="image">
-                        <img src="../IMAGES/logoLight.png" alt=""/>
+                        <img src="../IMAGES/logoLight.png" alt="" />
                     </span>
 
                     <div className="text logo-text">
@@ -53,39 +55,39 @@ export default function Sidebar() {
                 <div className="menu">
                     <li className="search-box">
                         <i className='bx bx-pen icon'></i>
-                        <input type="text" placeholder="Title..." maxLength="50" id="title"/>
+                        <input type="text" placeholder="Title..." maxLength="50" id="title" />
                     </li>
-                        <li className="search-box">
-                                <i className='bx bx-text icon' ></i>
-                                <textarea type="text" maxLength="500" id="summary" placeholder="Summary..."></textarea>
-                        </li>
+                    <li className="search-box">
+                        <i className='bx bx-text icon' ></i>
+                        <textarea type="text" maxLength="500" id="summary" placeholder="Summary..."></textarea>
+                    </li>
 
-                        <li className="search-box">
-                                <i className='bx bx-shield icon' ></i>
-                                <span className="text nav-text lblWarning" id="lblWarning">
-                                    Warnings
-                                    {checkedWarning ? (
-                                        <Suspense fallback={<div>Loading Component....</div>}>
-                                            <Warning parentToChild={checkedWarning}/>
-                                        </Suspense>
-                                    ) : null}     
-                                </span>
-                        </li>
-                        <li className="choosers">
-                            <select className="warnings" id="myMulti" onChange={addWarning}>
-                                {warnings.map(warning => (
-                                    <option key={warning.IDWarning}>{warning.WarningName}</option>
-                                ))}
-                            </select>
-                        </li>
+                    <li className="search-box">
+                        <i className='bx bx-shield icon' ></i>
+                        <span className="text nav-text lblWarning" id="lblWarning">
+                            Warnings
+                            {checkedWarning.map((warning, i) => (
+                                <Suspense key={i} fallback={<div >Loading Component....</div>}>
+                                    <Warning parentToChild={warning} />
+                                </Suspense>
+                            ))}
+                        </span>
+                    </li>
+                    <li className="choosers">
+                        <select className="warnings" id="myMulti" onChange={addWarning}>
+                            {warnings.map(warning => (
+                                <option key={warning.IDWarning}>{warning.WarningName}</option>
+                            ))}
+                        </select>
+                    </li>
 
-                        <li className="search-box">
-                                <i className='bx bx-image icon' ></i>
-                                <span className="text nav-text">Image</span>
-                        </li>
-                        <li className="choosers">
-                            <input type="file" id="img" accept="image/*"/>
-                        </li>
+                    <li className="search-box">
+                        <i className='bx bx-image icon' ></i>
+                        <span className="text nav-text">Image</span>
+                    </li>
+                    <li className="choosers">
+                        <input type="file" id="img" accept="image/*" />
+                    </li>
                 </div>
                 <div id="imgHolder"></div>
                 <div className="bottom-content">

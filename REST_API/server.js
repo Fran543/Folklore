@@ -6,11 +6,16 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const { stat } = require('fs');
 let cors = require("cors");
+const { NONAME } = require('dns');
 
 const app = express();
 const server = http.createServer(app);
 
-app.use(cors());
+app.use(cors({
+    credentials: true,
+    origin: ['http://localhost:3000', 'your-production-domain']
+}));
+
 app.use(bodyParser.json({ limit: '50mb', extended: true }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 1000000 }));
 

@@ -1,6 +1,10 @@
 import React from 'react';
-import { gsap } from "gsap";
-import './trending_stories.css';
+import { Helmet } from "react-helmet";
+import { default as StoryCard } from '../StoryCard/story_card';
+
+
+var getUserEndPoint = "http://127.0.0.1:8091/getUser"
+
 
 var getTrendingStoriesEndPoint = "http://127.0.0.1:8091/getTrendingStories"
 
@@ -16,25 +20,27 @@ class TrendingStories extends React.Component {
 
     showPost(id) {
         alert(id)
+        fetch(getUserEndPoint, {
+            credentials: 'include'
+        })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log(result)
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    console.log(error)
+
+                }
+            )
     }
-
-    animation() {
-        // CSSPlugin.defaultTransformPerspective = 400;
-        gsap.to(".trendingTitle", { duration: 3, repeat: -1, rotationX: 360 });
-
-        gsap.to(".trendingCard", {
-            duration: 20,
-            ease: "none",
-            x: "+=500", //move each box 500px to right
-            modifiers: {
-                x: gsap.utils.unitize(x => parseFloat(x) % 500) //force x value to be between 0 and 500 using modulus
-            },
-            repeat: -1
-        });
-    }
-
 
     componentDidMount() {
+        import('./trending_stories.css');
+
         fetch(getTrendingStoriesEndPoint)
             .then(res => res.json())
             .then(
@@ -69,6 +75,7 @@ class TrendingStories extends React.Component {
                     <div className="postHolder" id="postHolder">
 
                         {items.map((item, index) => (
+                            // <StoryCard story={item} />
                             <div className='story_card trendingCard' id='cardGlow' key={index}>
                                 <div className='info_section' onClick={() => this.showPost(item.IDStory)}>
                                     <div className='row'>
@@ -100,6 +107,10 @@ class TrendingStories extends React.Component {
                             </div>
                         ))}
                     </div>
+                    <Helmet>
+                        <script src=
+                            ".\trendingStory.js" />
+                    </Helmet>
                 </fieldset >
             );
         }

@@ -1,49 +1,46 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
-import './loginForm.css';
 
 var loginEndPoint = "http://127.0.0.1:8091/login"
 
-async function loginUser(credentials) {
-    await fetch(loginEndPoint, {
+
+function loginUser(credentials) {
+    fetch(loginEndPoint, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
+        credentials: 'include',
         body: JSON.stringify(credentials)
     })
-        .then(res => {
-            console.log(res.headers.get('set-cookie')); // undefined
-            console.log(document.cookie); // nope
-            return res.json();
-        }).then(json => {
-            if (json.success) {
-                console.log(json); // nope
-            }
-            else {
-                console.log(json.error); // nope
-            }
-        });
-    // .then(async (response) => {
-    //     if (!response.ok) throw new Error(response);
-    //     else return response.json(9);
-    // })
-    // .then((data) => {
-    //     console.log(data);
-    // })
-    // .catch(error => {
-    //     console.log(error);
-    // })
+        .then(async (response) => {
+            let message = await response.json()
+            if (!response.ok) throw new Error(message.message);
+            else return message.message;
+        })
+        .then(async (data) => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.log(error);
+        })
 }
 
 function Login_Form() {
 
+    useEffect(() => {
+        import('./loginForm.css');
+    })
+
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+
     const login = async (e) => {
         e.preventDefault();
-        const response = await loginUser({
+        await loginUser({
             email,
             password
         });

@@ -1,10 +1,12 @@
-import './registerForm.css';
 import { useState } from "react";
+import { useEffect } from "react";
+
 
 
 var registerEndPoint = "http://127.0.0.1:8091/register"
 
 async function registerUser(credentials) {
+
     fetch(registerEndPoint, {
         method: 'POST',
         headers: {
@@ -12,7 +14,6 @@ async function registerUser(credentials) {
         },
         body: JSON.stringify(credentials)
     })
-
         .then(async (response) => {
             var msg = await response.text()
             if (!response.ok) throw new Error(msg);
@@ -28,6 +29,11 @@ async function registerUser(credentials) {
 
 function Register_Form() {
 
+    useEffect(() => {
+        import('./registerForm.css');
+    })
+
+
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -35,7 +41,7 @@ function Register_Form() {
 
     const register = async (e) => {
         e.preventDefault();
-        const response = await registerUser({
+        await registerUser({
             username,
             email,
             password,

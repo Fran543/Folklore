@@ -1,0 +1,27 @@
+.first {
+    top: 0;
+    left: 0;
+}
+
+
+.btnDelete {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btnDelete button {
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.411);
+    transition: all 0.5s ease;
+    border: none;
+}
+
+.btnDelete button h3 {
+    padding-left: 0;
+}
+
+.btnDelete button:hover {
+    color: rgba(255, 0, 0, 0.356);
+    letter-spacing: 2rem;
+    border-bottom: 1px solid rgba(255, 0, 0, 0.356);
+}

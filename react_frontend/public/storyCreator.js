@@ -19,6 +19,5 @@ $("#btnDelete").click(function () {
             $('.cont').css('display', 'none');
             $('.home').css('background-color', '#E4E9F7');
         }, 5000)
-        $('.canvas').empty();
     }
 });

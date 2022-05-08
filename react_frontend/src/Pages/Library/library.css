@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Cinzel&display=swap');
+
+body {
+  /* background: #222831; */
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Cinzel', serif;
+  height: 100vh;
+  /* margin: -100px 0 50px; */
+  overflow: hidden;
+}
+
+#lbTitle {
+  padding-top: 35%;
+}
+
+.warnings {
+  padding-left: 5%;
+}
+
+.warnings span {
+  color: rgb(167, 167, 167);
+}
+
+button .carousel-control-prev {
+  z-index: 3;
+}
+
+#carouselExampleControls {
+  width: 100%;
+  height: 100vh;
+}
+
+div .story_card {
+  margin: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.info_section {
+  padding-left: 10%;
+}
+
+.btns {
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 10%;
+  color: white;
+  padding: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btns:hover {
+  background-color: #e0b78a;
+  transition: all .5s ease;
+  transform: scale(1.1);
+}
+
+.btns p {
+  margin: 0;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+  width: 10%;
+}
+
+#bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+}
+
+h1 {
+  font-size: 6rem;
+  color: white;
+  padding-left: 5%;
+}
+
+.bi-share-fill {
+  color: white;
+}
+
+.story_card {
+  position: relative;
+  display: block;
+  /* width: 800px; */
+  width: 100%;
+  height: 100vh;
+  margin: 100px auto;
+  overflow: hidden;
+  /* border-radius: 10px; */
+  transition: all 0.4s;
+}
+
+/* .story_card:hover {
+    transform: scale(1.02);
+    transition: all 0.4s;
+  } */
+
+.info_section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-blend-mode: multiply;
+  z-index: 2;
+  border-radius: 10px;
+}
+
+.story_desc {
+  padding: 25px;
+}
+
+.story_desc .text {
+  color: white;
+}
+
+.story_social {
+  padding-left: 25px;
+  display: flex;
+  gap: 2%;
+}
+
+.blur_back {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  height: 100%;
+  right: 0;
+  background-size: cover;
+  border-radius: 11px;
+}
+
+@media screen and (min-width: 768px) {
+
+  .story_header {
+    width: 60%;
+  }
+
+  .story_desc {
+    width: 50%;
+  }
+
+  .info_section {
+    background: linear-gradient(to right, black 25%, transparent 100%);
+  }
+
+  .blur_back {
+    width: 80%;
+    background-position: -100% 10% !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  #carouselExampleControls {
+    margin-top: 40%;
+  }
+
+  .story_card {
+    width: 95%;
+    margin: 70px auto;
+    min-height: 350px;
+    height: auto;
+  }
+
+  .story_back {
+    width: 100%;
+    background-position: 50% 50% !important;
+  }
+
+  .story_header {
+    width: 100%;
+    margin-top: 85px;
+  }
+
+  .story_desc {
+    width: 100%;
+  }
+
+  .info_section {
+    background: linear-gradient(to top, black 50%, transparent 100%);
+    display: inline-grid;
+  }
+}
+
+.card_back {
+  /* background: url("../IMAGES/storiesPlaceholder.avif"); */
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.carousel {
+  position: inherit;
+}
+
+.carousel-inner {
+  position: inherit;
+}
+
+.carousel-item {
+  position: inherit;
+}

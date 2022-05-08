@@ -1,9 +1,15 @@
 import React from "react";
-import './login.css';
+import { useEffect } from "react";
+
 import { RegisterForm, LoginForm } from "../../Components";
 import { Helmet } from "react-helmet";
 
 function Login() {
+
+    useEffect(() => {
+        import('./login.css');
+    })
+
     return (
         <div>
             <div className="alert hide">
@@ -47,6 +53,8 @@ function Login() {
             <Helmet>
                 <script src=
                     ".\loginBox.js" />
+                <script src=
+                    ".\particles.js" />
             </Helmet>
         </div >
 

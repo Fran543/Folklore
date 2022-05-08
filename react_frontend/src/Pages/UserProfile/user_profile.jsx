@@ -1,37 +1,47 @@
 import React from "react";
-import './userProfile.css';
+import { useEffect } from "react";
+import { useState } from "react";
+import { UserStories, UserInfo } from "../../Components";
+import { Helmet } from "react-helmet";
+
+var getUserEndPoint = "http://127.0.0.1:8091/getUser"
+
 
 function User_Profile() {
+
+    const [user, setUser] = useState(null)
+
+    useEffect(() => {
+        import('./userProfile.css');
+
+        fetch(getUserEndPoint, {
+            credentials: 'include'
+        })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setUser(result)
+                    return result
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    console.log(error)
+                }
+            )
+    }, [])
+
     return (
-        <div >
-            <section className="first">
-                <div className="col-md-6">
-                    <h1 id="userName">Username</h1>
-                    <div className="btnDelete">
-                        <h3 id="email">email</h3>
-                        <button id="btnDelete">
-                            <h3>Delete</h3>
-                        </button>
-                    </div>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita eius, ipsam asperiores adipisci ut molestias
-                        animi necessitatibus et totam consectetur rerum eligendi. Enim odit molestiae incidunt veniam iste repellendus
-                        consectetur?
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita eius, ipsam asperiores adipisci ut molestias
-                        animi necessitatibus et totam consectetur rerum eligendi. Enim odit molestiae incidunt veniam iste repellendus
-                        consectetur?
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita eius, ipsam asperiores adipisci ut molestias
-                        animi necessitatibus et totam consectetur rerum eligendi. Enim odit molestiae incidunt veniam iste repellendus
-                        consectetur?
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita eius, ipsam asperiores adipisci ut molestias
-                        animi necessitatibus et totam consectetur rerum eligendi. Enim odit molestiae incidunt veniam iste repellendus
-                        consectetur?
-                    </p>
-                </div>
-                <div className="imgPlaceholder col-md-6">
-                    {/* <img src="../IMAGES/logoLight.png"> */}
-                </div>
-            </section>
-        </div>
+        <>
+            <UserInfo user={user} />
+            <UserStories user={user} />
+            <Helmet>
+                <script src=
+                    ".\particles.js" />
+            </Helmet>
+        </>
+
     );
 }
 

@@ -26,13 +26,14 @@ exports.register = (req, res) => {
 exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
+        console.log(email + " " + password)
         if (!email || !password) {
-            return res.status(401).send('Please provide an email and password')
+            return res.status(401).send('{"message": "Please provide an email and password" }')
         }
 
         dbOperations.checkEmail(email).then(async result => {
             if (result === null || !(await bcrypt.compare(password, result[0].Password)) || !result[0].Active) {
-                res.status(401).send('Username or Password is incorrect')
+                res.status(401).send('{"message": "Username or Password is incorrect" }')
             } else {
                 const id = result[0].IDUser;
                 let payload = { "id": id };
@@ -47,6 +48,8 @@ exports.login = async (req, res) => {
                     expires: new Date(
                         Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
                     ),
+                    sameSite: "None",
+                    secure: true
                 }
                 res.cookie('jwt', token, cookieOptions);
                 res.send('{"message": "login successful" }');
