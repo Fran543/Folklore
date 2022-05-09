@@ -1,0 +1,23 @@
+.lblWarning{
+    display: flex;
+    gap: 2%;
+    word-wrap: break-word;
+    overflow-x: scroll;
+  }
+  
+  .lblWarning::-webkit-scrollbar {
+      width: 0.1em;
+      height: 5px;
+  }
+  
+  .lblWarning::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+  }
+  .lblWarning::-webkit-scrollbar-thumb {
+      background-color: darkgrey;
+      outline: 1px solid slategrey;
+    }
+  
+  .btnWarning{
+      display: flex;
+  }

@@ -113,70 +113,6 @@
    margin-top: 20%;
 }
 
-
-/* PARAGRAPH */
-.storyPart {
-   width: 600px;
-   height: fit-content;
-   animation: pop-swirl 1s ease forwards;
-   position: absolute;
-}
-
-.storyPart textarea {
-   width: 100%;
-}
-
-.ddlHolder{
-   position: absolute;
-   margin-left: 605px;
-}
-.ddlChoices {
-   padding: 10px;
-}
-
-.options {
-   display: flex;
-   justify-content: space-evenly;
-   width: 100%;
-}
-
-.option {
-   border-radius: 5px;
-   margin: 2%;
-   resize: none;
-}
-
-.number {
-   border-radius: 50%;
-   background-color: black;
-   color: white;
-   height: 30px;
-   width: 70px;
-   text-align: center;
-}
-
-#imgHolder {
-   width: 100%;
-   height: 100%;
-   background-position: center;
-   background-repeat: no-repeat;
-   background-size: cover;
-}
-
-@keyframes pop-swirl {
-   0% {
-      transform: scale(0) rotate(360deg);
-   }
-
-   60% {
-      transform: scale(0.8) rotate(-10deg);
-   }
-
-   100% {
-      transform: scale(1) rotate(0deg);
-   }
-}
-
 .myMenu-item:hover {
    background: #EEEEEE;
    color: #3290B1;
@@ -361,21 +297,4 @@
 .lightblue:hover {
    color: #62C2E4;
    text-shadow: none;
-}
-
-.credit {
-   margin: 24px 20px 120px 0;
-   text-align: right;
-   color: #EEEEEE;
-}
-
-.credit a {
-   padding: 8px 0;
-   color: #C49CDE;
-   text-decoration: none;
-   transition: all 0.3s ease 0s;
-}
-
-.credit a:hover {
-   text-decoration: underline;
 }

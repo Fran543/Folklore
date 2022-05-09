@@ -313,10 +313,14 @@ body.dark .switch::before{
 body.dark .home .text{
     color: var(--text-color);
 }
-.imgHolder{
-    height: 500px;
-    width: 500px;
-}
+
+#imgHolder {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+ }
 
 .choosers select{
     background-color: transparent;
@@ -325,28 +329,4 @@ body.dark .home .text{
 }
 .choosers select:focus{
     outline: none;
-}
-
-.lblWarning{
-  display: flex;
-  gap: 2%;
-  word-wrap: break-word;
-  overflow-x: scroll;
-}
-
-.lblWarning::-webkit-scrollbar {
-    width: 0.1em;
-    height: 5px;
-}
-
-.lblWarning::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
-}
-.lblWarning::-webkit-scrollbar-thumb {
-    background-color: darkgrey;
-    outline: 1px solid slategrey;
-  }
-
-.btnWarning{
-    display: flex;
 }

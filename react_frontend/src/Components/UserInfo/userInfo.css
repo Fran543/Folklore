@@ -3,7 +3,6 @@
     left: 0;
 }
 
-
 .btnDelete {
     display: flex;
     justify-content: space-between;
@@ -24,4 +23,10 @@
     color: rgba(255, 0, 0, 0.356);
     letter-spacing: 2rem;
     border-bottom: 1px solid rgba(255, 0, 0, 0.356);
+}
+
+.particles-js-canvas-el{
+  position: absolute;
+  top:0;
+  left:0;
 }

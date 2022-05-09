@@ -28,7 +28,7 @@ function App() {
         <Route path="/profile" element={<><Navigation /><Profile /></>} />
         <Route path="/library" element={<><Navigation /><Library /></>} />
         <Route path="/login" element={<Login />} />
-        <Route path="/postCreator" element={<PostCreator />} />
+        <Route path="/postCreator" element={<><Navigation /><PostCreator /></>} />
         <Route path="/storyCreator" element={<StoryCreator />} />
       </Routes>
     </Router>}

@@ -13,7 +13,7 @@ function PostCreator() {
             <div className="row">
                 <div className="col-12 col-md-6">
                     <div className="shadow "></div>
-                    <a href="../HTML/blogCreator.html">
+                    <a href="blogCreator">
                         <div className="bowl1">
                             <h2>Blog</h2>
                             <div className="liquid1"></div>
@@ -22,7 +22,7 @@ function PostCreator() {
                 </div>
                 <div className="col-12 col-md-6">
                     <div className="shadow"></div>
-                    <a href="../HTML/storyCreator.html">
+                    <a href="storyCreator">
                         <div className="bowl2">
                             <h2>Story</h2>
                             <div className="liquid2"></div>

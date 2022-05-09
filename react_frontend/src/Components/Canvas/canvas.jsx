@@ -31,11 +31,6 @@ export default function Canvas() {
 
             </nav>
             <div className="canvas">
-                {/* {paragraphs ? (
-                    <Suspense fallback={<div>Loading Component....</div>}>
-                        <Paragraph />
-                    </Suspense>
-                ) : null} */}
                 {[...Array(paragraphs).keys()].map
                     ((step) => {
                         return (

@@ -1,18 +1,43 @@
 import { Helmet } from "react-helmet";
 import Draggable from "react-draggable";
+import { useEffect, useState } from "react";
 
 export default function Paragraph() {
 
+  const [selectedFile, setSelectedFile] = useState()
+  const [preview, setPreview] = useState()
 
+  useEffect(() => {
+    import("./paragraph.css");
+
+    if (!selectedFile) {
+      setPreview(undefined)
+      return
+    }
+
+    const objectUrl = URL.createObjectURL(selectedFile)
+    setPreview(objectUrl)
+
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl)
+  }, [selectedFile]);
+
+  const onSelectFile = e => {
+    if (!e.target.files || e.target.files.length === 0) {
+        setSelectedFile(undefined)
+        return
+    }
+
+    setSelectedFile(e.target.files[0])
+}
 
   return (
     <Draggable>
-
       <div className="movableParagraph">
         <div className="holder">
-          <div id="imgHolder + counter + "></div>
+        {selectedFile && <div className="paragraphImage" style={{backgroundImage: `url(${preview})`}}></div>}
           <div className="paragraphImg">
-            <input type="file" id="paragraphImg" accept="image/*"></input>
+            <input type="file" id="paragraphImg" accept="image/*" onChange={onSelectFile}></input>
           </div>
           <div name="ddlHolder" className="ddlHolder">
             <select multiple="multiple" className="ddlChoices"></select>
@@ -28,10 +53,6 @@ export default function Paragraph() {
             </div>
           </div>
         </div>
-
-        {/* <Helmet>
-        <script src="./paragraph.js"></script>
-      </Helmet> */}
       </div>
     </Draggable>
   );

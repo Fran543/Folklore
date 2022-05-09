@@ -1,19 +1,16 @@
 //////////////ARROWS ///////////////////
 ///////////////////////////////
-$('.rightContainer').on('click', () => {
-    $('.stories').addClass('col-md-6')
-    $('.stories').css('margin-left', '-50%')
-    $(".second").animate({
-        marginLeft: '-100%'
-    }, 500);
-});
+// $('.rightContainer').on('click', () => {
+//     $(".second").animate({
+//         right: '100px'
+//     }, 500);
+// });
 
-$('.leftContainer').on('click', () => {
-    $('.blogs').addClass('col-md-6')
-    $(".blogs").animate({
-        marginRight: '50%'
-    }, 500);
-});
+// $('.leftContainer').on('click', () => {
+//     $(".blogs").animate({
+//         left: '-100px'
+//     }, 500);
+// });
 
 
 //////////////INFO H1_TITLE ///////////////////
@@ -27,3 +24,7 @@ $('.leftContainer').on('mouseover', () => {
 $('.first').on('mouseover', () => {
     $('.info').html('My posts')
 });
+
+
+//////////////MOVE SCREEN FOCUS ///////////////////
+///////////////////////////////

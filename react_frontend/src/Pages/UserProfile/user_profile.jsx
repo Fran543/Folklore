@@ -33,14 +33,14 @@ function User_Profile() {
     }, [])
 
     return (
-        <>
+        <div >
             <UserInfo user={user} />
             <UserStories user={user} />
             <Helmet>
                 <script src=
                     ".\particles.js" />
             </Helmet>
-        </>
+        </div>
 
     );
 }

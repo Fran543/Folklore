@@ -6,6 +6,9 @@ export default function Sidebar() {
 
     var getWarningsEndPoint = "http://127.0.0.1:8091/getWarnings"
     const [warnings, setWarnings] = useState([])
+    const [checkedWarning, setCheckedWarning] = useState([])
+    const [selectedFile, setSelectedFile] = useState()
+    const [preview, setPreview] = useState()
 
     function getWarnings() {
         fetch(getWarningsEndPoint)
@@ -14,9 +17,6 @@ export default function Sidebar() {
                 (result) => {
                     setWarnings(result)
                 },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
                 (error) => {
                     console.log(error)
                 }
@@ -26,14 +26,35 @@ export default function Sidebar() {
     useEffect(() => {
         import('./sidebar.css');
         getWarnings()
-    }, [])
 
-    const [checkedWarning, setCheckedWarning] = useState([])
+        if (!selectedFile) {
+            setPreview(undefined)
+            return
+        }
+
+        const objectUrl = URL.createObjectURL(selectedFile)
+        setPreview(objectUrl)
+
+        // free memory when ever this component is unmounted
+        return () => URL.revokeObjectURL(objectUrl)
+    }, [selectedFile])
+
+    const onSelectFile = e => {
+        if (!e.target.files || e.target.files.length === 0) {
+            setSelectedFile(undefined)
+            return
+        }
+
+        setSelectedFile(e.target.files[0])
+    }
 
     const addWarning = (event) => {
-        console.log(event.target)
-        // checkedWarning.push(event.target.value)
         setCheckedWarning(checkedWarning => [...checkedWarning, event.target.value])
+    }
+
+    const removeWarning = () => {
+        setCheckedWarning(warning => warning !== warning)
+        console.log('removed')
     }
 
     return (
@@ -68,7 +89,7 @@ export default function Sidebar() {
                             Warnings
                             {checkedWarning.map((warning, i) => (
                                 <Suspense key={i} fallback={<div >Loading Component....</div>}>
-                                    <Warning parentToChild={warning} />
+                                    <Warning parentToChild={warning} removeWarning={removeWarning}/>
                                 </Suspense>
                             ))}
                         </span>
@@ -86,10 +107,10 @@ export default function Sidebar() {
                         <span className="text nav-text">Image</span>
                     </li>
                     <li className="choosers">
-                        <input type="file" id="img" accept="image/*" />
+                        <input type="file" id="img" accept="image/*" onChange={onSelectFile}/>
                     </li>
                 </div>
-                <div id="imgHolder"></div>
+                {selectedFile && <div id="imgHolder" style={{backgroundImage: `url(${preview})`}}></div>}
                 <div className="bottom-content">
                     <li className="">
                         <a href="/postCreator">
