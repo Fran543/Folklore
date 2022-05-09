@@ -9,7 +9,8 @@ import {
   Login,
   PostCreator,
   StoryCreator,
-  BlogCreator
+  BlogCreator,
+  PostFullScreen
 } from "./Pages";
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Route path="/postCreator" element={<><Navigation /><PostCreator /></>} />
         <Route path="/storyCreator" element={<StoryCreator />} />
         <Route path="/blogCreator" element={<BlogCreator />} />
+        <Route path="/postFullscreen" element={<PostFullScreen />} />
       </Routes>
     </Router>}
 
