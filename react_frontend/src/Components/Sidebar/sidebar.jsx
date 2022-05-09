@@ -1,6 +1,11 @@
 import React, { useEffect, Suspense, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Warning } from "../../Components"
+import Select from 'react-select'
+import AsyncSelect from 'react-select/async';
+
+
+const o = []
 
 export default function Sidebar() {
 
@@ -9,13 +14,22 @@ export default function Sidebar() {
     const [checkedWarning, setCheckedWarning] = useState([])
     const [selectedFile, setSelectedFile] = useState()
     const [preview, setPreview] = useState()
+    const [options, setOptions] = useState([])
 
-    function getWarnings() {
-        fetch(getWarningsEndPoint)
+
+    async function getWarnings() {
+        await fetch(getWarningsEndPoint)
             .then(res => res.json())
             .then(
                 (result) => {
                     setWarnings(result)
+                    warnings.map(warning => {
+                        console.log(warning)
+                        console.log(warning.IDWarning)
+                        o.push({ value: warning, label: warning.WarningName })
+                        // setOptions(options => [...options, { value: warning, label: warning.WarningName }])
+                    });
+                    console.log(o)
                 },
                 (error) => {
                     console.log(error)
@@ -25,8 +39,10 @@ export default function Sidebar() {
 
     useEffect(() => {
         import('./sidebar.css');
-        getWarnings()
-
+        const fetchWarnings = async () => {
+            await getWarnings()
+        }
+        fetchWarnings()
         if (!selectedFile) {
             setPreview(undefined)
             return
@@ -49,12 +65,15 @@ export default function Sidebar() {
     }
 
     const addWarning = (event) => {
-        setCheckedWarning(checkedWarning => [...checkedWarning, event.target.value])
+        console.log(event)
+        console.log(event.target.value)
+        // setCheckedWarning(checkedWarning => [...checkedWarning, event.target])
     }
 
-    const removeWarning = () => {
-        setCheckedWarning(warning => warning !== warning)
+    const removeWarning = (warning) => {
+        // setCheckedWarning(checkedWarning.filter(name => name.includes()))
         console.log('removed')
+        console.log(warning.value)
     }
 
     return (
@@ -85,21 +104,10 @@ export default function Sidebar() {
 
                     <li className="search-box">
                         <i className='bx bx-shield icon' ></i>
-                        <span className="text nav-text lblWarning" id="lblWarning">
+                        {/* <span className="text nav-text lblWarning" id="lblWarning">
                             Warnings
-                            {checkedWarning.map((warning, i) => (
-                                <Suspense key={i} fallback={<div >Loading Component....</div>}>
-                                    <Warning parentToChild={warning} removeWarning={removeWarning}/>
-                                </Suspense>
-                            ))}
-                        </span>
-                    </li>
-                    <li className="choosers">
-                        <select className="warnings" id="myMulti" onChange={addWarning}>
-                            {warnings.map(warning => (
-                                <option key={warning.IDWarning}>{warning.WarningName}</option>
-                            ))}
-                        </select>
+                        </span> */}
+                        <Select placeholder="Warnings" options={o} isMulti > Warnings</Select>
                     </li>
 
                     <li className="search-box">
@@ -107,10 +115,10 @@ export default function Sidebar() {
                         <span className="text nav-text">Image</span>
                     </li>
                     <li className="choosers">
-                        <input type="file" id="img" accept="image/*" onChange={onSelectFile}/>
+                        <input type="file" id="img" accept="image/*" onChange={onSelectFile} />
                     </li>
                 </div>
-                {selectedFile && <div id="imgHolder" style={{backgroundImage: `url(${preview})`}}></div>}
+                {selectedFile && <div id="imgHolder" style={{ backgroundImage: `url(${preview})` }}></div>}
                 <div className="bottom-content">
                     <li className="">
                         <a href="/postCreator">
@@ -135,6 +143,6 @@ export default function Sidebar() {
             <Helmet>
                 <script src="sidebar.js"></script>
             </Helmet>
-        </nav>
+        </nav >
     );
 }

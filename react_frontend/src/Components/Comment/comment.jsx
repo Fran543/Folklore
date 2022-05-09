@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 
-function Comment({ idStory }) {
+function Comment({ comment }) {
 
     useEffect(() => {
         import('./comment.css');
@@ -9,8 +9,8 @@ function Comment({ idStory }) {
 
     return (
         <div className='media'>
-            <h4>John Doe</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h4>{comment.Username}</h4>
+            <p>{comment.Content}</p>
         </div>
     );
 }

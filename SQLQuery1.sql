@@ -59,8 +59,18 @@ insert into Review values (3, 8, 125), (2, 9, 125), (4, 10, 125), (5, 11, 125),
 						 (2, 8, 228), (5, 9, 228), (2, 10, 228), (5, 11, 228),
 						 (1, 8, 229), (2, 9, 229), (1, 10, 229), (3, 11, 229)
 
+delete from Review
 
-select AVG(Cast(Score as decimal)) from Review 
+
+select AVG(Cast(Score as decimal)) as Score from Review 
 where StoryID = 125
 
 exec getUserBlogs 8
+
+select * from AppUser 
+
+select * from Comment
+
+insert into Comment values ('prvi komentar user 8', 8, 125),  ('drugi komentar user 8', 8, 125), ('prvi komentar user 9', 9, 125),  ('prvi komentar user 10', 10, 125)
+
+select * from Review

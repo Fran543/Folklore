@@ -230,12 +230,17 @@ begin
 	from Post
 end
 go
-
+s.IDStory, s.ImageBlob, s.PubDate, s.StoryName, s.Summary, u.Username, AVG(Cast(r.Score as decimal)) as Score, COUNT(c.IDComment) as CommentNbr
 create proc selectStories
 as
 begin 
-	select *
-	from Story
+	select s.IDStory, s.ImageBlob, s.PubDate, s.StoryName, s.Summary, u.Username, AVG(Cast(r.Score as decimal)) as Score, COUNT(c.IDComment) as CommentNbr
+
+	from Story as s
+	inner join AppUser as u on s.UserID = u.IDUser
+	left join Review as r on s.IDStory = r.StoryID
+	left join Comment as c on s.IDStory = c.StoryID
+	group by s.IDStory, s.ImageBlob, s.PubDate, s.StoryName, s.Summary, u.Username, r.Score
 end
 go
 
@@ -244,21 +249,29 @@ create proc selectStory
 as
 begin 
 	select *, (select AVG(Cast(Score as decimal)) from Review 
-	where StoryID = 125)as Score
+	where StoryID = @IDStory)as Score
 	from Story as s
-	where IDStory = 125
+	where IDStory = @IDStory
+	
 	select * from WarningStory
-	where StoryID = 125
+	where StoryID = @IDStory
+
 	select top 1 * 
 	from Post 
-	Where StoryID = 125
+	Where StoryID = @IDStory
 	declare @idPost int
 	set @idPost = (select top 1 IDPost 
 	from Post 
-	Where StoryID = 125)
+	Where StoryID = @IDStory)
+	
 	select * 
 	from Choice 
 	where PostID = @idPost	
+
+	select c.Content, u.Username from Comment as c
+	inner join AppUser as u on c.UserID = u.IDUser
+	where StoryID = @IDStory
+	
 end
 go
 
@@ -272,6 +285,49 @@ begin
 	where c.StoryID = @IDStory
 end
 go
+
+create proc addCommentToStory
+	@Content nvarchar(max),
+	@IDUser int,
+	@IDStory int,
+	@IDComment int output
+as
+begin
+	insert into Comment (Content, UserID, StoryID) values (@Content, @IDUser, @IDStory)
+	set @IDComment = SCOPE_IDENTITY()
+end
+
+go
+
+create proc addReviwToStory
+	@Score int,
+	@IDUser int,
+	@IDStory int,
+	@IDReview int output
+as
+IF NOT EXISTS (SELECT * FROM Review WHERE UserID = @IDUser and StoryID = @IDStory) 
+	BEGIN
+		insert into Review(Score, UserID, StoryID) values (@Score, @IDUser, @IDStory)
+		set @IDReview = SCOPE_IDENTITY()
+	END
+ELSE
+	BEGIN
+		UPDATE Review
+		set Score = @Score
+		where UserID = @IDUser and StoryID = @IDStory
+	END
+go
+
+create proc getUserStoryReview
+	@IDUser int,
+	@IDStory int
+as
+begin
+	select score from Review
+	where UserID = @IDUser and StoryID = @IDStory
+end
+go
+
 
 create proc addConditionToPost
 	@PostID int,

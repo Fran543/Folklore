@@ -90,7 +90,43 @@ exports.getStoryById = async (req, res) => {
     res.status(200).send(await dbOperations.getStoryById(idStory));
 }
 
+exports.getStoryComments = async (req, res) => {
+    const idStory = req.query.idStory;
+    res.status(200).send(await dbOperations.getStoryComments(idStory));
+}
+
 exports.getPostByChoiceId = async (req, res) => {
     const idChoice = req.query.idChoice;
     res.status(200).send(await dbOperations.getPostByChoiceId(idChoice));
+}
+
+exports.addCommentToStory = async (req, res) => {
+    const { comment, userID, idStory } = req.body;
+    try {
+        await dbOperations.addCommentToStory(comment, userID, idStory)
+        res.status(200).send({ message: "Comment added to story" });
+    } catch (error) {
+        return res.status(400).send(error);
+    }
+}
+
+exports.addScoreToStory = async (req, res) => {
+    const { score, userID, idStory } = req.body;
+    console.log(req.body)
+    try {
+        await dbOperations.addScoreToStory(score, userID, idStory)
+        res.status(200).send({ message: "Score added to story" });
+    } catch (error) {
+        return res.status(400).send(error);
+    }
+}
+
+exports.getUserStoryScore = async (req, res) => {
+    const { userID, idStory } = req.body;
+    console.log(req.body)
+    try {
+        res.status(200).send(await dbOperations.getUserStoryScore(userID, idStory));
+    } catch (error) {
+        return res.status(400).send(error);
+    }
 }

@@ -1,14 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { default as AddNewCommentForm } from '../AddNewCommentForm/add_new_comment_form';
 import { default as Comment } from '../Comment/comment';
 
 
 
-function Comments({ idStory }) {
+
+function Comments({ idStory, comments }) {
 
     useEffect(() => {
         import('./comments.css');
-    })
+    }, [])
 
     return (
         <section className='mt-5 comments' id={idStory}>
@@ -18,7 +19,9 @@ function Comments({ idStory }) {
                         <AddNewCommentForm idStory={idStory} />
                         <hr />
                         <p>Comments</p>
-                        <Comment />
+                        {comments.map((comment, i) => (
+                            <Comment key={i} comment={comment} />
+                        ))}
                     </div>
                 </div>
             </div>

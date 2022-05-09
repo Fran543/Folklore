@@ -122,6 +122,20 @@ async function getStoryById(idStory) {
     }
 }
 
+async function getStoryComments(idStory) {
+    try {
+        let pool = await sql.connect(config);
+        let posts = await pool
+            .request()
+            .input('IDStory', sql.Int, idStory)
+            .execute('selectStoryComments');
+        return posts.recordset;
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+    }
+}
+
 async function getPostByChoiceId(idChoice) {
     try {
         let pool = await sql.connect(config);
@@ -166,6 +180,57 @@ async function addWarningToPost(postID, choiceID) {
     }
 }
 
+async function addCommentToStory(content, idUser, idStory) {
+    try {
+        let pool = await sql.connect(config);
+        let comments = await pool
+            .request()
+            .input('Content', sql.NVarChar(sql.MAX), content)
+            .input('IDUser', sql.Int, idUser)
+            .input('IDStory', sql.Int, idStory)
+            .output('IDComment', sql.Int)
+            .execute('addCommentToStory');
+        return comments.output.IDComment;
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+    }
+}
+
+async function addScoreToStory(score, idUser, idStory) {
+    try {
+        let pool = await sql.connect(config);
+        let reviews = await pool
+            .request()
+            .input('Score', sql.Int, score)
+            .input('IDUser', sql.Int, idUser)
+            .input('IDStory', sql.Int, idStory)
+            .output('IDReview', sql.Int)
+            .execute('addReviwToStory');
+        console.log(reviews.recordset);
+        return reviews.output.IDReview;
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+    }
+}
+
+async function getUserStoryScore(idUser, idStory) {
+    try {
+        let pool = await sql.connect(config);
+        let reviews = await pool
+            .request()
+            .input('IDUser', sql.Int, idUser)
+            .input('IDStory', sql.Int, idStory)
+            .execute('getUserStoryReview');
+        console.log(reviews.recordset[0]);
+        return reviews.recordset[0];
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+    }
+}
+
 module.exports = {
     createPost: createPost,
     createStory: createStory,
@@ -175,7 +240,11 @@ module.exports = {
     getStories: getStories,
     getTrendingStories: getTrendingStories,
     getStoryById: getStoryById,
+    getStoryComments: getStoryComments,
     getPostByChoiceId: getPostByChoiceId,
     addConditionToPost: addConditionToPost,
-    addWarningToPost: addWarningToPost
+    addWarningToPost: addWarningToPost,
+    addCommentToStory: addCommentToStory,
+    addScoreToStory: addScoreToStory,
+    getUserStoryScore: getUserStoryScore
 }
