@@ -20,6 +20,7 @@ body {
 }
 
 #titleFlash h1{
+    /* animation: transitionOut 5s; */
     font-size: 8em;
     animation: titleFlash 2s;
 }
@@ -109,6 +110,16 @@ p {
 
     to {
         opacity: 1;
+    }
+}
+
+@keyframes transitionOut {
+    from{
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
     }
 }
 
