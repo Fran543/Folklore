@@ -1,0 +1,14 @@
+.blogContent {
+  margin-left: 15%;
+  width: 80%;
+  resize: vertical;
+  border: none;
+  height: 90vh;
+}
+
+.blogContent:focus {
+  outline: none !important;
+  border: 1px solid beige;
+  box-shadow: 0 0 10px beige;
+  font-size: larger;
+}

@@ -24,12 +24,9 @@ export default function Sidebar() {
                 (result) => {
                     setWarnings(result)
                     warnings.map(warning => {
-                        console.log(warning)
-                        console.log(warning.IDWarning)
                         o.push({ value: warning, label: warning.WarningName })
                         // setOptions(options => [...options, { value: warning, label: warning.WarningName }])
                     });
-                    console.log(o)
                 },
                 (error) => {
                     console.log(error)
@@ -65,15 +62,11 @@ export default function Sidebar() {
     }
 
     const addWarning = (event) => {
-        console.log(event)
-        console.log(event.target.value)
         // setCheckedWarning(checkedWarning => [...checkedWarning, event.target])
     }
 
     const removeWarning = (warning) => {
         // setCheckedWarning(checkedWarning.filter(name => name.includes()))
-        console.log('removed')
-        console.log(warning.value)
     }
 
     return (
@@ -107,15 +100,14 @@ export default function Sidebar() {
                         {/* <span className="text nav-text lblWarning" id="lblWarning">
                             Warnings
                         </span> */}
-                        <Select placeholder="Warnings" options={o} isMulti > Warnings</Select>
+                        <Select placeholder="Warnings" options={o} isMulti className="ddlWarnings"> Warnings</Select>
                     </li>
 
                     <li className="search-box">
                         <i className='bx bx-image icon' ></i>
-                        <span className="text nav-text">Image</span>
-                    </li>
-                    <li className="choosers">
-                        <input type="file" id="img" accept="image/*" onChange={onSelectFile} />
+                        <span className="text nav-text">
+                            <input type="file" id="img" accept="image/*" onChange={onSelectFile} />
+                        </span>
                     </li>
                 </div>
                 {selectedFile && <div id="imgHolder" style={{ backgroundImage: `url(${preview})` }}></div>}

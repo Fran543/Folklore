@@ -8,7 +8,8 @@ import {
   Library,
   Login,
   PostCreator,
-  StoryCreator
+  StoryCreator,
+  BlogCreator
 } from "./Pages";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/postCreator" element={<><Navigation /><PostCreator /></>} />
         <Route path="/storyCreator" element={<StoryCreator />} />
+        <Route path="/blogCreator" element={<BlogCreator />} />
       </Routes>
     </Router>}
 
