@@ -1,11 +1,33 @@
 import React from "react";
 import { useEffect } from "react";
 
+var getLogOutPoint = "http://127.0.0.1:8091/logout"
+
+
 function Navigation() {
 
     useEffect(() => {
         import('./navigation.css');
     })
+
+    const logOut = () => {
+        console.log(document.cookie)
+        // fetch(getLogOutPoint, {
+        //     credentials: 'include'
+        // })
+        //     .then(res => res.json())
+        //     .then(
+        //         (result) => {
+        //             console.log(result)
+        //         },
+        //         // Note: it's important to handle errors here
+        //         // instead of a catch() block so that we don't swallow
+        //         // exceptions from actual bugs in components.
+        //         (error) => {
+        //             console.log(error)
+        //         }
+        //     )
+    }
 
     return (
         <div className="navigation">
@@ -26,7 +48,7 @@ function Navigation() {
                             </a>
                             <div className="dropdown-menu" aria-labelledby="dropdown04">
                                 <a className="dropdown-item" href="/profile">My profile</a>
-                                <a className="dropdown-item" href="#" id="btnLogOut">Log out</a>
+                                <a className="dropdown-item" id="btnLogOut" onClick={(e) => logOut()}>Log out</a>
                                 <a className="dropdown-item" href="/library">Library</a>
                                 <a className="dropdown-item" href="/postCreator">Create post</a>
                             </div>

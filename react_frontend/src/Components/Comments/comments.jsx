@@ -3,12 +3,30 @@ import { default as AddNewCommentForm } from '../AddNewCommentForm/add_new_comme
 import { default as Comment } from '../Comment/comment';
 
 
+var getStoryCommentsEndPoint = "http://127.0.0.1:8091/getStoryComments"
 
 
-function Comments({ idStory, comments }) {
+function Comments({ idStory }) {
+
+    const [comments, setComments] = useState([])
+
 
     useEffect(() => {
         import('./comments.css');
+        fetch(getStoryCommentsEndPoint + "?idStory=" + idStory)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setComments(result)
+                    return result
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    console.log(error)
+                }
+            )
     }, [])
 
     return (

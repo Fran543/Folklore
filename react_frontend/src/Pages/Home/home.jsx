@@ -1,9 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
-import { Stories, TrendingStories } from "../../Components";
 
+import { Stories, TrendingStories, SearchBox } from "../../Components";
 function Home() {
-
 
     useEffect(() => {
         import('./home.css')
@@ -12,6 +11,8 @@ function Home() {
     return (
         <div className="home">
             <TrendingStories />
+            <SearchBox
+            />
             <Stories />
         </div>
     );

@@ -46,7 +46,7 @@ function Star_Rating({ idStory }) {
             .then(
                 (result) => {
                     console.log(result)
-                    // window.location.reload(false);
+                    window.location.reload(false);
                 },
                 // Note: it's important to handle errors here
                 // instead of a catch() block so that we don't swallow

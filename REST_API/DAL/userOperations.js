@@ -143,7 +143,7 @@ async function getUserLibrary(id) {
     }
 }
 
-async function getSearchItems(id) {
+async function getSearchItems() {
     try {
         let pool = await sql.connect(config);
         let users = await pool

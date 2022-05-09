@@ -6,29 +6,6 @@ exports.getUser = async (req, res) => {
     var user = await dbOperations.getUser(req.body.userID);
     var blogs = await dbOperations.getUserBlogs(req.body.userID);
     var stories = await dbOperations.getUserStories(req.body.userID);
-    // var json = '{'
-    //     + '"username":"' + user.Username + '",'
-    //     + '"email":"' + user.Email
-    //     + '",'
-    //     + '"blogs":['
-    // for (const blog of blogs) {
-    //     json += '{'
-    //     json += '"blogName":"' + blog.StoryName + '",'
-    //         + '"pubDate":"' + blog.PubName + '",'
-    //         + '"summary":"' + blog.Summary + '",'
-    //         + '"imageBlob":"' + blog.ImageBlob + '"}'
-    //     if (!(blogs.indexOf(blog) === blogs.length - 1)) json += ',';
-    // }
-    // json += '],"stories":['
-    // for (const story of stories) {
-    //     json += '{'
-    //     json += '"storyName":"' + story.StoryName + '",'
-    //         + '"pubDate":"' + story.PubDate + '",'
-    //         + '"summary":"' + story.Summary + '",'
-    //         + '"imageBlob":"' + story.ImageBlob + '"}'
-    //     if (!(stories.indexOf(story) === stories.length - 1)) json += ',';
-    // }
-    // json += ']}'
     var user = {
         username: user.Username,
         email: user.Email,
@@ -50,7 +27,11 @@ exports.deleteUser = async (req, res) => {
 }
 
 exports.getSearchItems = async (req, res) => {
-    res.status(200).send(await dbOperations.getSearchItems());
+    try {
+        res.status(200).send(await dbOperations.getSearchItems());
+    } catch (error) {
+        res.status(400).send(error);
+    }
 }
 
 exports.getUserLibrary = async (req, res) => {

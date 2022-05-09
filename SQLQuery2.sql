@@ -230,18 +230,17 @@ begin
 	from Post
 end
 go
-s.IDStory, s.ImageBlob, s.PubDate, s.StoryName, s.Summary, u.Username, AVG(Cast(r.Score as decimal)) as Score, COUNT(c.IDComment) as CommentNbr
+
 create proc selectStories
 as
 begin 
-	select s.IDStory, s.ImageBlob, s.PubDate, s.StoryName, s.Summary, u.Username, AVG(Cast(r.Score as decimal)) as Score, COUNT(c.IDComment) as CommentNbr
-
+	select s.IDStory, s.ImageBlob, s.PubDate, s.StoryName, s.Summary, u.Username, AVG(Cast(r.Score as decimal)) as Score, COUNT(distinct c.IDComment) as CommentNbr
 	from Story as s
 	inner join AppUser as u on s.UserID = u.IDUser
 	left join Review as r on s.IDStory = r.StoryID
 	left join Comment as c on s.IDStory = c.StoryID
-	group by s.IDStory, s.ImageBlob, s.PubDate, s.StoryName, s.Summary, u.Username, r.Score
-end
+	group by s.IDStory, s.ImageBlob, s.PubDate, s.StoryName, s.Summary, u.Username
+	having true
 go
 
 create proc selectStory
