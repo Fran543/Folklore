@@ -74,3 +74,6 @@ select * from Comment
 insert into Comment values ('prvi komentar user 8', 8, 125),  ('drugi komentar user 8', 8, 125), ('prvi komentar user 9', 9, 125),  ('prvi komentar user 10', 10, 125)
 
 select * from Review
+
+select * from Story
+select * from post

@@ -15,8 +15,3 @@ var getUserEndPoint = "http://127.0.0.1:8091/getUser"
 var deleteUserEndPoint = "http://127.0.0.1:8091/deleteUser"
 var getStoryByIdEndPoint = "http://127.0.0.1:8091/getStoryById"
 var getPostByChoiceIdEndPoint = "http://127.0.0.1:8091/getPostByChoiceId"
-
-
-
-
-

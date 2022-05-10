@@ -12,7 +12,7 @@ router.post('/login', authController.login);
 
 router.get('/logout', authController.logout);
 
-router.post('/createStory', postController.createStory);
+router.post('/createStory', verify, postController.createStory);
 
 router.get('/getStories', postController.getStories);
 

@@ -1,25 +1,19 @@
 import { useEffect, useState } from "react";
 
-export default function BlogContent({ cleared }) {
-  const [inputValue, setInputValue] = useState("");
+export default function BlogContent({ cleared, post, setPost }) {
 
   useEffect(() => {
     import("./blogContent.css");
-    if(cleared){
-        setInputValue("")
+    if (cleared) {
     }
   }, [cleared]);
-
-  const handleInput = (e) => {
-    setInputValue(e.target.value);
-  };
 
   return (
     <textarea
       id="content"
       className="blogContent"
-      value={inputValue}
-      onChange={handleInput}
+      value={post}
+      onChange={(e) => setPost(e.target.value)}
     ></textarea>
   );
 }

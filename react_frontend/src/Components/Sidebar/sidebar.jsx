@@ -4,17 +4,23 @@ import { Warning } from "../../Components"
 import Select from 'react-select'
 import AsyncSelect from 'react-select/async';
 
+const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
 
 const o = []
 
-export default function Sidebar() {
+export default function Sidebar({ title, setTitle, summary, setSummary, warnings, setWarnings, image, setImage }) {
 
     var getWarningsEndPoint = "http://127.0.0.1:8091/getWarnings"
-    const [warnings, setWarnings] = useState([])
-    const [checkedWarning, setCheckedWarning] = useState([])
+
     const [selectedFile, setSelectedFile] = useState()
     const [preview, setPreview] = useState()
-    const [options, setOptions] = useState([])
+    const [options, setoptions] = useState([])
+    const [wrngis, setwrngis] = useState([])
 
 
     async function getWarnings() {
@@ -22,11 +28,12 @@ export default function Sidebar() {
             .then(res => res.json())
             .then(
                 (result) => {
-                    setWarnings(result)
-                    warnings.map(warning => {
+                    setwrngis(result)
+                    const pushOptions = async () => wrngis.map(warning => {
                         o.push({ value: warning, label: warning.WarningName })
-                        // setOptions(options => [...options, { value: warning, label: warning.WarningName }])
                     });
+                    pushOptions();
+                    setoptions(o);
                 },
                 (error) => {
                     console.log(error)
@@ -40,6 +47,9 @@ export default function Sidebar() {
             await getWarnings()
         }
         fetchWarnings()
+    }, [])
+
+    useEffect(() => {
         if (!selectedFile) {
             setPreview(undefined)
             return
@@ -52,21 +62,14 @@ export default function Sidebar() {
         return () => URL.revokeObjectURL(objectUrl)
     }, [selectedFile])
 
-    const onSelectFile = e => {
+    const onSelectFile = async e => {
         if (!e.target.files || e.target.files.length === 0) {
             setSelectedFile(undefined)
             return
         }
-
+        console.log(e.target.files[0])
         setSelectedFile(e.target.files[0])
-    }
-
-    const addWarning = (event) => {
-        // setCheckedWarning(checkedWarning => [...checkedWarning, event.target])
-    }
-
-    const removeWarning = (warning) => {
-        // setCheckedWarning(checkedWarning.filter(name => name.includes()))
+        setImage(await toBase64(e.target.files[0]))
     }
 
     return (
@@ -88,11 +91,11 @@ export default function Sidebar() {
                 <div className="menu">
                     <li className="search-box">
                         <i className='bx bx-pen icon'></i>
-                        <input type="text" placeholder="Title..." maxLength="50" id="title" />
+                        <input type="text" placeholder="Title..." maxLength="50" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
                     </li>
                     <li className="search-box">
                         <i className='bx bx-text icon' ></i>
-                        <textarea type="text" maxLength="500" id="summary" placeholder="Summary..."></textarea>
+                        <textarea type="text" maxLength="500" id="summary" placeholder="Summary..." value={summary} onChange={(e) => setSummary(e.target.value)}></textarea>
                     </li>
 
                     <li className="search-box">
@@ -100,7 +103,7 @@ export default function Sidebar() {
                         {/* <span className="text nav-text lblWarning" id="lblWarning">
                             Warnings
                         </span> */}
-                        <Select placeholder="Warnings" options={o} isMulti className="ddlWarnings"> Warnings</Select>
+                        <Select placeholder="Warnings" options={options} isMulti className="ddlWarnings"> Warnings</Select>
                     </li>
 
                     <li className="search-box">

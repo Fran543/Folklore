@@ -4,9 +4,8 @@ import { default as AutocompleteBox } from "./autocomplete_box";
 
 var getSearchItemsEndPoint = "http://127.0.0.1:8091/getSearchItems"
 
-function Search_Box({ idStory }) {
+function Search_Box({ filter, setFilter }) {
 
-    const [inputText, setInputText] = useState("")
     const [selectedItem, setSelectedItem] = useState({})
     const [items, setItems] = useState([])
     const [filteredItems, setFilteredItems] = useState([])
@@ -42,7 +41,7 @@ function Search_Box({ idStory }) {
         const value = selectedItem.isUser ?
             selectedItem.Username :
             selectedItem.StoryName + " by " + selectedItem.Username;
-        setInputText(value.toLowerCase())
+        setFilter(value.toLowerCase())
         setFilteredItems(items.filter(item => item.isUser ?
             item.Username.toLowerCase().includes(value.toLowerCase()) :
             item.StoryName.toLowerCase().includes(value.toLowerCase())))
@@ -63,7 +62,7 @@ function Search_Box({ idStory }) {
     const onChange = (e) => {
         // event.stopPropgation()
         setSelectedItem({})
-        setInputText(e.target.value.toLowerCase())
+        setFilter(e.target.value.toLowerCase())
         setFilteredItems(items.filter(item => item.isUser ?
             item.Username.toLowerCase().includes(e.target.value.toLowerCase()) :
             item.StoryName.toLowerCase().includes(e.target.value.toLowerCase())))
@@ -73,8 +72,8 @@ function Search_Box({ idStory }) {
         <div className="wrapper">
             <div className="searchInput">
                 <div>
-                    <input type="text" id="searchBox" placeholder="Type to search.." value={inputText} onChange={(e) => onChange(e)} autoComplete="off" />
-                    {inputText !== "" && <AutocompleteBox selectItem={selectItem} filteredItems={filteredItems} />}
+                    <input type="text" id="searchBox" placeholder="Type to search.." value={filter} onChange={(e) => onChange(e)} autoComplete="off" />
+                    {filter !== "" && <AutocompleteBox selectItem={selectItem} filteredItems={filteredItems} />}
                 </div>
                 <i className="fas fa-search" id="btnSearch" onClick={select}></i>
             </div>
