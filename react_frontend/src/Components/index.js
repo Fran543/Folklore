@@ -16,3 +16,6 @@ export { default as CircleMenu } from "./CircleMenu/circle_menu";
 export { default as CircleMenuBlog } from "./CircleMenu/circleMenuBlog";
 export { default as BlogContent } from "./BlogContent/blogContent";
 export { default as SearchBox } from "./SearchBox/search_box";
+export { default as Button } from "./UserProfile/Button";
+export { default as UserProfile } from "./UserProfile/user_Profile";
+

@@ -20,7 +20,7 @@ exports.deleteUser = async (req, res) => {
     try {
         var user = await dbOperations.deleteUser(req.body.userID);
         res.clearCookie("jwt");
-        res.status(200).send("User deleted");
+        res.status(200).send({ message: "User deleted" });
     } catch (error) {
         return res.status(400).send(error);
     }

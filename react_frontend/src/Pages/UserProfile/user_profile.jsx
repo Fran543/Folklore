@@ -36,10 +36,10 @@ function User_Profile() {
         <div >
             <UserInfo user={user} />
             <UserStories user={user} />
-            <Helmet>
+            {/* <Helmet>
                 <script src=
                     ".\particles.js" />
-            </Helmet>
+            </Helmet> */}
         </div>
 
     );

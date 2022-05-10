@@ -1,9 +1,13 @@
 import { useEffect } from "react";
+import { default as Button } from "../UserProfile/Button";
+
 
 function User_Info({ user }) {
   useEffect(() => {
     import("./userInfo.css");
   });
+
+  
 
   return (
     <section id="bg" className="first">
@@ -11,9 +15,7 @@ function User_Info({ user }) {
         <h1 id="userName">{user ? user.username : "Username"}</h1>
         <div className="btnDelete">
           <h3 id="email">{user ? user.email : "Email"}</h3>
-          <button id="btnDelete">
-            <h3>Delete</h3>
-          </button>
+          <Button />
         </div>
         <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita

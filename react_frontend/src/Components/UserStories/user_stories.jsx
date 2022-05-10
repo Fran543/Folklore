@@ -24,11 +24,11 @@ function User_Stories({ user }) {
                     ))}
                 </div>
             }
-            <div className="leftContainer col-md-6" onClick={() => { setBlogsToggle(blogsToggle ? false : true) }}>
+            {/* <div className="leftContainer col-md-6" onClick={() => { setBlogsToggle(blogsToggle ? false : true) }}>
                 <h1 className="info">My posts</h1>
             </div>
             <div className="rightContainer col-md-6" onClick={() => { setStoriesToggle(storiesToggle ? false : true) }}>
-            </div>
+            </div> */}
             {storiesToggle &&
                 <div className="stories col-md-12" id="storyContainer">
                     {user.stories.map((story, i) => (
