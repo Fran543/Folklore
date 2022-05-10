@@ -240,7 +240,7 @@ begin
 	left join Review as r on s.IDStory = r.StoryID
 	left join Comment as c on s.IDStory = c.StoryID
 	group by s.IDStory, s.ImageBlob, s.PubDate, s.StoryName, s.Summary, u.Username
-	having true
+end
 go
 
 create proc selectStory
@@ -343,7 +343,7 @@ go
 create proc getUserLibrary
 	@IDUser int
 as
-	select * from Story as s
+	select s.* from Story as s
 	inner join UserStory as us on s.IDStory = us.StoryID
 	where us.UserID = @IDUser
 go

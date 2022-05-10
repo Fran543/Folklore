@@ -27,6 +27,7 @@ const toBase64 = file => new Promise((resolve, reject) => {
 $("#btnCreate").on("click", async function (event) {
     event.preventDefault()
     let file = document.querySelector('#formFile').files[0]
+    console.log(file)
     let image = null
     if (file != null) {
         image = await toBase64(file);
@@ -78,13 +79,13 @@ $('#myMulti').change(() => {
     )
 
     $('option:selected', '#myMulti').remove();
-    
-    	
-    $('#' + selectedWarning).mouseenter(() => {$('#' + selectedWarning).addClass('bx-spin bx-rotate-90')})
-                .mouseleave(() => {$('#' + selectedWarning).removeClass('bx-spin bx-rotate-90')});
+
+
+    $('#' + selectedWarning).mouseenter(() => { $('#' + selectedWarning).addClass('bx-spin bx-rotate-90') })
+        .mouseleave(() => { $('#' + selectedWarning).removeClass('bx-spin bx-rotate-90') });
 })
 
-function removeWarning(warning){
+function removeWarning(warning) {
     $(warning).parent('div').remove();
     $('#myMulti').append("<option>" + $(warning).attr('id') + "</option>")
 }

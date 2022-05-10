@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import logo from '../../Assets/IMAGES/storiesPlaceholder.avif';
 
 
-function Library_Story() {
+
+function Library_Story({ story }) {
 
     useEffect(() => {
         import('./libraryStory.css');
@@ -13,10 +15,10 @@ function Library_Story() {
             <div className="info_section">
                 <div className="row">
                     <div className="col-12 d-md-none">
-                        <img src="../IMAGES/storiesPlaceholder.avif" alt="image" className="img-fluid" />
+                        <img src={story.ImageBlob} alt="image" className="img-fluid" />
                     </div>
                     <div className="col-12 col-md-6 text-start">
-                        <h1 id="lbTitle">Story Name</h1>
+                        <h1 id="lbTitle">{story.StoryName}</h1>
                         <div className="warnings">
                             <span>Warning</span>
                             <span> | </span>
@@ -30,9 +32,7 @@ function Library_Story() {
                 </div>
                 <div className="story_desc">
                     <p className="text">
-                        Set in a world where fantasy creatures live side by side with humans. A human cop is
-                        forced to
-                        work with an Orc to find a weapon everyone is prepared to kill for.
+                        {story.Summary}
                     </p>
                 </div>
                 <div className="story_social">

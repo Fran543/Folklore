@@ -1,48 +1,10 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 
-var createStoryEndPoint = "http://127.0.0.1:8091/createStory";
-async function callAjax(blogData) {
-  fetch(createStoryEndPoint, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(blogData),
-  })
-    .then(async (response) => {
-      var msg = await response.text();
-      if (!response.ok) throw new Error(msg);
-      else return msg;
-    })
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
-
-function Circle_Menu_Blog({ clearTextArea }) {
+function Circle_Menu_Blog({ clearTextArea, upload }) {
   useEffect(() => {
     import("./circleMenu.css");
   });
-
-  const [title, setTitle] = useState("");
-  const [summary, setSummary] = useState("");
-  const [warnings, setWarnings] = useState([]);
-  const [image, setImage] = useState("");
-  const [content, setContent] = useState("");
-
-  const collectData = async (e) => {
-    await callAjax({
-      title,
-      summary,
-      warnings,
-      image,
-      content
-    });
-  };
 
   return (
     <nav className="myMenu">
@@ -62,14 +24,14 @@ function Circle_Menu_Blog({ clearTextArea }) {
       <a href="postCreator" className="myMenu-item purple">
         <i className="fa fa-backward"></i>
       </a>
-      <a href="#" className="myMenu-item green" onClick={collectData}>
+      <a href="#" className="myMenu-item green" onClick={(e) => upload("qwe")}>
         <i className="fa fa-upload"></i>
       </a>
       <a
         href="#"
         className="myMenu-item red"
         id="btnDelete"
-        onClick={clearTextArea()}
+        onClick={(e) => clearTextArea()}
       >
         <i className="fa fa-trash"></i>
       </a>
