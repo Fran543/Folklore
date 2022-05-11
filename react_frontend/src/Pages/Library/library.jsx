@@ -4,6 +4,7 @@ import Carousel from 'react-bootstrap/Carousel'
 import { LibraryStory } from "../../Components";
 
 var getUserLibraryEndPoint = "http://127.0.0.1:8091/getUserLibrary"
+var removeStoryFromUserEndPoint = "http://127.0.0.1:8091/removeStoryFromUser"
 
 
 function Library() {
@@ -28,6 +29,36 @@ function Library() {
             )
     }
 
+    const removeStory = (story) => {
+
+        const check_cookie_name = (name) => {
+            var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+            if (match) {
+                console.log(match[2]);
+            }
+            else {
+                console.log('--something went wrong---');
+            }
+        }
+        check_cookie_name("jwt")
+        console.log(story)
+        fetch(removeStoryFromUserEndPoint + "?storyID=" + story.IDStory, {
+            credentials: 'include',
+        })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log(result)
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    console.log(error)
+                }
+            )
+    }
+
     useEffect(() => {
         import('./library.css');
         fetchlibrary();
@@ -37,7 +68,7 @@ function Library() {
         <Carousel>
             {stories.map((story, i) => (
                 <Carousel.Item key={i}>
-                    <LibraryStory story={story} />
+                    <LibraryStory removeStory={(story) => removeStory(story)} story={story} />
                 </Carousel.Item>
             ))}
         </Carousel>

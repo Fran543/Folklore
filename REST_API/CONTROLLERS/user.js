@@ -49,7 +49,7 @@ exports.getUserStories = async (req, res) => {
 exports.removeStoryFromUser = async (req, res) => {
     try {
         await dbOperations.removeStoryFromUser(req.body.userID, req.query.storyID)
-        res.status(200).send("Story removed from library");
+        res.status(200).send({ message: "Story removed from library" });
     } catch (error) {
         return res.status(400).send(error);
     }

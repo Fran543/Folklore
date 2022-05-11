@@ -1,20 +1,18 @@
 import { useEffect } from "react";
-import { default as Button } from "../UserProfile/Button";
-
+import { default as Button } from "./Button";
 
 function User_Info({ user }) {
   useEffect(() => {
     import("./userInfo.css");
   });
 
-  
 
   return (
     <section id="bg" className="first">
       <div className="col-md-6">
-        <h1 id="userName">{user ? user.username : "Username"}</h1>
+        <h1 id="userName">{user.username}</h1>
         <div className="btnDelete">
-          <h3 id="email">{user ? user.email : "Email"}</h3>
+          <h3 id="email">{user.email}</h3>
           <Button />
         </div>
         <p>

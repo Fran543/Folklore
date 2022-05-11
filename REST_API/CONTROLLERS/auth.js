@@ -49,7 +49,8 @@ exports.login = async (req, res) => {
                         Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
                     ),
                     sameSite: "None",
-                    secure: true
+                    secure: true,
+                    httpOnly: false
                 }
                 res.cookie('jwt', token, cookieOptions);
                 res.send('{"message": "login successful" }');
@@ -64,7 +65,6 @@ exports.login = async (req, res) => {
 exports.logout = (req, res) => {
     console.log(req.cookies)
     res.clearCookie("jwt");
-    console.log(res)
     res.send({ message: "log out successful" });
 }
 

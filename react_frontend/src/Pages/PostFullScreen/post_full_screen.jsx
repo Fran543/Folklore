@@ -1,11 +1,16 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import { useParams } from "react-router";
+
 
 var getStoryByIdEndPoint = "http://127.0.0.1:8091/getStoryById";
 
 function PostFullScreen() {
   const [story, setStory] = useState(null);
+  const [loading, setLoading] = useState(false);
+  let { id } = useParams();
+
 
   useEffect(() => {
     import("./postFullscreen.css");
