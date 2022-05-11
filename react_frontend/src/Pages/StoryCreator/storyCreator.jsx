@@ -8,7 +8,11 @@ export default function StoryCreator() {
     const [summary, setSummary] = useState("");
     const [warnings, setWarnings] = useState([]);
     const [image, setImage] = useState("");
-    const [post, setPost] = useState("");
+    const [posts, setPosts] = useState("");
+
+    const addPost = (post) => {
+        console.log(post);
+    }
 
     return (
         <>
@@ -21,7 +25,7 @@ export default function StoryCreator() {
                     setWarnings={(warnings) => setWarnings(warnings)}
                     image={image}
                     setImage={(title) => setImage(title)} />
-                <Canvas />
+                <Canvas addPost={(post) => addPost(post)} />
             </div>
             <DeleteAnimation />
         </>

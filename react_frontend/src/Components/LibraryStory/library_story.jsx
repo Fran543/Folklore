@@ -4,7 +4,7 @@ import logo from '../../Assets/IMAGES/storiesPlaceholder.avif';
 
 
 
-function Library_Story({ story }) {
+function Library_Story({ story, removeStory }) {
 
     useEffect(() => {
         import('./libraryStory.css');
@@ -40,7 +40,7 @@ function Library_Story({ story }) {
                         <i className="material-icons-outlined"> play_arrow</i>
                         <p>Read</p>
                     </button>
-                    <button className="btns second">
+                    <button className="btns second" onClick={() => { removeStory(story) }}>
                         <i className="material-icons-outlined">remove</i>
                         <p>Remove</p>
                     </button>

@@ -10,11 +10,10 @@ var getUserEndPoint = "http://127.0.0.1:8091/getUser"
 function User_Profile() {
 
     const [user, setUser] = useState(null)
+    const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        import('./userProfile.css');
-
-        fetch(getUserEndPoint, {
+    const asyncFetch = async () => {
+        await fetch(getUserEndPoint, {
             credentials: 'include'
         })
             .then(res => res.json())
@@ -30,18 +29,25 @@ function User_Profile() {
                     console.log(error)
                 }
             )
+        setIsLoading(false)
+    }
+
+
+    useEffect(() => {
+        import('./userProfile.css');
+
+        asyncFetch()
     }, [])
 
-    return (
-        <div >
-            <UserInfo user={user} />
-            <UserStories user={user} />
-            {/* <Helmet>
-                <script src=
-                    ".\particles.js" />
-            </Helmet> */}
-        </div>
 
+    return (
+        <>{isLoading ? "Loading..." :
+            <div >
+                <UserInfo user={user} />
+                <UserStories user={user} />
+            </div>
+        }
+        </>
     );
 }
 
