@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+
 import logo from '../../Assets/IMAGES/storiesPlaceholder.avif';
 
 
@@ -36,10 +38,12 @@ function Library_Story({ story, removeStory }) {
                     </p>
                 </div>
                 <div className="story_social">
-                    <button className="btns first">
-                        <i className="material-icons-outlined"> play_arrow</i>
-                        <p>Read</p>
-                    </button>
+                    <Link to={"/postFullscreen/" + story.IDStory}>
+                        <button className="btns first">
+                            <i className="material-icons-outlined"> play_arrow</i>
+                            <p>Read</p>
+                        </button>
+                    </Link>
                     <button className="btns second" onClick={() => { removeStory(story) }}>
                         <i className="material-icons-outlined">remove</i>
                         <p>Remove</p>
@@ -47,7 +51,7 @@ function Library_Story({ story, removeStory }) {
                 </div>
             </div>
             <div className="blur_back card_back"></div>
-        </div>
+        </div >
     );
 }
 

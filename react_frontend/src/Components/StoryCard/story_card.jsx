@@ -2,24 +2,28 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { default as StarRating } from '../StarRating/star_rating';
 import { default as Comments } from '../Comments/comments';
+import { useNavigate } from 'react-router-dom';
+
 
 
 function Story_Card({ story }) {
 
     const [starRatingToggle, setStarRatingToggle] = useState(false)
     const [commentsToggle, setCommentsToggle] = useState(false)
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         import('./storyCard.css');
 
     }, [])
 
-    const showPost = (id) => {
-        alert(id);
+    const showPost = (e) => {
+        navigate("/postFullscreen/" + story.IDStory)
     }
 
     return (
-        <div className='card' key={story.IDStory} onDoubleClick={() => showPost(story.IDStory)}>
+        <div className='card' key={story.IDStory} onDoubleClick={(e) => showPost(e)}>
             <img className='card-img-top' src={story.ImageBlob} alt='Card image cap' />
             <div className='card-body'>
                 <h5 className='card-title'> {story.StoryName}</h5>

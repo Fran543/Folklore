@@ -102,9 +102,9 @@ const idStory = urlParams.get('idStory')
 // })
 
 //Scroll down on load
-$(document).ready(function(){
-    setTimeout(function() { 
-        $('html, body').animate({scrollTop:180}, 0);
+$(document).ready(function () {
+    setTimeout(function () {
+        $('html, body').animate({ scrollTop: 180 }, 0);
         //$("html,body").scrollTop(180);
     }, 2000);
 });

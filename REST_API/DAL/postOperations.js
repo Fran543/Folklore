@@ -109,13 +109,21 @@ async function getTrendingStories() {
 }
 
 async function getStoryById(idStory) {
+    console.log(idStory)
     try {
         let pool = await sql.connect(config);
         let posts = await pool
             .request()
             .input('IDStory', sql.Int, idStory)
             .execute('selectStory');
-        return posts.recordsets;
+        let data = {
+            story: posts.recordsets[0][0],
+            warnings: posts.recordsets[1],
+            firstPost: posts.recordsets[2][0],
+            choices: posts.recordsets[3],
+            comments: posts.recordsets[4]
+        }
+        return data;
     } catch (err) {
         console.log(err.message);
     } finally {
@@ -143,7 +151,11 @@ async function getPostByChoiceId(idChoice) {
             .request()
             .input('IDChoice', sql.Int, idChoice)
             .execute('selectPostByChoiceId');
-        return posts.recordsets;
+        let data = {
+            post: posts.recordsets[0][0],
+            choices: posts.recordsets[1]
+        }
+        return data;
     } catch (err) {
         console.log(err.message);
     } finally {

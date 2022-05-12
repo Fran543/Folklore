@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { default as AutocompleteBox } from "./autocomplete_box";
+import { useNavigate } from 'react-router-dom';
 
 
 var getSearchItemsEndPoint = "http://127.0.0.1:8091/getSearchItems"
@@ -9,6 +10,7 @@ function Search_Box({ filter, setFilter }) {
     const [selectedItem, setSelectedItem] = useState({})
     const [items, setItems] = useState([])
     const [filteredItems, setFilteredItems] = useState([])
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -52,9 +54,10 @@ function Search_Box({ filter, setFilter }) {
             console.log("selected user")
             console.log(selectedItem)
             //REDIRECT TO USER PROFILE
-        } else {
+        } else if (!selectedItem.isUser) {
             console.log("selected story")
             console.log(selectedItem)
+            navigate("/postFullscreen/" + selectedItem.IDStory)
             //REDIRECT TO FULL POST
         }
     }
@@ -73,7 +76,7 @@ function Search_Box({ filter, setFilter }) {
             <div className="searchInput">
                 <div>
                     <input type="text" id="searchBox" placeholder="Type to search.." value={filter} onChange={(e) => onChange(e)} autoComplete="off" />
-                    {filter !== "" && <AutocompleteBox selectItem={selectItem} filteredItems={filteredItems} />}
+                    {(filter !== "" || filteredItems !== []) && <AutocompleteBox selectItem={selectItem} filteredItems={filteredItems} />}
                 </div>
                 <i className="fas fa-search" id="btnSearch" onClick={select}></i>
             </div>

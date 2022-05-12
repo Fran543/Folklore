@@ -47,6 +47,9 @@ function User_Profile() {
                 <UserStories user={user} />
             </div>
         }
+            <Helmet>
+                <script src="./particles.js"></script>
+            </Helmet>s
         </>
     );
 }

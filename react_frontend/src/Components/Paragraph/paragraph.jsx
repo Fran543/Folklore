@@ -42,13 +42,12 @@ export default function Paragraph({ post, postNbr }) {
   }
 
   const updateChoice = (value, index) => {
-    console.log(post)
     if (index === 0) {
       setConditions1(value)
-      post.choice1 = value
+      post.choices[0].choiceValue = value
     } else if (index === 1) {
       setConditions2(value)
-      post.choices2 = value
+      post.choices[1].choiceValue = value
     }
   }
 

@@ -8,7 +8,7 @@ function Login() {
 
     useEffect(() => {
         import('./login.css');
-    })
+    }, [])
 
     return (
         <div>
