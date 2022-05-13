@@ -123,6 +123,7 @@ async function getStoryById(idStory) {
             choices: posts.recordsets[3],
             comments: posts.recordsets[4]
         }
+        console.log(data)
         return data;
     } catch (err) {
         console.log(err.message);

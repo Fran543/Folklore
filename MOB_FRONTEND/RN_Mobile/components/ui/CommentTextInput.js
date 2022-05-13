@@ -7,7 +7,7 @@ export default function CommentTextInput(props) {
             placeholder="Enter your comment here..."
             keyboardType="default"
             maxLength={500}
-            multiline="true"
+            multiline={true}
             textAlign="left"
             style={styles.userInput}
             value={props.commentText}

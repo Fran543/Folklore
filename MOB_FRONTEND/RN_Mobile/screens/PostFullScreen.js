@@ -1,5 +1,5 @@
 import { StyleSheet, View, Text, Image, Button } from "react-native";
-import { useLayoutEffect, useState } from 'react'
+import { useLayoutEffect, useState, useEffect } from 'react'
 import EndPoints from "../constants/endPoints";
 
 //useNavigation and useRoute hook - if you need access to navigation in a nested component whic is not registered as a screen
@@ -13,13 +13,14 @@ export default function PostFullScreen({ route, navigation }) {
         navigation.setOptions({
             title: idStory
         })
-        //getPostDetails()
     }, [idStory, navigation])
 
+    useEffect(() => {
+        getPostDetails()
+    }, [])
+
     async function getPostDetails() {
-        await fetch(EndPoints.getStoryByIdEndPoint, {
-            credentials: "include",
-        })
+        await fetch(EndPoints.getStoryByIdEndPoint + "?idStory="+ idStory)
             .then(res => res.json())
             .then(
                 (result) => {

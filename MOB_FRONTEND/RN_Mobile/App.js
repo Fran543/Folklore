@@ -5,6 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import PostFullScreen from "./screens/PostFullScreen";
 import UserProfileScreen from "./screens/UserProfileScreen";
 import PostCreatorScreen from "./screens/PostCreatorScreen";
+import StoryCreatorScreen from "./screens/StoryCreatorScreen";
+import BlogCreatorScreen from "./screens/BlogCreatorScreen";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -63,6 +65,14 @@ export default function App() {
               headerShown: false
             }} />
           <Stack.Screen name="PostFullScreen" component={PostFullScreen} />
+          <Stack.Screen name="BlogCreatorScreen" component={BlogCreatorScreen}
+            options={{
+              headerShown: false
+            }} />
+          <Stack.Screen name="StoryCreatorScreen" component={StoryCreatorScreen}
+            options={{
+              headerShown: false
+            }} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
