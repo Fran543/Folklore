@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense, useState } from "react";
+import React, { useEffect, Suspense, useState, useLayoutEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Warning } from "../../Components"
 import Select from 'react-select'
@@ -41,8 +41,11 @@ export default function Sidebar({ title, setTitle, summary, setSummary, warnings
             )
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         import('./sidebar.css');
+    })
+
+    useEffect(() => {
         const fetchWarnings = async () => {
             await getWarnings()
         }

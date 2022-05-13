@@ -1,9 +1,12 @@
 .leftContainer {
-  cursor: url("../../Assets/IMAGES/leftArrow.svg"), auto;
+  cursor: url("../../Assets/IMAGES/rightArrow.svg"), auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .rightContainer {
-  cursor: url("../../Assets/IMAGES/rightArrow.svg"), auto;
+  cursor: url("../../Assets/IMAGES/leftArrow.svg"), auto;
   height: 100%;
 }
 
@@ -14,4 +17,20 @@ h1 {
 
 .stories {
   margin-left: -100%;
+}
+
+#storyContainer {
+  position: absolute;
+  width: 50%;
+  right: 0;
+  height: 80vh;
+  overflow-y: scroll;
+}
+
+#blogContainer {
+  position: absolute;
+  width: 50%;
+  left: 0;
+  height: 80vh;
+  overflow-y: scroll;
 }

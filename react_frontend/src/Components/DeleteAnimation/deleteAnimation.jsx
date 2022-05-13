@@ -1,7 +1,10 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 export default function DeleteAnimation() {
-  useEffect(() => {
+
+
+
+  useLayoutEffect(() => {
     import("./deleteAnimation.css");
   });
 

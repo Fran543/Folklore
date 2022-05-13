@@ -49,7 +49,7 @@ function User_Profile() {
         }
             <Helmet>
                 <script src="./particles.js"></script>
-            </Helmet>s
+            </Helmet>
         </>
     );
 }

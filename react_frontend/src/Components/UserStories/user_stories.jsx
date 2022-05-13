@@ -10,7 +10,6 @@ function User_Stories({ user }) {
     const [blogsToggle, setBlogsToggle] = useState(false)
     const [storiesToggle, setStoriesToggle] = useState(false)
 
-
     useEffect(() => {
         import('./userStories.css');
         console.log(user)
@@ -19,30 +18,34 @@ function User_Stories({ user }) {
     return (
         <section className="second">
             {blogsToggle &&
-                <Stories stories={user.blogs} filter="" />
-                // <div className="blogs col-md-12" id="blogContainer">
-                //     {user.blogs.map((story, i) => (
-                //         <StoryCard key={i} story={story} />
-                //     ))}
-                // </div>
+                <div className="blogs col-md-12" id="blogContainer">
+                    <Stories stories={user.blogs} filter="" />
+                    {/* {user.blogs.map((story, i) => (
+                        <StoryCard key={i} story={story} />
+                    ))} */}
+                </div>
             }
-            <div className="leftContainer col-md-6" onClick={() => { setBlogsToggle(blogsToggle ? false : true) }}>
+            <div className="leftContainer col-sm-6" style={{ display: (storiesToggle || blogsToggle) && "none" }} onClick={() => { setBlogsToggle(blogsToggle ? false : true) }}>
                 <h1 className="info">My posts</h1>
             </div>
-            <div className="rightContainer col-md-6" onClick={() => { setStoriesToggle(storiesToggle ? false : true) }}>
+            <div className="rightContainer col-sm-6" style={blogsToggle ? { right: 0, position: "absolute" } : (storiesToggle ? { cursor: "url('./rightArrow.svg'), auto" } : {})} onClick={() => { blogsToggle ? setBlogsToggle(false) : setStoriesToggle(storiesToggle ? false : true) }}>
+
+                {storiesToggle ? <h1> Stories</h1> : blogsToggle && <h1> Blogs</h1>}
             </div>
-            {storiesToggle &&
-                <Stories stories={user.stories} filter="" />
-                // <div className="stories col-md-12" id="storyContainer">
-                //     {user.stories.map((story, i) => (
-                //         <StoryCard key={i} story={story} />
-                //     ))}
-                // </div>
+
+            {
+                storiesToggle &&
+                <div className="stories col-md-12" id="storyContainer">
+                    <Stories stories={user.stories} filter="" />
+                    {/* {user.stories.map((story, i) => (
+                        <StoryCard key={i} story={story} />
+                    ))} */}
+                </div>
             }
             <Helmet>
                 <script src="arrows.js"></script>
             </Helmet>
-        </section>
+        </section >
     );
 }
 

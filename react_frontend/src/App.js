@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { Navigation } from "./Components";
@@ -17,6 +17,11 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [cookies, setCookie] = useCookies();
 
+  useLayoutEffect(() => {
+    import('./App.css');
+  })
+
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -34,7 +39,7 @@ function App() {
           <Route path="/postCreator" element={<><Navigation /><PostCreator /></>} />
           <Route path="/storyCreator" element={<StoryCreator />} />
           <Route path="/blogCreator" element={<BlogCreator />} />
-          <Route path="/postFullscreen" element={<PostFullScreen />} />
+          <Route path="/postFullscreen/:id" element={<PostFullScreen />} />
         </Routes>
       </Router>
     }</>
