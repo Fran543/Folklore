@@ -1,11 +1,12 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useLayoutEffect } from "react";
 import { Helmet } from "react-helmet";
 const Paragraph = React.lazy(() => import("../../Components/Paragraph/paragraph"))
 
 export default function Canvas({ posts, clearPosts, addPost, uploadStory }) {
-    useEffect(() => {
+
+    useLayoutEffect(() => {
         import("./canvas.css")
-    }, [])
+    })
 
     const [paragraphs, setDynamicParagraphs] = React.useState(0);
 

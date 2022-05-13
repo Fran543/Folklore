@@ -76,7 +76,7 @@ function Search_Box({ filter, setFilter }) {
             <div className="searchInput">
                 <div>
                     <input type="text" id="searchBox" placeholder="Type to search.." value={filter} onChange={(e) => onChange(e)} autoComplete="off" />
-                    {(filter !== "" || filteredItems !== []) && <AutocompleteBox selectItem={selectItem} filteredItems={filteredItems} />}
+                    {filter !== "" && <AutocompleteBox selectItem={selectItem} filteredItems={filteredItems} />}
                 </div>
                 <i className="fas fa-search" id="btnSearch" onClick={select}></i>
             </div>

@@ -2,6 +2,9 @@
     margin: 5%;
     display: flex;
     justify-content: center;
+    position: sticky;
+    top: 58px;
+    z-index: 1031;
 }
 
 .searchInput {
@@ -28,6 +31,12 @@
     color: #e0b78a;
     display: flex;
     justify-content: center;
+    background: rgba(28, 28, 28, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(9, 11, 38, 0.37);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .autocomBox {
