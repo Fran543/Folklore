@@ -4,8 +4,7 @@ import PostGridTile from "../components/home/PostGridTile";
 import EndPoints from '../constants/endPoints'
 
 export default function HomeScreen({ navigation }) {
-    const [postItems, setPostItems] = useState([{ IDStory: 1, StoryName: 'ajhsask', Summary: 'asdsadd', PubDate: '2000-10-31T01:30:00.000-05:00', UserID: 2 },
-    { IDStory: 2, StoryName: 'ajhsask', Summary: 'asdsadd', PubDate: '2000-10-31T01:30:00.000-05:00', UserID: 2 }])
+    const [postItems, setPostItems] = useState([])
 
     useEffect(() => {
         getAllPosts()

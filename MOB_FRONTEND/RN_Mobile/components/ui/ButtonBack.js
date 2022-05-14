@@ -1,11 +1,14 @@
 import { View, Pressable, StyleSheet } from "react-native";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useNavigation } from '@react-navigation/native';
 
-export default function ShowModalButton(props) {
+export default function ButtonBack() {
+    const navigation = useNavigation();
+
     return (
         <View style={styles.buttonOutterContainer}>
-            <Pressable onPress={props.onPress} style={({ pressed }) => pressed ? [styles.buttonInnerContainer, styles.pressed] : styles.buttonInnerContainer}>
-                <MaterialCommunityIcons name="application-edit" color={'white'} size={26} />
+            <Pressable onPress={() => navigation.goBack()} style={({ pressed }) => pressed ? [styles.buttonInnerContainer, styles.pressed] : styles.buttonInnerContainer}>
+                <MaterialCommunityIcons name="arrow-left-top" color={'white'} size={26} />
             </Pressable>
         </View>
     );
@@ -25,4 +28,4 @@ const styles = StyleSheet.create({
     pressed: {
         opacity: 0.75
     }
-});
+})

@@ -156,6 +156,7 @@ async function getPostByChoiceId(idChoice) {
             post: posts.recordsets[0][0],
             choices: posts.recordsets[1]
         }
+        console.log(data)
         return data;
     } catch (err) {
         console.log(err.message);

@@ -1,36 +1,52 @@
 import { View, StyleSheet, Text, Image, Pressable } from "react-native";
 import Moment from 'moment';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import StarsRating from "./StarsRating";
 import CommentSection from "./CommentSection";
 import StarButton from "../ui/StarButton";
 import CommentButton from "../ui/CommentButton";
+import EndPoints from '../../constants/endPoints'
 
 export default function PostGridTile(props, { pubDate }) {
     const [starsToggle, setStarsToggle] = useState(false)
     const [commentsToggle, setCommentsToggle] = useState(false)
+    const [user, setUser] = useState()
     Moment.locale('en');
 
-    
+    useEffect(() => {
+        //getUser()
+    }, [])
+
+    async function getUser() {
+        await fetch(EndPoints.getUserEndPoint + "?id=" + props.idUser, {
+            include: "credentials"
+        })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setUser(result)
+                    console.log(result)
+                },
+                (error) => {
+                    console.log(error)
+                }
+            )
+    }
 
     function starsToggleHandler() {
         if (starsToggle === false) {
             setStarsToggle(true)
-            console.log('Pali zvjezdice')
         } else {
             setStarsToggle(false)
-            console.log('Gasi zvjezdice')
         }
     }
 
     function commentsToggleHandler() {
         if (commentsToggle === false) {
             setCommentsToggle(true)
-            console.log('Pali komentare')
         } else {
             setCommentsToggle(false)
-            console.log('Gasi komentare')
         }
     }
 

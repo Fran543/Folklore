@@ -1,11 +1,11 @@
 import { View, Pressable, StyleSheet } from "react-native";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export default function ShowModalButton(props) {
+export default function ButtonUpload() {
     return (
         <View style={styles.buttonOutterContainer}>
-            <Pressable onPress={props.onPress} style={({ pressed }) => pressed ? [styles.buttonInnerContainer, styles.pressed] : styles.buttonInnerContainer}>
-                <MaterialCommunityIcons name="application-edit" color={'white'} size={26} />
+            <Pressable style={({ pressed }) => pressed ? [styles.buttonInnerContainer, styles.pressed] : styles.buttonInnerContainer}>
+                <MaterialCommunityIcons name="upload" color={'white'} size={26} />
             </Pressable>
         </View>
     );
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
     pressed: {
         opacity: 0.75
     }
-});
+})
