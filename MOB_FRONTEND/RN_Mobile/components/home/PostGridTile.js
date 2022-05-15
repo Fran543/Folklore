@@ -68,21 +68,21 @@ export default function PostGridTile(props, { pubDate }) {
                     <Text style={[styles.text, styles.text]}>Warnings</Text>
                     <Text style={[styles.summaryContainer, styles.text]}>{props.summary}</Text>
                     <View style={styles.iconsContainer}>
-                        <StarButton onPress={starsToggleHandler} />
+                        <StarButton onPress={starsToggleHandler} score={props.score}/>
                         <View style={styles.reviewsContainer}>
                             <MaterialCommunityIcons name="account" color={'white'} size={26} />
-                            <Text style={styles.text}>User</Text>
+                            <Text style={styles.text}>{props.username}</Text>
                         </View>
                         <View style={styles.reviewsContainer}>
                             <MaterialCommunityIcons name="calendar" color={'white'} size={26} />
-                            <Text style={styles.text}>{Moment({ pubDate }).format('d,MMM,YY')}</Text>
+                            <Text style={styles.text}>{Moment({ pubDate }).format('ddd,MMM,YY')}</Text>
                         </View>
-                        <CommentButton onPress={commentsToggleHandler} />
+                        <CommentButton onPress={commentsToggleHandler} commentNbr={props.commentNbr}/>
                     </View>
                 </View>
             </Pressable>
-            {starsToggle && <StarsRating />}
-            {commentsToggle && <CommentSection />}
+            {starsToggle && <StarsRating/>}
+            {commentsToggle && <CommentSection idStory={props.idStory}/>}
         </View>
     );
 }

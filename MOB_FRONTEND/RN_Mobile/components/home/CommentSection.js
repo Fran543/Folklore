@@ -2,9 +2,9 @@ import { View, StyleSheet} from "react-native";
 import CommentTextInput from '../ui/CommentTextInput'
 import CommentsHolder from "../home/CommentsHolder";
 import CommentSubmitButton from "../ui/CommentSubmitButton";
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
-export default function CommentSection() {
+export default function CommentSection(props) {
     const [commentText, setCommentText] = useState()
 
     function commentTextChangeHandler(textInputValue){
@@ -16,7 +16,7 @@ export default function CommentSection() {
         <View style={styles.container}>
             <CommentTextInput onChangeText={commentTextChangeHandler} commentText={commentText}/>
             <CommentSubmitButton commentText={commentText}/>
-            <CommentsHolder/>
+            <CommentsHolder idStory={props.idStory}/>
         </View>
     );
 }

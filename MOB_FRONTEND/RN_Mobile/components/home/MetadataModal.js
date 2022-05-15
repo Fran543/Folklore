@@ -3,13 +3,12 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import DropDownPicker from 'react-native-dropdown-picker';
 import { useState, useEffect } from 'react'
 import EndPoints from "../../constants/endPoints";
-import * as ImagePicker from 'expo-image-picker';
 
 export default function MetadataModal(props) {
     const [open, setOpen] = useState(false);
-    const [value, setValue] = useState([]);
+    // const [value, setValue] = useState([]);
     const [items, setItems] = useState([]);
-    const [image, setImage] = useState(null);
+    // const [image, setImage] = useState(null);
 
     useEffect(() => {
         getWarnings()
@@ -29,20 +28,19 @@ export default function MetadataModal(props) {
             )
     }
 
-    const pickImage = async () => {
-        // No permissions request is necessary for launching the image library
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-        });
-        console.log(result);
+    // const pickImage = async () => {
+    //     let result = await ImagePicker.launchImageLibraryAsync({
+    //         mediaTypes: ImagePicker.MediaTypeOptions.All,
+    //         allowsEditing: true,
+    //         aspect: [4, 3],
+    //         quality: 1,
+    //     });
+    //     console.log(result);
 
-        if (!result.cancelled) {
-            setImage(result.uri);
-        }
-    };
+    //     if (!result.cancelled) {
+    //         setImage(result.uri);
+    //     }
+    // };
 
     return (
         <View style={styles.centeredView}>
@@ -56,13 +54,13 @@ export default function MetadataModal(props) {
                     <View style={styles.modalView}>
                         <View style={styles.userInputContainer}>
                             <MaterialCommunityIcons name="rename-box" color={'white'} size={26} />
-                            <Text style={styles.modalText}>Title</Text>
-                            <TextInput placeholder="Enter title here..." maxLength={50} />
+                            <Text style={styles.modalText} >Title</Text>
+                            <TextInput placeholder="Enter title here..." maxLength={50} value={props.title} onChangeText={props.onChangeTitleText}/>
                         </View>
                         <View style={styles.userInputContainer}>
                             <MaterialCommunityIcons name="card-bulleted-settings-outline" color={'white'} size={26} />
                             <Text style={styles.modalText}>Summary</Text>
-                            <TextInput placeholder="Enter summary here..." maxLength={500} />
+                            <TextInput placeholder="Enter summary here..." maxLength={500} value={props.summary} onChangeText={props.onChangeSummaryText}/>
                         </View>
                         <View style={styles.userInputContainer}>
                             <MaterialCommunityIcons name="exclamation-thick" color={'white'} size={26} />
@@ -75,10 +73,10 @@ export default function MetadataModal(props) {
                                 placeholder="Select warnings"
                                 multiple={true}
                                 open={open}
-                                value={value}
+                                value={props.value}
                                 items={items}
                                 setOpen={setOpen}
-                                setValue={setValue}
+                                setValue={props.onChangeWarningValue}
                                 setItems={setItems}
                                 theme="DARK"
                                 mode="BADGE"
@@ -86,11 +84,11 @@ export default function MetadataModal(props) {
                             />
                         </View>
                         <View style={styles.userInputContainer}>
-                            <Pressable  onPress={pickImage}  style={styles.userInputContainer}>
+                            <Pressable  onPress={props.pickImage}  style={styles.userInputContainer}>
                                 <MaterialCommunityIcons name="image-area" color={'white'} size={26} />
                                 <Text style={styles.modalText}>Pick an Image</Text>
                             </Pressable>
-                            {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+                            {props.image && <Image source={{ uri: props.image }} style={{ width: 200, height: 200 }} />}
                         </View>
                         <Pressable
                             style={[styles.button, styles.buttonClose]}

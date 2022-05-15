@@ -5,9 +5,9 @@ export default function StarButton(props) {
 
     return (
         <View>
-            <Pressable onPress={props.onPress}  style={styles.reviewsContainer}>
+            <Pressable onPress={props.onPress} style={styles.reviewsContainer}>
                 <MaterialCommunityIcons name="star" color={'white'} size={26} />
-                <Text style={styles.text}>1234</Text>
+                <Text style={styles.text}>{props.score}</Text>
             </Pressable>
         </View>
     );

@@ -6,12 +6,21 @@ import ButtonUpload from "../ui/ButtonUpload";
 import ButtonDelete from "../ui/ButtonDelete";
 
 export default function ButtonMenu(props) {
+
+    const blogItemProps = {
+        title: props.title,
+        summary: props.summary,
+        imageBlob: props.image,
+        warnings: props.value,
+        content: props.content
+    }
+
     return (
             <View style={styles.buttonContainer}>
                 <ButtonBack />
                 <ShowModalButton onPress={props.showModal} />
                 {props.isStory && <AddParagraphButton />}
-                <ButtonUpload />
+                <ButtonUpload {...blogItemProps}/>
                 <ButtonDelete onPress={props.deleteBlog}/>
             </View>
     );

@@ -1,15 +1,28 @@
 import { View, StyleSheet, FlatList } from "react-native";
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Comment from "./Comment";
+import EndPoints from "../../constants/endPoints";
 
-export default function CommentsHolder() {
-    const [comments, setComments] = useState([{ IDComment: 1, Username: "Ivo Ivic", Content: "komentarkomentarkomentar" },
-    { IDComment: 2, Username: "Sara Ivic", Content: "komentarkomentarkomentar" },
-    { IDComment: 3, Username: "Marica Ivic", Content: "komentarkomentarkomentar" }])
+export default function CommentsHolder(props) {
+    const [comments, setComments] = useState([])
+
+    useEffect(() => {
+        fetch(EndPoints.getStoryCommentsEndPoint + "?idStory=" + props.idStory)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setComments(result)
+                    console.log(result)
+                    return result
+                },
+                (error) => {
+                    console.log(error)
+                }
+            )
+    }, [])
 
     function renderCommentItem(itemData) {
         const commentItemProps = {
-            IDComment: itemData.item.IDComment,
             Username: itemData.item.Username,
             Content: itemData.item.Content
         }
@@ -21,7 +34,7 @@ export default function CommentsHolder() {
         <View style={styles.content}>
             <FlatList data={comments} renderItem={renderCommentItem}
                 keyExtractor={(item, index) => {
-                    return item.IDComment
+                    return index++
                 }}
             />
         </View>

@@ -31,7 +31,10 @@ export default function HomeScreen({ navigation }) {
             summary: itemData.item.Summary,
             pubDate: itemData.item.PubDate,
             imageBlob: itemData.item.ImageBlob,
-            idUser: itemData.item.UserID
+            idUser: itemData.item.UserID,
+            commentNbr: itemData.item.CommentNbr,
+            score: itemData.item.Score,
+            username: itemData.item.Username
         }
 
         return <PostGridTile
