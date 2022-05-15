@@ -15,7 +15,8 @@ const EndPoints = {
     deleteUserEndPoint: 'http://127.0.0.1:8091/deleteUser',
     getStoryByIdEndPoint: 'http://127.0.0.1:8091/getStoryById',
     getPostByChoiceIdEndPoint: 'http://127.0.0.1:8091/getPostByChoiceId',
-    getStoryCommentsEndPoint: "http://127.0.0.1:8091/getStoryComments"
+    getStoryCommentsEndPoint: "http://127.0.0.1:8091/getStoryComments",
+    addCommentToStory: "http://127.0.0.1:8091/addCommentToStory"
 };
 
 export default EndPoints

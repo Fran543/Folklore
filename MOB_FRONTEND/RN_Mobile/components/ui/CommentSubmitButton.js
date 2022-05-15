@@ -1,8 +1,34 @@
 import { Text, View, Pressable, StyleSheet } from "react-native";
+import EndPoints from "../../constants/endPoints";
 
 export default function CommentSubmitButton(props) {
+
+    const commentProps={
+        comment: props.commentText, 
+        idStory: props.idStory
+    }
+
     function submitCommentHandler() {
-        console.log(props.commentText)
+        console.log(commentProps.comment)
+        if(commentProps.comment===undefined || commentProps.comment){
+        }else{
+            fetch(EndPoints.addCommentToStory, {
+                method: 'POST',
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(commentProps)
+            })
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                        console.log(result)
+                    },
+                    (error) => {
+                        console.log(error)
+                    }
+                )
+        }
+
     }
 
     return (

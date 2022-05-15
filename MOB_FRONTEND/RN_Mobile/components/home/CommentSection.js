@@ -15,7 +15,7 @@ export default function CommentSection(props) {
     return (
         <View style={styles.container}>
             <CommentTextInput onChangeText={commentTextChangeHandler} commentText={commentText}/>
-            <CommentSubmitButton commentText={commentText}/>
+            <CommentSubmitButton commentText={commentText} idStory={props.idStory}/>
             <CommentsHolder idStory={props.idStory}/>
         </View>
     );
