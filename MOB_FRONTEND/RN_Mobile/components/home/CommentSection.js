@@ -12,10 +12,14 @@ export default function CommentSection(props) {
         console.log(commentText)
     }
 
+    function clearInput(){
+        setCommentText('')
+    }
+
     return (
         <View style={styles.container}>
             <CommentTextInput onChangeText={commentTextChangeHandler} commentText={commentText}/>
-            <CommentSubmitButton commentText={commentText} idStory={props.idStory}/>
+            <CommentSubmitButton commentText={commentText} idStory={props.idStory} clearInput={clearInput}/>
             <CommentsHolder idStory={props.idStory}/>
         </View>
     );

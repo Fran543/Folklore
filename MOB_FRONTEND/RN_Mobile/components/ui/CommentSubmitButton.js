@@ -3,31 +3,28 @@ import EndPoints from "../../constants/endPoints";
 
 export default function CommentSubmitButton(props) {
 
-    const commentProps={
-        comment: props.commentText, 
+    const commentProps = {
+        comment: props.commentText,
         idStory: props.idStory
     }
 
     function submitCommentHandler() {
-        console.log(commentProps.comment)
-        if(commentProps.comment===undefined || commentProps.comment){
-        }else{
-            fetch(EndPoints.addCommentToStory, {
-                method: 'POST',
-                credentials: 'include',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(commentProps)
-            })
-                .then(res => res.json())
-                .then(
-                    (result) => {
-                        console.log(result)
-                    },
-                    (error) => {
-                        console.log(error)
-                    }
-                )
-        }
+        fetch(EndPoints.addCommentToStory, {
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(commentProps)
+        })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log(result)
+                    props.clearInput()
+                },
+                (error) => {
+                    console.log(error)
+                }
+            )
 
     }
 

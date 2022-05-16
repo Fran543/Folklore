@@ -4,21 +4,19 @@ import { useEffect, useState } from 'react';
 import EndPoints from '../../constants/endPoints';
 
 export default function StarsRating(props) {
-    const [score, setScore] = useState(0)
     const [orgScore, setOrgScore] = useState(0)
 
     useEffect(() => {
         fetch(EndPoints.getUserStoryScore, {
             method: 'POST',
             credentials: 'include',
-            headers: { 'Content-Type': 'application/json'},
-            body: JSON.stringify({ idStory: props.idStory })
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ idStory: props.idStory, userID: props.idUser })
         })
             .then(res => res.json())
             .then(
                 (result) => {
-                    setScore(result.score)
-                    setOrgScore(result.score)
+                    result.score && setOrgScore(result.score)
                     console.log(result.score)
                 },
                 (error) => {
@@ -27,7 +25,7 @@ export default function StarsRating(props) {
             )
     }, [])
 
-    const sendScore = (score) => {
+    function saveScore(score) {
         fetch(EndPoints.addScoreToStory, {
             method: 'POST',
             credentials: 'include',
@@ -50,12 +48,12 @@ export default function StarsRating(props) {
             type='star'
             ratingColor='black'
             ratingBackgroundColor='#BDC3C7'
-            ratingCount = {5}
-            startingValue= {orgScore}
+            ratingCount={5}
+            startingValue={orgScore}
             imageSize={50}
             tintColor='#333333'
             style={styles.starContainer}
-            
+            onFinishRating={saveScore}
         />
     );
 }
