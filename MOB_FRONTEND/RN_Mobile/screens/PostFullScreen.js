@@ -41,28 +41,28 @@ export default function PostFullScreen({ route, navigation }) {
         return <Text style={styles.text}>{itemData.item.Content}</Text>
     }
 
-    async function renderNextPost(choiceID){
+    async function renderNextPost(choiceID) {
         await fetch(EndPoints.getPostByChoiceIdEndPoint + "?idChoice=" + choiceID)
             .then((res) => res.json())
             .then(
-              (result) => {
-                if (result.post) {
-                  setPosts(posts => [...posts, result.post]);
-                  setChoices(result.choices)
-                } else {
-                  setChoices(null)
+                (result) => {
+                    if (result.post) {
+                        setPosts(posts => [...posts, result.post]);
+                        setChoices(result.choices)
+                    } else {
+                        setChoices(null)
+                    }
+                },
+                (error) => {
+                    console.log(error);
                 }
-              },
-              (error) => {
-                console.log(error);
-              }
             );
     }
 
     return (
         <View style={styles.postContainer}>
             <Image
-                source={require('../assets/icon.png')}
+                source={{ uri: story && story.ImageBlob ? story.ImageBlob : require("../assets/icon.png") }}
                 resizeMode="cover"
                 style={styles.image} />
             <FlatList data={posts} renderItem={renderPostItem}
@@ -70,18 +70,18 @@ export default function PostFullScreen({ route, navigation }) {
                     return item.IDPost
                 }}
             />
-            {choices !== null ? 
+            {choices !== null ?
                 <View style={styles.btnContainer}>
                     <View style={styles.button}>
-                        <Button color={'#C2A695'} title={choices && choices[0].Content} onPress={renderNextPost(choices[0].IDChoice)}/>
+                        <Button color={'#C2A695'} title={choices && choices[0].Content} onPress={renderNextPost(choices[0].IDChoice)} />
                     </View>
                     <View style={styles.button}>
-                        <Button color={'#C2A695'} title={choices && choices[1].Content} onPress={renderNextPost(choices[1].IDChoice)}/>
+                        <Button color={'#C2A695'} title={choices && choices[1].Content} onPress={renderNextPost(choices[1].IDChoice)} />
                     </View>
                 </View>
                 :
                 <View style={styles.btnTheEnd}>
-                    <Button title="The end" color={"#C2A695"}/>
+                    <Button title="The end" color={"#C2A695"} />
                 </View>
             }
         </View>

@@ -7,6 +7,7 @@ import UserProfileScreen from "./screens/UserProfileScreen";
 import PostCreatorScreen from "./screens/PostCreatorScreen";
 import StoryCreatorScreen from "./screens/StoryCreatorScreen";
 import BlogCreatorScreen from "./screens/BlogCreatorScreen";
+import LoginScreen from "./screens/LoginScreen";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -21,6 +22,7 @@ function Home() {
       shifting={true}
       activeColor="white"
       inactiveColor="#cccccc">
+
       <Tab.Screen name="My Profile" component={UserProfileScreen}
         options={{
           tabBarColor: '#6E6A91',
@@ -28,6 +30,7 @@ function Home() {
             <MaterialCommunityIcons name="account" color={color} size={26} />
           )
         }} />
+
       <Tab.Screen name="Home" component={HomeScreen}
         options={{
           tabBarColor: '#C2A695',
@@ -41,6 +44,14 @@ function Home() {
           tabBarColor: '#B88FAE',
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="plus" color={color} size={26} />
+          )
+        }} />
+
+      <Tab.Screen name="Login" component={LoginScreen}
+        options={{
+          tabBarColor: '#610440',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="login" color={color} size={26} />
           )
         }} />
     </Tab.Navigator>

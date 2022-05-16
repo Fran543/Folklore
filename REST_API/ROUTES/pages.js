@@ -32,7 +32,7 @@ router.get('/getPostByChoiceId', postController.getPostByChoiceId);
 
 router.get('/getWarnings', postController.getWarnings);
 
-router.get('/getUser', userController.getUser);
+router.get('/getUser', verify, userController.getUser);
 
 router.get('/getUserBlogs', verify, userController.getUserBlogs);
 

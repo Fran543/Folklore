@@ -58,8 +58,8 @@ export default function PostGridTile(props, { pubDate }) {
                 onPress={props.onPress}>
                 <View>
                     <Image
-                        // source={{uri: props.imageBlob}}
-                        source={require("../../assets/icon.png")}
+                        source={{ uri: props.imageBlob ? props.imageBlob : require("../../assets/icon.png") }}
+                        // source={require("../../assets/icon.png")}
                         resizeMode="cover"
                         style={styles.image} />
                 </View>
