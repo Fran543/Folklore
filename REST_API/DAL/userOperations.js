@@ -136,6 +136,8 @@ async function getUserLibrary(id) {
             .request()
             .input('IDUser', sql.Int, id)
             .execute('getUserLibrary');
+            console.log(id)
+            console.log(users.recordsets[0])
         return users.recordsets[0];
     } catch (err) {
         console.log(err.message);

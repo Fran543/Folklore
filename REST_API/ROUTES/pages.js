@@ -18,7 +18,7 @@ router.get('/getStories', postController.getStories);
 
 router.get('/getTrendingStories', postController.getTrendingStories);
 
-router.get('/getUserLibrary', verify, userController.getUserLibrary);
+router.get('/getUserLibrary', userController.getUserLibrary);
 
 router.get('/removeStoryFromUser', verify, userController.removeStoryFromUser);
 

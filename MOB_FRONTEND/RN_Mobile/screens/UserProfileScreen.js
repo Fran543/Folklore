@@ -8,7 +8,7 @@ import Button from '../components/ui/Button';
 
 
 export default function UserProfileScreen({ navigation }) {
-    const [user, setUser] = useState({ username: "Pero", email: "pero@gmail.com" })
+    const [user, setUser] = useState()
 
     useEffect(() => {
         getUser()

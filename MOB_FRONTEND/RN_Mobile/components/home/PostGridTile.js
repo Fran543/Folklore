@@ -81,7 +81,7 @@ export default function PostGridTile(props, { pubDate }) {
                     </View>
                 </View>
             </Pressable>
-            {starsToggle && <StarsRating/>}
+            {starsToggle && <StarsRating idStory={props.idStory}/>}
             {commentsToggle && <CommentSection idStory={props.idStory}/>}
         </View>
     );

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { FlatList, StyleSheet, View, StatusBar } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import PostGridTile from "../components/home/PostGridTile";
 import EndPoints from '../constants/endPoints'
+import SearchBar from "../components/home/SearchBar";
 
 export default function HomeScreen({ navigation }) {
     const [postItems, setPostItems] = useState([])
@@ -49,13 +50,14 @@ export default function HomeScreen({ navigation }) {
 
 
     return (
-            <View style={styles.rootContainer}>
-                <FlatList data={postItems} renderItem={renderPostItem}
-                    keyExtractor={(item, index) => {
-                        return item.IDStory
-                    }}
-                />
-            </View>
+        <View style={styles.rootContainer}>
+            <SearchBar />
+            <FlatList data={postItems} renderItem={renderPostItem}
+                keyExtractor={(item, index) => {
+                    return item.IDStory
+                }}
+            />
+        </View>
     );
 }
 
