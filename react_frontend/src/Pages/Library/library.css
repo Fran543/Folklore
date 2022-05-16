@@ -35,14 +35,12 @@ button .carousel-control-prev {
 }
 
 div .story_card {
+  height: 100vh;
   margin: 0;
   width: 100%;
   z-index: 1;
 }
 
-.info_section {
-  padding-left: 10%;
-}
 
 .btns {
   background-color: transparent;
@@ -108,10 +106,10 @@ h1 {
 .info_section {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-blend-mode: multiply;
   z-index: 2;
-  border-radius: 10px;
+  padding-left: 10%;
 }
 
 .story_desc {
@@ -129,7 +127,6 @@ h1 {
 }
 
 .blur_back {
-  position: absolute;
   top: 0;
   z-index: 1;
   height: 100%;
@@ -193,6 +190,7 @@ h1 {
 
 .card_back {
   /* background: url("../IMAGES/storiesPlaceholder.avif"); */
+  width: 100%;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
