@@ -8,7 +8,11 @@ import Button from '../components/ui/Button';
 
 
 export default function UserProfileScreen({ navigation }) {
+<<<<<<< Updated upstream
     const [user, setUser] = useState()
+=======
+    const [user, setUser] = useState({ username: "", email: "" })
+>>>>>>> Stashed changes
 
     useEffect(() => {
         getUser()
