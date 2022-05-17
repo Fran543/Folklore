@@ -1,18 +1,21 @@
 import { View, Pressable, StyleSheet } from "react-native";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import EndPoints from "../../constants/endPoints";
+import { useNavigation } from '@react-navigation/native';
 
 export default function ButtonUpload(props) {
+  const navigation = useNavigation();
 
     const blogItemProps = {
         title: props.title,
         summary: props.summary,
-        imageBlob: props.image,
+        image: props.imageBlob,
         warnings: props.value,
         posts: [{ content: props.content }]
     }
 
     async function uploadPost() {
+      console.log(blogItemProps)
         fetch(EndPoints.createStoryEndPoint, {
             method: "POST",
             credentials: 'include',
@@ -28,6 +31,7 @@ export default function ButtonUpload(props) {
             })
             .then((data) => {
               console.log(data);
+              navigation.navigate("My Profile")
             })
             .catch((error) => {
               console.log(error);

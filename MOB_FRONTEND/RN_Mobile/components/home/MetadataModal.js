@@ -6,9 +6,7 @@ import EndPoints from "../../constants/endPoints";
 
 export default function MetadataModal(props) {
     const [open, setOpen] = useState(false);
-    // const [value, setValue] = useState([]);
     const [items, setItems] = useState([]);
-    // const [image, setImage] = useState(null);
 
     useEffect(() => {
         getWarnings()
@@ -27,20 +25,6 @@ export default function MetadataModal(props) {
                 }
             )
     }
-
-    // const pickImage = async () => {
-    //     let result = await ImagePicker.launchImageLibraryAsync({
-    //         mediaTypes: ImagePicker.MediaTypeOptions.All,
-    //         allowsEditing: true,
-    //         aspect: [4, 3],
-    //         quality: 1,
-    //     });
-    //     console.log(result);
-
-    //     if (!result.cancelled) {
-    //         setImage(result.uri);
-    //     }
-    // };
 
     return (
         <View style={styles.centeredView}>
@@ -88,7 +72,7 @@ export default function MetadataModal(props) {
                                 <MaterialCommunityIcons name="image-area" color={'white'} size={26} />
                                 <Text style={styles.modalText}>Pick an Image</Text>
                             </Pressable>
-                            {props.image && <Image source={{ uri: props.image }} style={{ width: 200, height: 200 }} />}
+                            {props.imageBlob && <Image source={{ uri: props.imageBlob }} style={{ width: 200, height: 200 }} />}
                         </View>
                         <Pressable
                             style={[styles.button, styles.buttonClose]}

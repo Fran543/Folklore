@@ -10,7 +10,7 @@ export default function ButtonMenu(props) {
     const blogItemProps = {
         title: props.title,
         summary: props.summary,
-        imageBlob: props.image,
+        imageBlob: props.imageBlob,
         warnings: props.value,
         content: props.content
     }
