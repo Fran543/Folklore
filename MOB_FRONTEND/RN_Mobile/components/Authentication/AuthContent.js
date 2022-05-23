@@ -6,7 +6,7 @@ import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 import { Colors } from '../../constants/styles';
 
-export default function AuthContent() {
+export default function AuthContent(props) {
 
     // const [credentialsInvalid, setCredentialsInvalid] = useState({
     //     username: false,
@@ -51,7 +51,7 @@ export default function AuthContent() {
 
     return (
         <View style={styles.authContent}>
-            {isLogin ? <LoginForm /> : <SignupForm />}
+            {isLogin ? <LoginForm message={props.message} setMessage={(e) => props.setMessage(e)} onToggleSnackBar={props.onToggleSnackBar}/> : <SignupForm message={props.message} setMessage={(e) => props.setMessage(e)} onToggleSnackBar={props.onToggleSnackBar}/>}
             <View style={styles.buttons}>
                 <FlatButton onPress={switchAuthModeHandler}>
                     {isLogin ? 'Create a new user' : 'Log in instead'}

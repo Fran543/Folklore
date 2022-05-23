@@ -9,6 +9,9 @@ export default function HomeScreen({ navigation }) {
 
     useEffect(() => {
         getAllPosts()
+        return () => {
+            setPostItems({});
+          };
     }, [])
 
     async function getAllPosts() {
@@ -51,8 +54,8 @@ export default function HomeScreen({ navigation }) {
 
     return (
         <View style={styles.rootContainer}>
-            <SearchBar />
-            <FlatList data={postItems} renderItem={renderPostItem}
+            <SearchBar  style={styles.searchBar}/>
+            <FlatList style={styles.flatList} data={postItems} renderItem={renderPostItem}
                 keyExtractor={(item, index) => {
                     return item.IDStory
                 }}
@@ -64,6 +67,13 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
     rootContainer: {
         flex: 1,
-        backgroundColor: 'black'
+        backgroundColor: 'black',
+        paddingTop: 5
     },
+    searchBar: {
+        flex: 1,
+    },
+    flatList: {
+        flex: 2
+    }
 })

@@ -10,6 +10,7 @@ import BlogCreatorScreen from "./screens/BlogCreatorScreen";
 import LoginScreen from "./screens/LoginScreen";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import LibraryScreen from "./screens/LibraryScreen";
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -47,6 +48,14 @@ function Home() {
           )
         }} />
 
+      <Tab.Screen name="Library" component={LibraryScreen}
+        options={{
+          tabBarColor: '#3d6082',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="book" color={color} size={26} />
+          )
+        }} />
+
       <Tab.Screen name="Login" component={LoginScreen}
         options={{
           tabBarColor: '#610440',
@@ -54,6 +63,7 @@ function Home() {
             <MaterialCommunityIcons name="login" color={color} size={26} />
           )
         }} />
+
     </Tab.Navigator>
   );
 }

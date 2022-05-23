@@ -1,6 +1,6 @@
 import { Text, View, StyleSheet, Pressable } from "react-native";
 
-export default function PostCreatorScreen({navigation}) {
+export default function PostCreatorScreen({ navigation }) {
 
     return (
         <View style={styles.container}>
@@ -22,23 +22,30 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
+        backgroundColor: 'black'
     },
     text: {
         textTransform: 'uppercase',
         fontWeight: 'bold',
         letterSpacing: 3,
-        color: 'white'
+        color: 'white',
     },
     blogBlock: {
         flex: 1,
-        backgroundColor: '#72063C',
+        backgroundColor: 'blue',
         justifyContent: 'center',
-        borderRadius: 20
+        borderRadius: 20,
+        alignItems: 'center',
+        width: '80%',
+        marginVertical: 20,
     },
     storyBlock: {
         flex: 1,
-        backgroundColor: '#C2A695',
+        backgroundColor: '#f5bc1d',
         justifyContent: 'center',
-        borderRadius: 20
+        borderRadius: 20,
+        alignItems: 'center',
+        width: '80%',
+        marginVertical: 20,
     },
 });

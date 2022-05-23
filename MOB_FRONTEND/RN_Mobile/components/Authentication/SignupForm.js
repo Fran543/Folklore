@@ -5,7 +5,7 @@ import EndPoints from "../../constants/endPoints";
 import Button from '../ui/Button';
 import Input from './Input';
 
-export default function AuthForm() {
+export default function AuthForm(props) {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -31,9 +31,13 @@ export default function AuthForm() {
                 else return msg;
             })
             .then((data) => {
+                props.setMessage(data);
+                props.onToggleSnackBar()
                 console.log(data);
             })
             .catch(error => {
+                props.setMessage(error.message );
+                props.onToggleSnackBar()
                 console.log(error);
             })
     }
