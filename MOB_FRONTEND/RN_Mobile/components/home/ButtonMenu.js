@@ -19,7 +19,7 @@ export default function ButtonMenu(props) {
             <View style={styles.buttonContainer}>
                 <ButtonBack />
                 <ShowModalButton onPress={props.showModal} />
-                {props.isStory && <AddParagraphButton />}
+                {props.isStory && <AddParagraphButton addParagraphToCanvas={() => props.addParagraphToCanvas()}/>}
                 <ButtonUpload {...blogItemProps}/>
                 <ButtonDelete onPress={props.deleteBlog}/>
             </View>

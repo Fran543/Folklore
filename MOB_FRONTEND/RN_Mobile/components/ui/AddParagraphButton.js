@@ -1,10 +1,10 @@
 import { View, Pressable, StyleSheet } from "react-native";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export default function AddParagraphButton() {
+export default function AddParagraphButton(props) {
     return (
         <View style={styles.buttonOutterContainer}>
-            <Pressable style={({ pressed }) => pressed ? [styles.buttonInnerContainer, styles.pressed] : styles.buttonInnerContainer}>
+            <Pressable onPress={() => props.addParagraphToCanvas()} style={({ pressed }) => pressed ? [styles.buttonInnerContainer, styles.pressed] : styles.buttonInnerContainer}>
                 <MaterialCommunityIcons name="plus" color={'white'} size={26} />
             </Pressable>
         </View>
