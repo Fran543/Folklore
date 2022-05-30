@@ -1,38 +1,17 @@
 import { View, StyleSheet, Text, Image, Pressable } from "react-native";
 import Moment from 'moment';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import StarsRating from "./StarsRating";
 import CommentSection from "./CommentSection";
 import StarButton from "../ui/StarButton";
 import CommentButton from "../ui/CommentButton";
-import EndPoints from '../../constants/endPoints'
+import AddToLibraryButton from "../ui/AddToLibraryButton";
 
 export default function PostGridTile(props, { pubDate }) {
     const [starsToggle, setStarsToggle] = useState(false)
     const [commentsToggle, setCommentsToggle] = useState(false)
-    const [user, setUser] = useState()
     Moment.locale('en');
-
-    useEffect(() => {
-        //getUser()
-    }, [])
-
-    async function getUser() {
-        await fetch(EndPoints.getUserEndPoint + "?id=" + props.idUser, {
-            include: "credentials"
-        })
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    setUser(result)
-                    console.log(result)
-                },
-                (error) => {
-                    console.log(error)
-                }
-            )
-    }
 
     function starsToggleHandler() {
         if (starsToggle === false) {
@@ -67,7 +46,7 @@ export default function PostGridTile(props, { pubDate }) {
                     <Text style={[styles.text, styles.text]}>Warnings</Text>
                     <Text style={[styles.summaryContainer, styles.text]}>{props.summary}</Text>
                     <View style={styles.iconsContainer}>
-                        <StarButton onPress={starsToggleHandler} score={props.score}/>
+                        <StarButton onPress={starsToggleHandler} score={props.score} />
                         <View style={styles.reviewsContainer}>
                             <MaterialCommunityIcons name="account" color={'white'} size={26} />
                             <Text style={styles.text}>{props.username}</Text>
@@ -76,12 +55,13 @@ export default function PostGridTile(props, { pubDate }) {
                             <MaterialCommunityIcons name="calendar" color={'white'} size={26} />
                             <Text style={styles.text}>{Moment({ pubDate }).format('ddd,MMM,YY')}</Text>
                         </View>
-                        <CommentButton onPress={commentsToggleHandler} commentNbr={props.commentNbr}/>
+                        <CommentButton onPress={commentsToggleHandler} commentNbr={props.commentNbr} />
+                        <AddToLibraryButton />
                     </View>
                 </View>
             </Pressable>
-            {starsToggle && <StarsRating idStory={props.idStory}/>}
-            {commentsToggle && <CommentSection idStory={props.idStory}/>}
+            {starsToggle && <StarsRating idStory={props.idStory} />}
+            {commentsToggle && <CommentSection idStory={props.idStory} />}
         </View>
     );
 }
