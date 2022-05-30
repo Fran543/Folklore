@@ -9,6 +9,7 @@ const EndPoints = {
     getLogOutPoint: 'http://127.0.0.1:8091/logout',
     getUserLibraryEndPoint: 'http://127.0.0.1:8091/getUserLibrary',
     removeStoryFromUserEndPoint: 'http://127.0.0.1:8091/removeStoryFromUser',
+    addStoryToUserLibraryEndPoint: 'http://127.0.0.1:8091/addStoryToUserLibrary',
     getUserEndPoint: 'http://127.0.0.1:8091/getUser',
     getUserBlogsEndPoint: 'http://127.0.0.1:8091/getUserBlogs',
     getUserStoriesEndPoint: 'http://127.0.0.1:8091/getUserStories',

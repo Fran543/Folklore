@@ -5,29 +5,10 @@ import { useEffect } from "react";
 
 var registerEndPoint = "http://127.0.0.1:8091/register"
 
-async function registerUser(credentials) {
 
-    fetch(registerEndPoint, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-    })
-        .then(async (response) => {
-            var msg = await response.text()
-            if (!response.ok) throw new Error(msg);
-            else return msg;
-        })
-        .then((data) => {
-            console.log(data);
-        })
-        .catch(error => {
-            console.log(error);
-        })
-}
 
-function Register_Form() {
+function Register_Form({ createNotification }) {
+
 
     useEffect(() => {
         import('./registerForm.css');
@@ -39,9 +20,34 @@ function Register_Form() {
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
 
+    const registerUser = (credentials) => {
+
+        fetch(registerEndPoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(credentials)
+        })
+            .then(async (response) => {
+                let message = await response.json()
+                if (!response.ok) throw new Error(message.message);
+                else return message.message;
+            })
+            .then(async (data) => {
+                createNotification('success', data)
+                console.log(data);
+            })
+            .catch(error => {
+                createNotification('error', error.message)
+                console.log(error);
+
+            })
+    }
+
     const register = async (e) => {
         e.preventDefault();
-        await registerUser({
+        registerUser({
             username,
             email,
             password,

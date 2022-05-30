@@ -236,12 +236,25 @@ as
 begin 
 	select s.IDStory, s.ImageBlob, s.PubDate, s.StoryName, s.Summary, u.Username, AVG(Cast(r.Score as decimal)) as Score, COUNT(distinct c.IDComment) as CommentNbr
 	from Story as s
-	inner join AppUser as u on s.UserID = u.IDUser
+	left join AppUser as u on s.UserID = u.IDUser
 	left join Review as r on s.IDStory = r.StoryID
 	left join Comment as c on s.IDStory = c.StoryID
 	group by s.IDStory, s.ImageBlob, s.PubDate, s.StoryName, s.Summary, u.Username
 end
 go
+
+
+create proc getTop10StoriesByReview
+as
+	select distinct top 10  s.IDStory, s.ImageBlob, s.PubDate, s.StoryName, s.Summary, u.Username, AVG(Cast(r.Score as decimal)) as Score, COUNT(distinct c.IDComment) as CommentNbr
+	from Story as s
+	left join AppUser as u on s.UserID = u.IDUser
+	left join Review as r on s.IDStory = r.StoryID
+	left join Comment as c on s.IDStory = c.StoryID
+	group by s.UserID, s.IDStory, s.ImageBlob, s.PubDate, s.StoryName, s.Summary, u.Username	
+	order by Score desc
+go
+
 
 create proc selectStory
 @IDStory int
@@ -282,6 +295,18 @@ begin
 	from Comment as c
 	inner join AppUser as u on c.UserID = u.IDUser
 	where c.StoryID = @IDStory
+end
+go
+
+
+create proc selectStoryWarnings
+@IDStory int
+as
+begin 
+	select w.WarningName
+	from Warning as w
+	inner join WarningStory as ws on w.IDWarning = ws.WarningID
+	where ws.StoryID = @IDStory
 end
 go
 
@@ -343,18 +368,29 @@ go
 create proc getUserLibrary
 	@IDUser int
 as
-	select s.* from Story as s
+	select s.IDStory, s.ImageBlob, s.PubDate, s.StoryName, s.Summary, u.Username, AVG(Cast(r.Score as decimal)) as Score, COUNT(distinct c.IDComment) as CommentNbr
+	from Story as s
+	left join AppUser as u on s.UserID = u.IDUser
+	left join Review as r on s.IDStory = r.StoryID
+	left join Comment as c on s.IDStory = c.StoryID
 	inner join UserStory as us on s.IDStory = us.StoryID
-	where us.UserID = @IDUser
+	group by us.UserID, s.IDStory, s.ImageBlob, s.PubDate, s.StoryName, s.Summary, u.Username	
+	having us.UserID = @IDUser
+
 go
 
 create proc getUserBlogs
 	@IDUser int
 as
 begin
-	select * from Story 
-	where UserID = @IDUser 
-	and (select COUNT(*) from Post where Post.StoryID = Story.IDStory) = 1
+	select s.IDStory, s.ImageBlob, s.PubDate, s.StoryName, s.Summary, u.Username, AVG(Cast(r.Score as decimal)) as Score, COUNT(distinct c.IDComment) as CommentNbr
+	from Story as s
+	left join AppUser as u on s.UserID = u.IDUser
+	left join Review as r on s.IDStory = r.StoryID
+	left join Comment as c on s.IDStory = c.StoryID
+	group by s.UserID, s.IDStory, s.ImageBlob, s.PubDate, s.StoryName, s.Summary, u.Username	
+	having s.UserID = @IDUser
+	and (select COUNT(*) from Post where Post.StoryID = s.IDStory) = 1
 end
 
 go
@@ -363,12 +399,18 @@ create proc getUserStories
 	@IDUser int
 as
 begin
-	select * from Story 
-	where UserID = @IDUser 
-	and (select COUNT(*) from Post where Post.StoryID = Story.IDStory) > 1
+	select s.IDStory, s.ImageBlob, s.PubDate, s.StoryName, s.Summary, u.Username, AVG(Cast(r.Score as decimal)) as Score, COUNT(distinct c.IDComment) as CommentNbr
+	from Story as s
+	left join AppUser as u on s.UserID = u.IDUser
+	left join Review as r on s.IDStory = r.StoryID
+	left join Comment as c on s.IDStory = c.StoryID
+	group by s.UserID, s.IDStory, s.ImageBlob, s.PubDate, s.StoryName, s.Summary, u.Username	
+	having s.UserID = @IDUser
+	and (select COUNT(*) from Post where Post.StoryID = s.IDStory) > 1
 end
 
 go
+
 
 
 create proc selectPostByChoiceId
@@ -403,6 +445,29 @@ as
 	where UserID = @UserID and StoryID = @StoryID
 go
 
+create FUNCTION doesStoryExistsInLibrary(	@UserID int, @StoryID int) RETURNS bit
+as
+BEGIN
+	if exists(select * from UserStory where UserID = @UserID and StoryID = @StoryID)
+	begin
+		return 1
+	end
+	return 0
+		
+END
+go
+
+create proc addStoryToUser
+	@UserID int,
+	@StoryID int
+
+as
+	if (dbo.doesStoryExistsInLibrary(@UserID, @StoryID) = 0)
+	begin 
+		insert into UserStory (UserID, StoryID)
+		values (@UserID, @StoryID)
+	end
+go
 
 
 create FUNCTION getIDPostbyConditions(@Conditions_list nvarchar(max)) RETURNS int
@@ -428,11 +493,3 @@ as
 	where IDPost = dbo.getIDPostbyConditions(@Conditions_list)
 go
 
-create proc getTop10StoriesByReview
-as
-	select distinct top 10  s.*, 
-		AVG(Cast(r.Score as decimal)) OVER(PARTITION BY s.IDStory) AS AvgREv
-	from Story as s
-	inner join Review as r on s.IDStory = r.StoryID
-	order by AvgREv desc
-go

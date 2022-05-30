@@ -7,7 +7,11 @@ export default function CommentsHolder(props) {
     const [comments, setComments] = useState([])
 
     useEffect(() => {
-        fetch(EndPoints.getStoryCommentsEndPoint + "?idStory=" + props.idStory)
+        getStoryComments()
+    }, [])
+
+    async function getStoryComments() {
+        await fetch(EndPoints.getStoryCommentsEndPoint + "?idStory=" + props.idStory)
             .then(res => res.json())
             .then(
                 (result) => {
@@ -19,7 +23,7 @@ export default function CommentsHolder(props) {
                     console.log(error)
                 }
             )
-    }, [])
+    }
 
     function renderCommentItem(itemData) {
         const commentItemProps = {

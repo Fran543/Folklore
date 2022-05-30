@@ -45,7 +45,8 @@ export default function BlogCreator() {
       title: title,
       summary: summary,
       image: image,
-      posts: [{ content: post }]
+      posts: [{ content: post }],
+      warnings: warnings
     });
   };
 

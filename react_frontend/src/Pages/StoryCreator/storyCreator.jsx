@@ -41,7 +41,8 @@ export default function StoryCreator() {
             title: title,
             summary: summary,
             image: image,
-            posts: posts
+            posts: posts,
+            warnings: warnings
         });
     };
 

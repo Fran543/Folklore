@@ -55,3 +55,12 @@ exports.removeStoryFromUser = async (req, res) => {
     }
 }
 
+exports.addStoryToUserLibrary = async (req, res) => {
+    try {
+        await dbOperations.addStoryToUserLibrary(req.body.userID, req.query.storyID)
+        res.status(200).send({ message: "Story added to library" });
+    } catch (error) {
+        return res.status(400).send(error);
+    }
+}
+

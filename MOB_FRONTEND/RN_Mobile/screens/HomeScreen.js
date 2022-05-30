@@ -10,8 +10,8 @@ export default function HomeScreen({ navigation }) {
     useEffect(() => {
         getAllPosts()
         return () => {
-            setPostItems({});
-          };
+            setPostItems([]);
+        };
     }, [])
 
     async function getAllPosts() {
@@ -54,7 +54,7 @@ export default function HomeScreen({ navigation }) {
 
     return (
         <View style={styles.rootContainer}>
-            <SearchBar  style={styles.searchBar}/>
+            <SearchBar style={styles.searchBar} />
             <FlatList style={styles.flatList} data={postItems} renderItem={renderPostItem}
                 keyExtractor={(item, index) => {
                     return item.IDStory

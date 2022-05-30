@@ -12,6 +12,9 @@ export default function UserProfileScreen({ navigation }) {
 
     useEffect(() => {
         getUser()
+        return () => {
+            setUser({ username: "", email: "" });
+        };
     }, [])
 
     function renderPostItem(itemData) {

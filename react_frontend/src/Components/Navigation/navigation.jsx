@@ -7,8 +7,8 @@ var getLogOutPoint = "http://127.0.0.1:8091/logout"
 function Navigation() {
 
     useEffect(() => {
-        import('./navigation.css');
-    })
+        import('./navigation.css')
+    }, [])
 
     const logOut = () => {
         // console.log(document.cookie)

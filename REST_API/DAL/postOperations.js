@@ -83,12 +83,42 @@ async function getPosts() {
 }
 
 async function getStories() {
+    const stories = []
     try {
         let pool = await sql.connect(config);
         let posts = await pool
             .request()
             .execute('selectStories');
+        for (const [i, story] of posts.recordset.entries()) {
+            stories.push({
+                IDStory: story.IDStory,
+                ImageBlob: story.ImageBlob,
+                PubDate: story.PubDate,
+                StoryName: story.StoryName,
+                Summary: story.Summary,
+                Username: story.Username,
+                Score: story.Score,
+                CommentNbr: story.CommentNbr,
+                warnings: await getStoryWarnings(story.IDStory)
+            })
+        }
+        return stories
+        // return posts.recordset;
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+    }
+}
+
+async function getStoryWarnings(idStory) {
+    try {
+        let pool = await sql.connect(config);
+        let posts = await pool
+            .request()
+            .input('IDStory', sql.Int, idStory)
+            .execute('selectStoryWarnings');
         return posts.recordset;
+        // return posts.recordset;
     } catch (err) {
         console.log(err.message);
     } finally {
@@ -96,12 +126,27 @@ async function getStories() {
 }
 
 async function getTrendingStories() {
+    const stories = []
+
     try {
         let pool = await sql.connect(config);
         let posts = await pool
             .request()
             .execute('getTop10StoriesByReview');
-        return posts.recordset;
+        for (const [i, story] of posts.recordset.entries()) {
+            stories.push({
+                IDStory: story.IDStory,
+                ImageBlob: story.ImageBlob,
+                PubDate: story.PubDate,
+                StoryName: story.StoryName,
+                Summary: story.Summary,
+                Username: story.Username,
+                Score: story.Score,
+                CommentNbr: story.CommentNbr,
+                warnings: await getStoryWarnings(story.IDStory)
+            })
+        }
+        return stories
     } catch (err) {
         console.log(err.message);
     } finally {

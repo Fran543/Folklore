@@ -7,7 +7,11 @@ export default function StarsRating(props) {
     const [orgScore, setOrgScore] = useState(0)
 
     useEffect(() => {
-        fetch(EndPoints.getUserStoryScore, {
+        getUserStoryScore();
+    }, [])
+
+    async function getUserStoryScore() {
+        await fetch(EndPoints.getUserStoryScore, {
             method: 'POST',
             credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
@@ -23,7 +27,7 @@ export default function StarsRating(props) {
                     console.log(error)
                 }
             )
-    }, [])
+    }
 
     function saveScore(score) {
         fetch(EndPoints.addScoreToStory, {

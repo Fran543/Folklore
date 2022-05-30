@@ -1,33 +1,14 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 var loginEndPoint = "http://127.0.0.1:8091/login"
 
 
-function loginUser(credentials) {
-    fetch(loginEndPoint, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        body: JSON.stringify(credentials)
-    })
-        .then(async (response) => {
-            let message = await response.json()
-            if (!response.ok) throw new Error(message.message);
-            else return message.message;
-        })
-        .then(async (data) => {
-            console.log(data);
-        })
-        .catch(error => {
-            console.log(error);
-        })
-}
 
-function Login_Form() {
+
+function Login_Form({ createNotification }) {
 
     useEffect(() => {
         import('./loginForm.css');
@@ -36,7 +17,29 @@ function Login_Form() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
+    const loginUser = (credentials) => {
+        fetch(loginEndPoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify(credentials)
+        })
+            .then(async (response) => {
+                let message = await response.json()
+                if (!response.ok) throw new Error(message.message);
+                else return message.message;
+            })
+            .then(async (data) => {
+                navigate("/")
+            })
+            .catch(error => {
+                createNotification('error', error.message)
+            })
+    }
 
     const login = async (e) => {
         e.preventDefault();

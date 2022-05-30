@@ -102,13 +102,28 @@ async function checkEmail(email) {
 }
 
 async function getUserBlogs(id) {
+    const stories = []
+
     try {
         let pool = await sql.connect(config);
         let users = await pool
             .request()
             .input('IDUser', sql.Int, id)
             .execute('getUserBlogs');
-        return users.recordsets[0];
+        for (const [i, story] of users.recordset.entries()) {
+            stories.push({
+                IDStory: story.IDStory,
+                ImageBlob: story.ImageBlob,
+                PubDate: story.PubDate,
+                StoryName: story.StoryName,
+                Summary: story.Summary,
+                Username: story.Username,
+                Score: story.Score,
+                CommentNbr: story.CommentNbr,
+                warnings: await getStoryWarnings(story.IDStory)
+            })
+        }
+        return stories
     } catch (err) {
         console.log(err.message);
     } finally {
@@ -116,13 +131,44 @@ async function getUserBlogs(id) {
 }
 
 async function getUserStories(id) {
+    const stories = []
     try {
         let pool = await sql.connect(config);
         let users = await pool
             .request()
             .input('IDUser', sql.Int, id)
             .execute('getUserStories');
-        return users.recordsets[0];
+        for (const [i, story] of users.recordset.entries()) {
+            stories.push({
+                IDStory: story.IDStory,
+                ImageBlob: story.ImageBlob,
+                PubDate: story.PubDate,
+                StoryName: story.StoryName,
+                Summary: story.Summary,
+                Username: story.Username,
+                Score: story.Score,
+                CommentNbr: story.CommentNbr,
+                warnings: await getStoryWarnings(story.IDStory)
+            })
+        }
+        return stories
+
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+    }
+}
+
+
+async function getStoryWarnings(idStory) {
+    try {
+        let pool = await sql.connect(config);
+        let posts = await pool
+            .request()
+            .input('IDStory', sql.Int, idStory)
+            .execute('selectStoryWarnings');
+        return posts.recordset;
+        // return posts.recordset;
     } catch (err) {
         console.log(err.message);
     } finally {
@@ -130,15 +176,27 @@ async function getUserStories(id) {
 }
 
 async function getUserLibrary(id) {
+    const stories = []
     try {
         let pool = await sql.connect(config);
         let users = await pool
             .request()
             .input('IDUser', sql.Int, id)
             .execute('getUserLibrary');
-            console.log(id)
-            console.log(users.recordsets[0])
-        return users.recordsets[0];
+        for (const [i, story] of users.recordset.entries()) {
+            stories.push({
+                IDStory: story.IDStory,
+                ImageBlob: story.ImageBlob,
+                PubDate: story.PubDate,
+                StoryName: story.StoryName,
+                Summary: story.Summary,
+                Username: story.Username,
+                Score: story.Score,
+                CommentNbr: story.CommentNbr,
+                warnings: await getStoryWarnings(story.IDStory)
+            })
+        }
+        return stories
     } catch (err) {
         console.log(err.message);
     } finally {
@@ -173,6 +231,21 @@ async function removeStoryFromUser(userID, storyID) {
     }
 }
 
+async function addStoryToUserLibrary(userID, storyID) {
+    console.log(userID + " " + storyID)
+    try {
+        let pool = await sql.connect(config);
+        let users = await pool
+            .request()
+            .input('UserID', sql.Int, userID)
+            .input('StoryID', sql.Int, storyID)
+            .execute('addStoryToUser');
+        return users.recordsets;
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
 module.exports = {
     getUsers: getUsers,
     getUser: getUser,
@@ -184,5 +257,6 @@ module.exports = {
     getUserStories: getUserStories,
     getUserLibrary: getUserLibrary,
     getSearchItems: getSearchItems,
-    removeStoryFromUser: removeStoryFromUser
+    removeStoryFromUser: removeStoryFromUser,
+    addStoryToUserLibrary: addStoryToUserLibrary
 }

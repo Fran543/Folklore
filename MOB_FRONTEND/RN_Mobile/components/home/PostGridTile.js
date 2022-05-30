@@ -9,6 +9,9 @@ import CommentButton from "../ui/CommentButton";
 import AddToLibraryButton from "../ui/AddToLibraryButton";
 
 export default function PostGridTile(props, { pubDate }) {
+
+    
+
     const [starsToggle, setStarsToggle] = useState(false)
     const [commentsToggle, setCommentsToggle] = useState(false)
     Moment.locale('en');
@@ -56,7 +59,7 @@ export default function PostGridTile(props, { pubDate }) {
                             <Text style={styles.text}>{Moment({ pubDate }).format('ddd,MMM,YY')}</Text>
                         </View>
                         <CommentButton onPress={commentsToggleHandler} commentNbr={props.commentNbr} />
-                        <AddToLibraryButton />
+                        <AddToLibraryButton idStory={props.idStory} />
                     </View>
                 </View>
             </Pressable>

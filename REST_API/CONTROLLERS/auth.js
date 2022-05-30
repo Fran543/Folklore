@@ -11,15 +11,15 @@ exports.register = (req, res) => {
     // }
     dbOperations.checkUsernameAndEmail(username, email).then(async result => {
         if (result !== null) {
-            return res.status(400).send('Username or email exists');
+            return res.status(400).send({ message: "Username or email exists" });
         } else if (password !== passwordConfirm) {
-            return res.status(400).send('Passwords do not match');
+            return res.status(400).send({ message: "Passwords do not match" });
         }
 
         let hashedPassword = await bcrypt.hash(password, 8);
 
         await dbOperations.createUser(username, email, hashedPassword);
-        res.status(200).send('User created');
+        res.status(200).send({ message: "User created" });
     })
 }
 

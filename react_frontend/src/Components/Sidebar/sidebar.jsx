@@ -21,6 +21,7 @@ export default function Sidebar({ title, setTitle, summary, setSummary, warnings
     const [preview, setPreview] = useState()
     const [options, setoptions] = useState([])
     const [wrngis, setwrngis] = useState([])
+    const [selectedOptions, setSelectedOptions] = useState([])
 
 
     async function getWarnings() {
@@ -46,10 +47,8 @@ export default function Sidebar({ title, setTitle, summary, setSummary, warnings
     })
 
     useEffect(() => {
-        const fetchWarnings = async () => {
-            await getWarnings()
-        }
-        fetchWarnings()
+
+        getWarnings()
     }, [])
 
     useEffect(() => {
@@ -73,6 +72,14 @@ export default function Sidebar({ title, setTitle, summary, setSummary, warnings
         console.log(e.target.files[0])
         setSelectedFile(e.target.files[0])
         setImage(await toBase64(e.target.files[0]))
+    }
+
+    const handleChange = (selectedOption) => {
+        setSelectedOptions(selectedOption);
+        for (let index = 0; index < selectedOption.length; index++) {
+            console.log(`Option selected:`, selectedOption[index].value);
+        } //this prints the selected option
+        setWarnings([...warnings, selectedOption[selectedOption.length - 1].value.IDWarning])
     }
 
     return (
@@ -106,7 +113,12 @@ export default function Sidebar({ title, setTitle, summary, setSummary, warnings
                         {/* <span className="text nav-text lblWarning" id="lblWarning">
                             Warnings
                         </span> */}
-                        <Select placeholder="Warnings" options={options} isMulti className="ddlWarnings"> Warnings</Select>
+                        <Select placeholder="Warnings"
+                            options={options}
+                            isMulti
+                            className="ddlWarnings"
+                            onChange={handleChange}
+                        > Warnings</Select>
                     </li>
 
                     <li className="search-box">

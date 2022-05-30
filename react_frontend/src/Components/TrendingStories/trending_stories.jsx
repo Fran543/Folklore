@@ -75,10 +75,10 @@ class TrendingStories extends React.Component {
                     <div className="postHolder" id="postHolder">
 
                         {items.map((item, index) => (
-                            // <StoryCard story={item} />
                             <div className='story_card trendingCard' id='cardGlow' key={index}>
                                 <div className='info_section' onClick={() => this.showPost(item.IDStory)}>
-                                    <div className='row'>
+                                    <StoryCard id='cardGlow' story={item} key={index} />
+                                    {/* <div className='row'>
                                         <div className='col-12 d-md-none'>
                                             <img src={item.ImageBlob} alt='image' className='img-fluid' />
                                         </div>
@@ -102,7 +102,7 @@ class TrendingStories extends React.Component {
                                             <li><i className='material-icons-outlined'><span className='material-icons' > chat_bubble_outline</span ></i ></li>
                                         </ul>
                                     </div>
-                                    <div className='blur_back card_back'></div>
+                                    <div className='blur_back card_back'></div> */}
                                 </div>
                             </div>
                         ))}

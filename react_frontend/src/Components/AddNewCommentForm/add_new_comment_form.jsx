@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 
 var addCommentToStory = "http://127.0.0.1:8091/addCommentToStory"

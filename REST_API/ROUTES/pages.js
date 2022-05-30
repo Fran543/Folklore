@@ -18,9 +18,7 @@ router.get('/getStories', postController.getStories);
 
 router.get('/getTrendingStories', postController.getTrendingStories);
 
-router.get('/getUserLibrary', userController.getUserLibrary);
-
-router.get('/removeStoryFromUser', verify, userController.removeStoryFromUser);
+router.get('/getUserLibrary', verify, userController.getUserLibrary);
 
 router.get('/getSearchItems', userController.getSearchItems);
 
@@ -37,6 +35,10 @@ router.get('/getUser', verify, userController.getUser);
 router.get('/getUserBlogs', verify, userController.getUserBlogs);
 
 router.get('/getUserStories', verify, userController.getUserStories);
+
+router.get('/removeStoryFromUser', verify, userController.removeStoryFromUser);
+
+router.get('/addStoryToUserLibrary', verify, userController.addStoryToUserLibrary);
 
 router.get('/deleteUser', verify, userController.deleteUser);
 

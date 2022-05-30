@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Image, Button, FlatList } from "react-native";
+import { StyleSheet, View, Text, Image, Button, FlatList, ScrollView } from "react-native";
 import { useLayoutEffect, useState, useEffect } from 'react'
 import EndPoints from "../constants/endPoints";
 
@@ -22,7 +22,10 @@ export default function PostFullScreen({ route, navigation }) {
     }, [])
 
     async function getPostDetails() {
-        await fetch(EndPoints.getStoryByIdEndPoint + "?idStory=" + idStory)
+        await fetch(EndPoints.getStoryByIdEndPoint + "?idStory=" + idStory, {
+            credentials: "include",
+
+        })
             .then(res => res.json())
             .then(
                 (result) => {
@@ -65,18 +68,20 @@ export default function PostFullScreen({ route, navigation }) {
                 source={{ uri: story && story.ImageBlob ? story.ImageBlob : require("../assets/icon.png") }}
                 resizeMode="cover"
                 style={styles.image} />
-            <FlatList data={posts} renderItem={renderPostItem}
-                keyExtractor={(item, index) => {
-                    return item.IDPost
-                }}
-            />
+            <ScrollView style={styles.scrollView} >
+                <FlatList data={posts} renderItem={renderPostItem}
+                    keyExtractor={(item, index) => {
+                        return index
+                    }}
+                />
+            </ScrollView>
             {choices !== null ?
                 <View style={styles.btnContainer}>
                     <View style={styles.button}>
-                        <Button color={'#C2A695'} title={choices && choices[0].Content} onPress={renderNextPost(choices[0].IDChoice)} />
+                        <Button color={'#C2A695'} title={choices && choices[0].Content} onPress={(e) => renderNextPost(choices[0].IDChoice)} />
                     </View>
                     <View style={styles.button}>
-                        <Button color={'#C2A695'} title={choices && choices[1].Content} onPress={renderNextPost(choices[1].IDChoice)} />
+                        <Button color={'#C2A695'} title={choices && choices[1].Content} onPress={(e) => renderNextPost(choices[1].IDChoice)} />
                     </View>
                 </View>
                 :
@@ -95,9 +100,10 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: 400,
+
     },
     text: {
-        color: 'white'
+        color: 'white',
     },
     btnContainer: {
         flexDirection: 'row',
@@ -113,5 +119,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flex: 1,
         marginVertical: 20
+    },
+    scrollView: {
+        height: 300
     }
 })

@@ -9,7 +9,7 @@ import logo from '../../Assets/IMAGES/storiesPlaceholder.avif';
 
 
 function Library_Story({ story, removeStory }) {
-    
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -30,15 +30,15 @@ function Library_Story({ story, removeStory }) {
                     </div> */}
                     <div className="col-12 col-md-6 text-start">
                         <h1 id="lbTitle">{story.StoryName}</h1>
-                        <div className="warnings">
-                            <span>Warning</span>
-                            <span> | </span>
-                            <span>Warning</span>
-                            <span> | </span>
-                            <span>Warning</span>
-                            <span> | </span>
-                            <span>Warning</span>
-                        </div>
+                        {story.warnings.length !== 0 && <h6>Warnings:</h6>}
+                        <p className='warnings'>
+                            {story.warnings.map((warning, i) => (
+                                <>
+                                    <span>{warning.WarningName} </span>
+                                    <span> | </span>
+                                </>
+                            ))}
+                        </p>
                     </div>
                 </div>
                 <div className="story_desc">
