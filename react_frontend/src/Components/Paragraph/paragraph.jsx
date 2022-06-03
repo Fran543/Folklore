@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet";
 import Draggable from "react-draggable";
 import { useEffect, useState } from "react";
 
-export default function Paragraph({ post, postNbr }) {
+export default function Paragraph({ post, postNbr, paragraphNbr }) {
 
   const [selectedFile, setSelectedFile] = useState()
   const [preview, setPreview] = useState()
@@ -51,6 +51,14 @@ export default function Paragraph({ post, postNbr }) {
     }
   }
 
+  const addConditions = (e) => {
+    let value = Array.from(
+      e.target.selectedOptions,
+      (option) => option.value
+    );
+    post.conditions = (value)
+  }
+
   return (
     <Draggable>
       <div className="movableParagraph">
@@ -60,7 +68,11 @@ export default function Paragraph({ post, postNbr }) {
             <input type="file" id="paragraphImg" accept="image/*" onChange={onSelectFile}></input>
           </div>
           <div name="ddlHolder" className="ddlHolder">
-            <select multiple="multiple" className="ddlChoices"></select>
+            <select multiple="multiple" className="ddlChoices" onChange={(e) => addConditions(e)}>
+              {[...Array(paragraphNbr * 2)].map((x, i) =>
+                <option key={i} value={i} >{i + 1}</option>
+              )}
+            </select>
           </div>
           <div className="storyPart ui-widget-content">
             <textarea className="paragraph" value={content} onChange={async (e) => updateContent(e.target.value)}></textarea>
@@ -74,6 +86,6 @@ export default function Paragraph({ post, postNbr }) {
           </div>
         </div>
       </div>
-    </Draggable>
+    </Draggable >
   );
 }

@@ -12,6 +12,8 @@ export default function StoryCreator() {
     const [warnings, setWarnings] = useState([]);
     const [image, setImage] = useState("");
     const [posts, setPosts] = useState([]);
+    const [paragraphNbr, setParagraphNbr] = useState(0);
+
 
     async function callAjax(blogData) {
         fetch(createStoryEndPoint, {
@@ -55,6 +57,7 @@ export default function StoryCreator() {
             conditions: [],
             choices: [{ choiceValue: "" }, { choiceValue: "" }]
         }])
+        setParagraphNbr(paragraphNbr + 1);
     }
     const clearPosts = () => {
         setPosts([{}])
@@ -71,7 +74,7 @@ export default function StoryCreator() {
                     setWarnings={(warnings) => setWarnings(warnings)}
                     image={image}
                     setImage={(title) => setImage(title)} />
-                <Canvas posts={posts} addPost={() => addPost()} uploadStory={() => collectData()} clearPosts={() => clearPosts()} />
+                <Canvas posts={posts} paragraphNbr={paragraphNbr} addPost={() => addPost()} uploadStory={() => collectData()} clearPosts={() => clearPosts()} />
             </div>
             <DeleteAnimation />
         </>

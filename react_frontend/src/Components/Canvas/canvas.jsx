@@ -2,13 +2,14 @@ import React, { Suspense, useLayoutEffect } from "react";
 import { Helmet } from "react-helmet";
 const Paragraph = React.lazy(() => import("../../Components/Paragraph/paragraph"))
 
-export default function Canvas({ posts, clearPosts, addPost, uploadStory }) {
+export default function Canvas({ posts, clearPosts, addPost, uploadStory, paragraphNbr }) {
 
     useLayoutEffect(() => {
         import("./canvas.css")
     })
 
     const [paragraphs, setDynamicParagraphs] = React.useState(0);
+
 
     const callAjax = (post) => {
 
@@ -36,7 +37,7 @@ export default function Canvas({ posts, clearPosts, addPost, uploadStory }) {
                 {posts.map((p, i) => {
                     return (
                         <Suspense key={i} fallback={<div>Loading Component....</div>}>
-                            <Paragraph post={p} postNbr={i + 1} />
+                            <Paragraph post={p} postNbr={i + 1} paragraphNbr={paragraphNbr} />
                         </Suspense>)
                 })}
             </div>

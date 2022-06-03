@@ -80,3 +80,15 @@ select * from Review
 
 select * from Story
 select * from post
+
+
+select * from Story
+select * from UserStory 
+
+
+update post set Content = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Laoreet suspendisse interdum consectetur libero. In fermentum posuere urna nec tincidunt praesent semper feugiat nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Laoreet suspendisse interdum consectetur libero. In fermentum posuere urna nec tincidunt praesent semper feugiat nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Laoreet suspendisse interdum consectetur libero. In fermentum posuere urna nec tincidunt praesent semper feugiat nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Laoreet suspendisse interdum consectetur libero. In fermentum posuere urna nec tincidunt praesent semper feugiat nibh. '
+where IDPost = 237
+
+
+select * from Story
+select * from WarningStory

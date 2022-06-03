@@ -11,7 +11,6 @@ const toBase64 = file => new Promise((resolve, reject) => {
     reader.onerror = error => reject(error);
 });
 
-const o = []
 
 export default function Sidebar({ title, setTitle, summary, setSummary, warnings, setWarnings, image, setImage }) {
 
@@ -23,35 +22,11 @@ export default function Sidebar({ title, setTitle, summary, setSummary, warnings
     const [wrngis, setwrngis] = useState([])
     const [selectedOptions, setSelectedOptions] = useState([])
 
-
-    async function getWarnings() {
-        await fetch(getWarningsEndPoint)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    setwrngis(result)
-                    const pushOptions = async () => wrngis.map(warning => {
-                        o.push({ value: warning, label: warning.WarningName })
-                    });
-                    pushOptions();
-                    setoptions(o);
-                },
-                (error) => {
-                    console.log(error)
-                }
-            )
-    }
-
-    useLayoutEffect(() => {
-        import('./sidebar.css');
-    })
-
+    // useEffect(() => {
+    //     getWarnings()
+    // }, [])
     useEffect(() => {
-
         getWarnings()
-    }, [])
-
-    useEffect(() => {
         if (!selectedFile) {
             setPreview(undefined)
             return
@@ -63,6 +38,32 @@ export default function Sidebar({ title, setTitle, summary, setSummary, warnings
         // free memory when ever this component is unmounted
         return () => URL.revokeObjectURL(objectUrl)
     }, [selectedFile])
+
+    useLayoutEffect(() => {
+        import('./sidebar.css');
+    })
+
+    async function getWarnings() {
+        var o = []
+
+        await fetch(getWarningsEndPoint)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setwrngis(result)
+                    for (const warning of result) {
+                        o.push({ value: warning, label: warning.WarningName })
+                    }
+                    setoptions(o);
+                },
+                (error) => {
+                    console.log(error)
+                }
+            )
+    }
+
+
+
 
     const onSelectFile = async e => {
         if (!e.target.files || e.target.files.length === 0) {
@@ -79,7 +80,7 @@ export default function Sidebar({ title, setTitle, summary, setSummary, warnings
         for (let index = 0; index < selectedOption.length; index++) {
             console.log(`Option selected:`, selectedOption[index].value);
         } //this prints the selected option
-        setWarnings([...warnings, selectedOption[selectedOption.length - 1].value.IDWarning])
+        setwrngis([...wrngis, selectedOption[selectedOption.length - 1].value.IDWarning])
     }
 
     return (

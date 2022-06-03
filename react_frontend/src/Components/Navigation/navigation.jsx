@@ -51,7 +51,9 @@ function Navigation() {
                                 <a className="dropdown-item" id="btnLogOut" onClick={(e) => logOut()}>Log out</a>
                                 <a className="dropdown-item" href="/library">Library</a>
                                 <a className="dropdown-item" href="/postCreator">Create post</a>
+
                             </div>
+                            <div id="google_translate_element"></div>
                         </li>
                     </ul>
                 </div>
