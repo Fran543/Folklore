@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { default as AutocompleteBox } from "./autocomplete_box";
 import { useNavigate } from 'react-router-dom';
+import EndPoints from "../../constants/endPoints";
 
 
-var getSearchItemsEndPoint = "http://127.0.0.1:8091/getSearchItems"
+
+var getSearchItemsEndPoint = EndPoints.getSearchItemsEndPoint
 
 function Search_Box({ filter, setFilter }) {
 

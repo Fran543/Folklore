@@ -1,6 +1,8 @@
 import React from "react";
+import EndPoints from "../../constants/endPoints";
 
-var deleteUserEndPoint = "http://127.0.0.1:8091/deleteUser"
+
+var deleteUserEndPoint = EndPoints.deleteUserEndPoint
 
 function Button() {
 

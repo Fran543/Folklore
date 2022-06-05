@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import EndPoints from "../../constants/endPoints";
 
 
 
-var registerEndPoint = "http://127.0.0.1:8091/register"
+var registerEndPoint = EndPoints.registerEndPoint
 
 
 

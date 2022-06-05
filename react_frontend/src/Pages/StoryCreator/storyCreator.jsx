@@ -1,9 +1,10 @@
 import React from "react";
 import { Sidebar, Canvas, DeleteAnimation } from "../../Components";
 import { useState } from "react";
+import EndPoints from "../../constants/endPoints";
 
-var createStoryEndPoint = "http://127.0.0.1:8091/createStory";
 
+var createStoryEndPoint = EndPoints.createStoryEndPoint
 
 export default function StoryCreator() {
 

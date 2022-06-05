@@ -2,8 +2,10 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 import { Stories, TrendingStories, SearchBox } from "../../Components";
+import EndPoints from "../../constants/endPoints";
 
-var getStoriesEndPoint = "http://127.0.0.1:8091/getStories"
+
+var getStoriesEndPoint = EndPoints.getStoriesEndPoint
 
 function Home() {
     // stories, setStores, filteredStories, setFilteredStories

@@ -3,6 +3,9 @@ import { Helmet } from "react-helmet";
 import { Warning } from "../../Components"
 import Select from 'react-select'
 import AsyncSelect from 'react-select/async';
+import EndPoints from "../../constants/endPoints";
+
+const getWarningsEndPoint = EndPoints.getWarningsEndPoint
 
 const toBase64 = file => new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -14,7 +17,6 @@ const toBase64 = file => new Promise((resolve, reject) => {
 
 export default function Sidebar({ title, setTitle, summary, setSummary, setWarnings, setImage }) {
 
-    var getWarningsEndPoint = "http://127.0.0.1:8091/getWarnings"
 
     const [selectedFile, setSelectedFile] = useState()
     const [preview, setPreview] = useState()

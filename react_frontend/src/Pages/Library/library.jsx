@@ -2,10 +2,11 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Carousel from 'react-bootstrap/Carousel'
 import { LibraryStory } from "../../Components";
+import EndPoints from "../../constants/endPoints";
 
-var getUserLibraryEndPoint = "http://127.0.0.1:8091/getUserLibrary"
-var removeStoryFromUserEndPoint = "http://127.0.0.1:8091/removeStoryFromUser"
 
+var getUserLibraryEndPoint = EndPoints.getUserLibraryEndPoint
+var removeStoryFromUserEndPoint = EndPoints.removeStoryFromUserEndPoint
 
 function Library() {
 

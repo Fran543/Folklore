@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { UserStories, UserInfo } from "../../Components";
 import { Helmet } from "react-helmet";
+import EndPoints from "../../constants/endPoints";
 
-var getUserEndPoint = "http://127.0.0.1:8091/getUser"
+var getUserEndPoint = EndPoints.getUserEndPoint
 
 
 function User_Profile() {

@@ -3,9 +3,10 @@ import { useEffect } from "react";
 import { default as StarRating } from '../StarRating/star_rating';
 import { default as Comments } from '../Comments/comments';
 import { useNavigate } from 'react-router-dom';
+import EndPoints from "../../constants/endPoints";
 
-const addStoryToUserLibraryEndPoint = 'http://127.0.0.1:8091/addStoryToUserLibrary'
 
+const addStoryToUserLibraryEndPoint = EndPoints.addStoryToUserLibraryEndPoint
 
 function Story_Card({ story }) {
 

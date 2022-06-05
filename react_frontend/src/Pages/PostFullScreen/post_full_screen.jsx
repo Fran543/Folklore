@@ -3,10 +3,13 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useParams } from "react-router";
 
+import EndPoints from "../../constants/endPoints";
 
 
-var getStoryByIdEndPoint = "http://127.0.0.1:8091/getStoryById";
-var getPostByChoiceIdEndPoint = "http://127.0.0.1:8091/getPostByChoiceId"
+
+
+var getStoryByIdEndPoint = EndPoints.getStoryByIdEndPoint
+var getPostByChoiceIdEndPoint = EndPoints.getPostByChoiceIdEndPoint
 
 function PostFullScreen() {
   const [story, setStory] = useState(null);

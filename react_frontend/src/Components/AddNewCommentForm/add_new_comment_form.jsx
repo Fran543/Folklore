@@ -1,7 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import EndPoints from "../../constants/endPoints";
 
-var addCommentToStory = "http://127.0.0.1:8091/addCommentToStory"
+var addCommentToStory = EndPoints.addCommentToStory
 
 
 function Add_New_Comment_Form({ idStory }) {

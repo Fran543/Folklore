@@ -2,11 +2,14 @@ import React from 'react';
 import { Helmet } from "react-helmet";
 import { default as StoryCard } from '../StoryCard/story_card';
 
+import EndPoints from "../../constants/endPoints";
 
-var getUserEndPoint = "http://127.0.0.1:8091/getUser"
 
 
-var getTrendingStoriesEndPoint = "http://127.0.0.1:8091/getTrendingStories"
+var getUserEndPoint = EndPoints.getUserEndPoint
+
+
+var getTrendingStoriesEndPoint = EndPoints.getTrendingStoriesEndPoint
 
 class TrendingStories extends React.Component {
     constructor(props) {

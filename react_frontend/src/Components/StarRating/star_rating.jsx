@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import EndPoints from "../../constants/endPoints";
 
-var addScoreToStory = "http://127.0.0.1:8091/addScoreToStory"
-var getUserStoryScore = "http://127.0.0.1:8091/getUserStoryScore"
+
+
+var addScoreToStory = EndPoints.addScoreToStory
+var getUserStoryScore = EndPoints.getUserStoryScore
 
 function Star_Rating({ idStory }) {
 

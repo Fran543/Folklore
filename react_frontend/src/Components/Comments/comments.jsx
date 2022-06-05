@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { default as AddNewCommentForm } from '../AddNewCommentForm/add_new_comment_form';
 import { default as Comment } from '../Comment/comment';
+import EndPoints from "../../constants/endPoints";
 
 
-var getStoryCommentsEndPoint = "http://127.0.0.1:8091/getStoryComments"
+
+var getStoryCommentsEndPoint = EndPoints.getStoryCommentsEndPoint
 
 
 function Comments({ idStory }) {
