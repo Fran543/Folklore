@@ -53,7 +53,11 @@ function Navigation() {
                                 <a className="dropdown-item" href="/postCreator">Create post</a>
 
                             </div>
-                            <div id="google_translate_element"></div>
+                        </li>
+                        <li className="nav-item">
+                            <div className="dropdown">
+                                <div id="google_translate_element"></div>
+                            </div>
                         </li>
                     </ul>
                 </div>

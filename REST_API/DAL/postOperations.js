@@ -290,6 +290,9 @@ async function getUserStoryScore(idUser, idStory) {
     }
 }
 
+
+
+
 module.exports = {
     createPost: createPost,
     createStory: createStory,

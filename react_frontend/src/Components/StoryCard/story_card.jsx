@@ -51,10 +51,7 @@ function Story_Card({ story }) {
                 {story.warnings.length !== 0 && <h6>Warnings:</h6>}
                 <p className='warnings'>
                     {story.warnings.map((warning, i) => (
-                        <>
-                            <span>{warning.WarningName} </span>
-                            <span> | </span>
-                        </>
+                        <span key={i}>{warning.WarningName} | </span>
                     ))}
                 </p>
                 <p className='card-text'>{story.Summary}</p>

@@ -12,15 +12,13 @@ const toBase64 = file => new Promise((resolve, reject) => {
 });
 
 
-export default function Sidebar({ title, setTitle, summary, setSummary, warnings, setWarnings, image, setImage }) {
+export default function Sidebar({ title, setTitle, summary, setSummary, setWarnings, setImage }) {
 
     var getWarningsEndPoint = "http://127.0.0.1:8091/getWarnings"
 
     const [selectedFile, setSelectedFile] = useState()
     const [preview, setPreview] = useState()
     const [options, setoptions] = useState([])
-    const [wrngis, setwrngis] = useState([])
-    const [selectedOptions, setSelectedOptions] = useState([])
 
     // useEffect(() => {
     //     getWarnings()
@@ -50,7 +48,6 @@ export default function Sidebar({ title, setTitle, summary, setSummary, warnings
             .then(res => res.json())
             .then(
                 (result) => {
-                    setwrngis(result)
                     for (const warning of result) {
                         o.push({ value: warning, label: warning.WarningName })
                     }
@@ -76,11 +73,11 @@ export default function Sidebar({ title, setTitle, summary, setSummary, warnings
     }
 
     const handleChange = (selectedOption) => {
-        setSelectedOptions(selectedOption);
-        for (let index = 0; index < selectedOption.length; index++) {
-            console.log(`Option selected:`, selectedOption[index].value);
-        } //this prints the selected option
-        setwrngis([...wrngis, selectedOption[selectedOption.length - 1].value.IDWarning])
+        let values = Array.from(
+            selectedOption,
+            (option) => option.value.IDWarning
+        );
+        setWarnings(values)
     }
 
     return (

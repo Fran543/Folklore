@@ -38,9 +38,9 @@ async function addWarningsToStory(storyID, warnings) {
 }
 
 exports.createStory = async (req, res) => {
+    console.log(req.body);
     const { title, summary, posts, userID, image, warnings } = req.body;
     var storyID = await dbOperations.createStory(title, summary, image, userID);
-    console.log(userID)
     if (posts != null) {
         addPostsToStory(storyID, posts)
     }
