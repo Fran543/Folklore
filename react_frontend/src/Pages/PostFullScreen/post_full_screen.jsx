@@ -5,9 +5,6 @@ import { useParams } from "react-router";
 
 import EndPoints from "../../constants/endPoints";
 
-
-
-
 var getStoryByIdEndPoint = EndPoints.getStoryByIdEndPoint
 var getPostByChoiceIdEndPoint = EndPoints.getPostByChoiceIdEndPoint
 
@@ -67,21 +64,21 @@ function PostFullScreen() {
 
 
   useEffect(() => {
-    asyncFetch();
     import("./postFullscreen.css");
+    asyncFetch();
 
   }, []);
 
   return (
     <div>
-      <div id="titleFlash">
+      {/* <div id="titleFlash">
         <h1></h1>
-      </div>
+      </div> */}
 
-      <div className="effect"></div>
+      {/* <div className="effect"></div> */}
 
       <div id="hero">
-        <div
+        {/* <div
           className="layer-bg layer"
           data-type="parallax"
           data-depth="0.10"
@@ -95,8 +92,9 @@ function PostFullScreen() {
           className="layer-2 layer"
           data-type="parallax"
           data-depth="0.50"
-        ></div>
+        ></div> */}
         <div
+          style={{ backgroundImage: story && `url(${story.ImageBlob})`, backgroundPosition: "center", backgroundSize: "cover" }}
           className="layer-3 layer"
           data-type="parallax"
           data-depth="0.80"
@@ -117,32 +115,40 @@ function PostFullScreen() {
         <div className="container">
           <section className="first-section">
             <div className="row">
-              <div className="col-sm-6">
+              <div className="col-sm-12 text-center ">
                 <h1 id="title">{story && story.StoryName}</h1>
               </div>
             </div>
             {posts.map((post, i) => (
-              <>
-                <div className="row">
-                  <div className="col-sm-6" id="postContainer">{post.Content}</div>
-                </div>
+              <div className="row" key={i}>
+                {post.ImageBlob ? <>
+                  <div className="col-sm-6 " id="postContainer">{post.Content}</div>
+                  <div className="col-sm-6 "><img src={post.ImageBlob && post.ImageBlob} /></div>
+                </> :
+                  <div className="col-sm-12 " id="postContainer">{post.Content}</div>
+                }
+              </div>
 
-              </>
             ))}
             <div className="row" id="optionRow">
               {choices !== null ?
                 <>
-                  <div className="col-sm-6" onClick={() => fetchNextPost(choices[0].IDChoice)}>
+                  <div className="col-sm-6 text-center choice" onClick={() => fetchNextPost(choices[0].IDChoice)}>
                     <p id="option1">{choices && choices[0].Content}</p>
                   </div>
-                  <div className="col-sm-6" onClick={() => fetchNextPost(choices[1].IDChoice)}>
+                  <div className="col-sm-6 text-center choice" onClick={() => fetchNextPost(choices[1].IDChoice)}>
                     <p id="option2">{choices && choices[1].Content}</p>
                   </div>
                 </> :
-                <div className="col-sm-6">
-                  <p >the end</p>
+                <div className="col-sm-12 text-center">
+                  <h5 >THE END</h5>
                 </div>
               }
+            </div>
+            <div className="row" id="optionRow">
+              <div className="col-sm-3 text-center">
+                <a href="/" className="nav-link">HOME</a>
+              </div>
             </div>
           </section>
         </div>
@@ -150,7 +156,7 @@ function PostFullScreen() {
       <Helmet>
         <script src="./postFullscreen.js" />
       </Helmet>
-    </div>
+    </div >
   );
 }
 

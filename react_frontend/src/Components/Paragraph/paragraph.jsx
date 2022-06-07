@@ -2,6 +2,13 @@ import { Helmet } from "react-helmet";
 import Draggable from "react-draggable";
 import { useEffect, useState } from "react";
 
+const toBase64 = file => new Promise((resolve, reject) => {
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => resolve(reader.result);
+  reader.onerror = error => reject(error);
+});
+
 export default function Paragraph({ post, postNbr, paragraphNbr }) {
 
   const [selectedFile, setSelectedFile] = useState()
@@ -27,13 +34,16 @@ export default function Paragraph({ post, postNbr, paragraphNbr }) {
     return () => URL.revokeObjectURL(objectUrl)
   }, [selectedFile]);
 
-  const onSelectFile = e => {
+  const onSelectFile = async e => {
     if (!e.target.files || e.target.files.length === 0) {
       setSelectedFile(undefined)
       return
     }
 
     setSelectedFile(e.target.files[0])
+    setImageBlob(await toBase64(e.target.files[0]))
+    post.imageBlob = await toBase64(e.target.files[0])
+
   }
 
   const updateContent = (content) => {

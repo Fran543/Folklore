@@ -1,32 +1,66 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Cookies from 'js-cookie';
+import { useCookies } from 'react-cookie';
+
+
 
 var getLogOutPoint = "http://127.0.0.1:8091/logout"
 
+function getCookie(name) {
+    var dc = document.cookie;
+    var prefix = name + "=";
+    var begin = dc.indexOf("; " + prefix);
+    if (begin == -1) {
+        begin = dc.indexOf(prefix);
+        if (begin != 0) return null;
+    }
+    else {
+        begin += 2;
+        var end = document.cookie.indexOf(";", begin);
+        if (end == -1) {
+            end = dc.length;
+        }
+    }
+    return decodeURI(dc.substring(begin + prefix.length, end));
+}
 
 function Navigation() {
+    // const [cookie, setCookie] = useState(Cookies.get('jwt'))
+
+
+    const [cookies, setCookie, removeCookie] = useCookies(['jwt']);
 
     useEffect(() => {
         import('./navigation.css')
+        console.log(Cookies.get('jwt'))
+        console.log(getCookie("jwt"))
     }, [])
 
     const logOut = () => {
-        // console.log(document.cookie)
-        // fetch(getLogOutPoint, {
-        //     credentials: 'include'
-        // })
-        //     .then(res => res.json())
-        //     .then(
-        //         (result) => {
-        //             console.log(result)
-        //         },
-        //         // Note: it's important to handle errors here
-        //         // instead of a catch() block so that we don't swallow
-        //         // exceptions from actual bugs in components.
-        //         (error) => {
-        //             console.log(error)
-        //         }
-        //     )
+        fetch(getLogOutPoint, {
+            credentials: 'include'
+        })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log(result)
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    console.log(error)
+                }
+            )
+    }
+
+    const getJwtCookie = () => {
+        console.log("Cookie:")
+        console.log(getCookie("jwt"))
+        console.log(Cookies.get('jwt'))
+        console.log(cookies)
+
     }
 
     return (
@@ -51,7 +85,9 @@ function Navigation() {
                                 <a className="dropdown-item" id="btnLogOut" onClick={(e) => logOut()}>Log out</a>
                                 <a className="dropdown-item" href="/library">Library</a>
                                 <a className="dropdown-item" href="/postCreator">Create post</a>
-
+                                <a className="dropdown-item" href="/">{Cookies.get('jwt')}</a>
+                                <a className="dropdown-item" href="/">{getCookie("jwt")}</a>
+                                <button onClick={getJwtCookie}>get cookie</button>
                             </div>
                         </li>
                         <li className="nav-item">

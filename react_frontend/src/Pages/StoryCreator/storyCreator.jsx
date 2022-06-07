@@ -2,6 +2,8 @@ import React from "react";
 import { Sidebar, Canvas, DeleteAnimation } from "../../Components";
 import { useState } from "react";
 import EndPoints from "../../constants/endPoints";
+import { useNavigate } from 'react-router-dom';
+
 
 
 var createStoryEndPoint = EndPoints.createStoryEndPoint
@@ -14,6 +16,8 @@ export default function StoryCreator() {
     const [image, setImage] = useState("");
     const [posts, setPosts] = useState([]);
     const [paragraphNbr, setParagraphNbr] = useState(0);
+    const navigate = useNavigate();
+
 
 
     async function callAjax(blogData) {
@@ -30,8 +34,10 @@ export default function StoryCreator() {
                 if (!response.ok) throw new Error(msg);
                 else return msg;
             })
-            .then((data) => {
+            .then(async (data) => {
                 console.log(data);
+                navigate("/")
+
             })
             .catch((error) => {
                 console.log(error);

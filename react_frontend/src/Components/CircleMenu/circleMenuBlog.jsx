@@ -24,7 +24,7 @@ function Circle_Menu_Blog({ clearTextArea, upload }) {
       <a href="postCreator" className="myMenu-item purple">
         <i className="fa fa-backward"></i>
       </a>
-      <a href="#" className="myMenu-item green" onClick={(e) => upload("qwe")}>
+      <a href="dofshu" className="myMenu-item green" onClick={(e) => upload(e)}>
         <i className="fa fa-upload"></i>
       </a>
       <a

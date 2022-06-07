@@ -63,7 +63,7 @@ function Library() {
     useEffect(() => {
         import('./library.css');
         fetchlibrary();
-    })
+    }, [])
 
     return (
         <Carousel>

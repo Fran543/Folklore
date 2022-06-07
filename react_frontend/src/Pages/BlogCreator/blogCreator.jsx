@@ -6,31 +6,11 @@ import {
 } from "../../Components";
 import { useState } from "react";
 import EndPoints from "../../constants/endPoints";
+import { useNavigate } from 'react-router-dom';
 
 
 var createStoryEndPoint = EndPoints.createStoryEndPoint
 
-async function callAjax(blogData) {
-  fetch(createStoryEndPoint, {
-    method: "POST",
-    credentials: 'include',
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(blogData),
-  })
-    .then(async (response) => {
-      var msg = await response.text();
-      if (!response.ok) throw new Error(msg);
-      else return msg;
-    })
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
 
 export default function BlogCreator() {
   const [cleared, setCleared] = useState(false);
@@ -40,9 +20,34 @@ export default function BlogCreator() {
   const [warnings, setWarnings] = useState([]);
   const [image, setImage] = useState("");
   const [post, setPost] = useState("");
+  const navigate = useNavigate();
+
+  async function callAjax(blogData) {
+    fetch(createStoryEndPoint, {
+      method: "POST",
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(blogData),
+    })
+      .then(async (response) => {
+        let message = await response.json()
+        if (!response.ok) throw new Error(message.message);
+        else return message.message;
+      })
+      .then(async (data) => {
+        navigate("/")
+      })
+      .catch(error => {
+        console.log(error.message);
+      })
+  }
+
 
   const collectData = async (e) => {
-    console.log("Upload " + e)
+
+    e.preventDefault();
     await callAjax({
       title: title,
       summary: summary,

@@ -1,16 +1,15 @@
-
 body {
-    animation: transitionIn 5s;
+    animation: transitionIn 5s forwards;
     padding: 0;
     margin: 0;
     background-color: #130d0a;
     font-family: "Playfair Display", serif;
     color: #fff;
-    
+
     /* animation: showFullscreen 5s; */
 }
 
-#titleFlash{
+#titleFlash {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -19,7 +18,7 @@ body {
     height: 100%;
 }
 
-#titleFlash h1{
+#titleFlash h1 {
     /* animation: transitionOut 5s; */
     font-size: 8em;
     animation: titleFlash 2s;
@@ -30,9 +29,23 @@ body {
     overflow: hidden;
     position: relative;
 }
+
 #content {
     background-color: #130d0a;
 }
+
+.nav-link {
+    color: #e0b78a;
+}
+
+.nav-link:hover {
+    color: #ae8356;
+}
+
+#optionRow {
+    margin-top: 30px;
+}
+
 .layer {
     background-position: bottom center;
     background-size: auto;
@@ -42,31 +55,39 @@ body {
     position: fixed;
     z-index: -1;
 }
+
 #hero-mobile {
     display: none;
     background: url("https://i.ibb.co/d7hw559/full-illustration.png") no-repeat center bottom / cover;
     height: 320px;
 }
+
 .first-section {
     padding: 50px 0 20px 0;
 }
+
 .text-header {
     font-size: 50px;
     text-align: center;
 }
+
 h1 {
     line-height: 120%;
     margin-bottom: 30px;
 }
+
 p {
     color: #ede0d5;
     font-size: 18px;
     line-height: 150%;
 }
-#hero, .layer {
+
+#hero,
+.layer {
     min-height: 800px;
 }
-.layer-bg {
+
+/* .layer-bg {
     background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/272781/ilu_bg.jpg");
 }
 .layer-1 {
@@ -79,32 +100,45 @@ p {
 .layer-3 {
     background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/272781/ilu_man.png");
     background-position: right bottom;
-}
+} */
 .layer-4 {
     background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/272781/ilu_01.png");
 }
+
 .layer-overlay {
     background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/272781/ilu_overlay.png");
 }
+
+.choice:hover {
+    cursor: grab;
+}
+
+.choice p:hover {
+    color: #e0b78a;
+}
+
 @media only screen and (max-width: 768px) {
     #hero {
         display: none;
-   }
+    }
+
     #hero-mobile {
         display: block;
-   }
+    }
 }
+
 .tutorial-link {
     color: #fff;
     font-size: 18px;
     text-decoration: underline;
 }
+
 .tutorial-link:hover {
     color: #ede0d5;
 }
 
 @keyframes transitionIn {
-    from{
+    from {
         opacity: 0;
     }
 
@@ -114,7 +148,7 @@ p {
 }
 
 @keyframes transitionOut {
-    from{
+    from {
         opacity: 1;
     }
 
@@ -124,7 +158,7 @@ p {
 }
 
 @keyframes titleFlash {
-    from{
+    from {
         font-size: 12em;
     }
 

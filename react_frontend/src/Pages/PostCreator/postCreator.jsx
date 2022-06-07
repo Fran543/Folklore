@@ -6,7 +6,7 @@ function PostCreator() {
 
     useEffect(() => {
         import('./postCreator.css');
-    })
+    }, [])
 
     return (
         <section>
