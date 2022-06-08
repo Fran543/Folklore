@@ -38,7 +38,8 @@ export default function HomeScreen({ navigation }) {
             idUser: itemData.item.UserID,
             commentNbr: itemData.item.CommentNbr,
             score: itemData.item.Score,
-            username: itemData.item.Username
+            username: itemData.item.Username,
+            warnings: itemData.item.warnings
         }
 
         return <PostGridTile

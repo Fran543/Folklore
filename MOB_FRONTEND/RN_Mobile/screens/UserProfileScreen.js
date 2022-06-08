@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image, FlatList, ScrollView } from "react-native";
-import { useLayoutEffect, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import EndPoints from "../constants/endPoints";
 
 import PostGridTile from "../components/home/PostGridTile";
@@ -27,7 +27,8 @@ export default function UserProfileScreen({ navigation }) {
             idUser: itemData.item.UserID,
             commentNbr: itemData.item.CommentNbr,
             score: itemData.item.Score,
-            username: itemData.item.Username
+            username: itemData.item.Username,
+            warnings: itemData.item.warnings
         }
 
         return <PostGridTile
@@ -66,9 +67,6 @@ export default function UserProfileScreen({ navigation }) {
                 (result) => {
                     console.log(result)
                 },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
                 (error) => {
                     console.log(error)
                 }
@@ -78,19 +76,6 @@ export default function UserProfileScreen({ navigation }) {
     function submitHandler() {
         LogoutUser();
     }
-
-    // _renderItem = ({ item, index }) => {
-    //     return (
-    //         <View style={styles.body}>
-    //             <h1>{item.name}:</h1>
-    //             <FlatList data={item.data} renderItem={renderPostItem}
-    //                 keyExtractor={(item, index) => {
-    //                     return item.IDStory
-    //                 }}
-    //             />
-    //         </View>
-    //     );
-    // }
 
     return (
         <ScrollView style={styles.container}>
@@ -124,14 +109,6 @@ export default function UserProfileScreen({ navigation }) {
                     }}
                 />
             </View>
-
-            {/* <Carousel
-                ref={(c) => { this._carousel = c; }}
-                data={[{ name: "Blogs", data: userBlogs }, { name: "Stories", data: userStories }]}
-                renderItem={this._renderItem}
-                sliderWidth={sliderWidth}
-                itemWidth={itemWidth}
-            /> */}
         </ScrollView>
     );
 }

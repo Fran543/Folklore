@@ -4,7 +4,7 @@ import ButtonMenu from "../components/home/ButtonMenu";
 import { useState } from 'react'
 import * as ImagePicker from 'expo-image-picker';
 
-export default function BlogCreatorScreen(){
+export default function BlogCreatorScreen() {
     const [modalVisible, setModalVisible] = useState(false);
     const [blogContent, setBlogcontent] = useState();
     const [value, setValue] = useState([]);
@@ -38,18 +38,30 @@ export default function BlogCreatorScreen(){
 
     function deleteBlog() {
         setBlogcontent('')
+        setValue([]);
+        setImage(null);
+        setTitle('');
+        setSummary('');
     }
 
-    function onChangeTitleText(e){
+    function onChangeTitleText(e) {
         setTitle(e)
     }
 
-    function onChangeSummaryText(e){
+    function onChangeSummaryText(e) {
         setSummary(e)
     }
 
-    function onChangeWarningValue(e){
-        setValue(e)
+    function onSelect(selectedList, selectedItem) {
+        setValue(value => [...value, selectedItem.id.IDWarning]);
+    }
+
+    function onRemove(selectedList, removedItem) {
+        setValue({
+            value: value.filter(function (v) {
+                return v !== removedItem.id.IDWarning
+            })
+        });
     }
 
     const blogItemProps = {
@@ -60,29 +72,31 @@ export default function BlogCreatorScreen(){
         content: blogContent
     }
 
-    return(
+    return (
         <View style={styles.container}>
-            <ButtonMenu 
-            showModal={showModal} 
-            closeModal={closeModal}
-            isStory={isStory} 
-            deleteBlog={deleteBlog}
-            style={styles.buttonHolder}
-            {...blogItemProps}
+            <ButtonMenu
+                showModal={showModal}
+                closeModal={closeModal}
+                isStory={isStory}
+                deleteBlog={deleteBlog}
+                style={styles.buttonHolder}
+                {...blogItemProps}
             />
-            <TextInput multiline={true} 
-            style={styles.textInput}
-            placeholder="Enter text here..."
-            value={blogContent}
-            onChangeText={(e) => setBlogcontent(e)}/>
-            <MetadataModal 
-            onPress={closeModal} 
-            modalVisible={modalVisible}
-            {...blogItemProps}
-            pickImage={pickImage}
-            onChangeTitleText={onChangeTitleText}
-            onChangeSummaryText={onChangeSummaryText}
-            onChangeWarningValue={onChangeWarningValue} />
+            <TextInput multiline={true}
+                style={styles.textInput}
+                placeholder="Enter text here..."
+                value={blogContent}
+                onChangeText={(e) => setBlogcontent(e)}
+            />
+            <MetadataModal
+                onPress={closeModal}
+                modalVisible={modalVisible}
+                {...blogItemProps}
+                pickImage={pickImage}
+                onChangeTitleText={onChangeTitleText}
+                onChangeSummaryText={onChangeSummaryText}
+                onSelect={onSelect}
+                onRemove={onRemove} />
         </View>
     );
 }
@@ -91,10 +105,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1
     },
-    buttonHolder:{
+    buttonHolder: {
         flex: 1
     },
-    textInput:{
+    textInput: {
         flex: 10,
         color: 'white',
     }

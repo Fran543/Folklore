@@ -1,24 +1,29 @@
 import { Modal, StyleSheet, Text, Pressable, View, TextInput, Image } from "react-native";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import DropDownPicker from 'react-native-dropdown-picker';
+import Multiselect from 'multiselect-react-dropdown';
 import { useState, useEffect } from 'react'
 import EndPoints from "../../constants/endPoints";
 
 export default function MetadataModal(props) {
     const [open, setOpen] = useState(false);
-    const [items, setItems] = useState([]);
+    const [warnings, setWarnings] = useState([]);
 
     useEffect(() => {
         getWarnings()
     }, [])
 
     async function getWarnings() {
+        var o = []
+
         await fetch(EndPoints.getWarningsEndPoint)
             .then(res => res.json())
             .then(
                 (result) => {
-                    setItems(result)
-                    console.log(result)
+                    for (const warning of result) {
+                        o.push({ id: warning, name: warning.WarningName })
+                    }
+                    setWarnings(o);
                 },
                 (error) => {
                     console.log(error)
@@ -38,39 +43,25 @@ export default function MetadataModal(props) {
                     <View style={styles.modalView}>
                         <View style={styles.userInputContainer}>
                             <MaterialCommunityIcons name="rename-box" color={'white'} size={26} />
-                            <Text style={styles.modalText} >Title</Text>
-                            <TextInput placeholder="Enter title here..." maxLength={50} value={props.title} onChangeText={props.onChangeTitleText}/>
+                            <TextInput placeholder="Enter title here..." maxLength={50} value={props.title} onChangeText={props.onChangeTitleText} />
                         </View>
                         <View style={styles.userInputContainer}>
                             <MaterialCommunityIcons name="card-bulleted-settings-outline" color={'white'} size={26} />
-                            <Text style={styles.modalText}>Summary</Text>
-                            <TextInput placeholder="Enter summary here..." maxLength={500} value={props.summary} onChangeText={props.onChangeSummaryText}/>
+                            <TextInput placeholder="Enter summary here..." maxLength={500} value={props.summary} onChangeText={props.onChangeSummaryText} />
                         </View>
                         <View style={styles.userInputContainer}>
                             <MaterialCommunityIcons name="exclamation-thick" color={'white'} size={26} />
-                            <Text style={styles.modalText}>Warnings</Text>
-                            <DropDownPicker
-                                schema={{
-                                    label: 'WarningName',
-                                    value: 'IDWarning'
-                                }}
-                                placeholder="Select warnings"
-                                multiple={true}
-                                open={open}
-                                value={props.value}
-                                items={items}
-                                setOpen={setOpen}
-                                setValue={props.onChangeWarningValue}
-                                setItems={setItems}
-                                theme="DARK"
-                                mode="BADGE"
-                                disableBorderRadius={true}
+                            <Multiselect
+                                options={warnings} // Options to display in the dropdown
+                                onSelect={props.onSelect} // Function will trigger on select event
+                                onRemove={props.onRemove} // Function will trigger on remove event
+                                displayValue="name" // Property name to display in the dropdown options
+                                placeholder="Select warnings..."
                             />
                         </View>
                         <View style={styles.userInputContainer}>
-                            <Pressable  onPress={props.pickImage}  style={styles.userInputContainer}>
+                            <Pressable onPress={props.pickImage} style={styles.userInputContainer}>
                                 <MaterialCommunityIcons name="image-area" color={'white'} size={26} />
-                                <Text style={styles.modalText}>Pick an Image</Text>
                             </Pressable>
                             {props.imageBlob && <Image source={{ uri: props.imageBlob }} style={{ width: 200, height: 200 }} />}
                         </View>
@@ -90,9 +81,6 @@ export default function MetadataModal(props) {
 const styles = StyleSheet.create({
     centeredView: {
         flex: 1,
-        // justifyContent: "center",
-        // alignItems: "center",
-        // marginTop: 22
     },
     modalView: {
         margin: 20,
@@ -112,9 +100,6 @@ const styles = StyleSheet.create({
         color: 'white'
     },
     textStyle: {
-        color: 'white'
-    }
-    , modalText: {
         color: 'white'
     }
 });

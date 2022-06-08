@@ -11,7 +11,7 @@ export default function ButtonMenu(props) {
         title: props.title,
         summary: props.summary,
         imageBlob: props.imageBlob,
-        warnings: props.value,
+        warnings: props.warnings,
         content: props.content
     }
 

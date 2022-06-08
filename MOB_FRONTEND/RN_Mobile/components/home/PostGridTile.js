@@ -10,7 +10,7 @@ import AddToLibraryButton from "../ui/AddToLibraryButton";
 
 export default function PostGridTile(props, { pubDate }) {
 
-    
+
 
     const [starsToggle, setStarsToggle] = useState(false)
     const [commentsToggle, setCommentsToggle] = useState(false)
@@ -46,7 +46,12 @@ export default function PostGridTile(props, { pubDate }) {
                 </View>
                 <View style={styles.metadataContainer}>
                     <Text style={[styles.titleContainer, styles.text]}>{props.title}</Text>
-                    <Text style={[styles.text, styles.text]}>Warnings</Text>
+                    {props.warnings.length > 0 && <Text style={[styles.text]}>Warnings</Text>}
+                    <View style={styles.warningsHolder}>
+                        {props.warnings.map((warning, i) => (
+                            <Text style={styles.warning} key={i}>{warning.WarningName} | </Text>
+                        ))}
+                    </View>
                     <Text style={[styles.summaryContainer, styles.text]}>{props.summary}</Text>
                     <View style={styles.iconsContainer}>
                         <StarButton onPress={starsToggleHandler} score={props.score} />
@@ -113,5 +118,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: 5
+    },
+    warningsHolder: {
+        flexDirection: 'row'
+    },
+    warning: {
+        color: "#c4c4c4"
     }
 })
