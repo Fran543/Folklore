@@ -14,7 +14,10 @@ body {
 }
 
 #lbTitle {
-  padding-top: 35%;
+  margin-top: 150px;
+  margin-bottom: 25px;
+  padding: 10px;
+  width: fit-content;
 }
 
 .warnings {
@@ -43,9 +46,7 @@ div .story_card {
 
 
 .btns {
-  background-color: transparent;
-  border: 1px solid white;
-  border-radius: 10%;
+  border: 1px solid white !important;
   color: white;
   padding: 1%;
   display: flex;
@@ -113,11 +114,14 @@ h1 {
 }
 
 .story_desc {
-  padding: 25px;
+  padding: 10px;
+  margin-bottom: 25px;
 }
 
 .story_desc .text {
   color: white;
+  padding: 10px;
+  margin: 0;
 }
 
 .story_social {

@@ -1,0 +1,29 @@
+.glass {
+    background: rgb(30 28 28 / 64%);
+    box-shadow: 0 8px 32px 0 rgb(33 32 43);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.nameContainer {
+    padding: 0;
+}
+
+.warningContainer {
+    margin-bottom: 25px;
+}
+
+.warningContainer h6 {
+    color: red;
+    margin: 10px;
+}
+
+.text-muted {
+    color: white !important;
+}
+
+.text-muted i {
+    margin: 0 10px;
+}

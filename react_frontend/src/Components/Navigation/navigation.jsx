@@ -2,10 +2,10 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Cookies from 'js-cookie';
 import { useCookies } from 'react-cookie';
+import EndPoints from "../../constants/endPoints";
 
 
 
-var getLogOutPoint = "http://127.0.0.1:8091/logout"
 
 
 function Navigation() {
@@ -21,7 +21,7 @@ function Navigation() {
     }, [isLoggedIn]);
 
     const logOut = () => {
-        fetch(getLogOutPoint, {
+        fetch(EndPoints.getLogOutPoint, {
             credentials: 'include'
         })
             .then(res => res.json())

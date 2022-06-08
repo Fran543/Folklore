@@ -11,10 +11,6 @@ export default function Canvas({ posts, clearPosts, addPost, uploadStory, paragr
     const [paragraphs, setDynamicParagraphs] = React.useState(0);
 
 
-    const callAjax = (post) => {
-
-    }
-
 
     return (
         <section className="home">

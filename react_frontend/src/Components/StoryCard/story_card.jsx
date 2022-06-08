@@ -21,7 +21,7 @@ function Story_Card({ story, createNotification }) {
     }, [])
 
     const showPost = (e) => {
-        navigate("/postFullscreen/" + story.IDStory)
+        window.location.href = "/postFullscreen/" + story.IDStory
     }
 
     const addToLibrary = (idStory) => {

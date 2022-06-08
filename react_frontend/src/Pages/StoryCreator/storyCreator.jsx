@@ -26,6 +26,7 @@ export default function StoryCreator() {
 
     useEffect(() => {
         import('react-notifications/lib/notifications.css');
+        import('./storyCreator.css');
     }, [])
 
 
