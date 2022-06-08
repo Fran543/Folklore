@@ -5,7 +5,7 @@ import EndPoints from "../../constants/endPoints";
 var addCommentToStory = EndPoints.addCommentToStory
 
 
-function Add_New_Comment_Form({ idStory }) {
+function Add_New_Comment_Form({ idStory, createNotification }) {
 
     const [comment, setComment] = useState("")
 
@@ -38,7 +38,7 @@ function Add_New_Comment_Form({ idStory }) {
             })
             .catch(error => {
                 localStorage.setItem("isLoggedIn", false)
-                window.location.href = "/login"
+                createNotification("error", error.message)
             })
     }
 

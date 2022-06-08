@@ -2,7 +2,7 @@ import React, { Suspense, useLayoutEffect } from "react";
 import { Helmet } from "react-helmet";
 const Paragraph = React.lazy(() => import("../../Components/Paragraph/paragraph"))
 
-export default function Canvas({ posts, clearPosts, addPost, uploadStory, paragraphNbr }) {
+export default function Canvas({ posts, clearPosts, addPost, uploadStory, paragraphNbr, bgColor }) {
 
     useLayoutEffect(() => {
         import("./canvas.css")
@@ -37,7 +37,7 @@ export default function Canvas({ posts, clearPosts, addPost, uploadStory, paragr
                 {posts.map((p, i) => {
                     return (
                         <Suspense key={i} fallback={<div>Loading Component....</div>}>
-                            <Paragraph post={p} postNbr={i + 1} paragraphNbr={paragraphNbr} />
+                            <Paragraph bgColor={bgColor} post={p} postNbr={i + 1} paragraphNbr={paragraphNbr} />
                         </Suspense>)
                 })}
             </div>

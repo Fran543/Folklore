@@ -6,7 +6,7 @@ import { default as StoryCard } from '../StoryCard/story_card';
 
 
 
-function Stories({ stories, filter }) {
+function Stories({ stories, filter, createNotification }) {
 
 
     useEffect(() => {
@@ -18,7 +18,7 @@ function Stories({ stories, filter }) {
         <div className="postContainer">
             <div className="card-columns cardGrid">
                 {stories.filter(story => story.StoryName.toLowerCase().includes(filter.toLowerCase())).map((story, index) => (
-                    <StoryCard story={story} key={story.IDStory} />
+                    <StoryCard createNotification={(type, message) => createNotification(type, message) } story={story} key={story.IDStory} />
                 ))}
             </div>
         </div>

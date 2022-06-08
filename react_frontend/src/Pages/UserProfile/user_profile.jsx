@@ -18,7 +18,7 @@ function User_Profile() {
             credentials: 'include'
         })
             .then(async (response) => {
-                var msg = await response.text();
+                var msg = await response.json();
                 if (!response.ok) throw new Error(msg);
                 else return msg;
             })

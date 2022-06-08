@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function BlogContent({ cleared, post, setPost }) {
+export default function BlogContent({ cleared, post, setPost, bgColor }) {
 
   useEffect(() => {
     import("./blogContent.css");
@@ -14,6 +14,7 @@ export default function BlogContent({ cleared, post, setPost }) {
       className="blogContent"
       value={post}
       onChange={(e) => setPost(e.target.value)}
+      style={{ backgroundColor: post.length === 0 && bgColor }}
     ></textarea>
   );
 }

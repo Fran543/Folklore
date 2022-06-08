@@ -8,7 +8,7 @@ import EndPoints from "../../constants/endPoints";
 var getStoryCommentsEndPoint = EndPoints.getStoryCommentsEndPoint
 
 
-function Comments({ idStory }) {
+function Comments({ idStory, createNotification }) {
 
     const [comments, setComments] = useState([])
 
@@ -36,7 +36,7 @@ function Comments({ idStory }) {
             <div className='container'>
                 <div className='row'>
                     <div className='col-sm-12'>
-                        <AddNewCommentForm idStory={idStory} />
+                        <AddNewCommentForm createNotification={(type, message) => createNotification(type, message)} idStory={idStory} />
                         <hr />
                         <p>Comments</p>
                         {comments.map((comment, i) => (

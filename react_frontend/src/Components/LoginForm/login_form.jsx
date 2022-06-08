@@ -37,7 +37,7 @@ function Login_Form({ createNotification }) {
             })
             .then(async (data) => {
                 localStorage.setItem("isLoggedIn", true)
-                navigate("/")
+                window.location.href = "/"
             })
             .catch(error => {
                 localStorage.setItem("isLoggedIn", false)

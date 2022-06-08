@@ -8,7 +8,7 @@ import EndPoints from "../../constants/endPoints";
 
 const addStoryToUserLibraryEndPoint = EndPoints.addStoryToUserLibraryEndPoint
 
-function Story_Card({ story }) {
+function Story_Card({ story, createNotification }) {
 
     const [starRatingToggle, setStarRatingToggle] = useState(false)
     const [commentsToggle, setCommentsToggle] = useState(false)
@@ -39,12 +39,12 @@ function Story_Card({ story }) {
                 else return message;
             })
             .then(async (result) => {
-                alert(result.message)
+                createNotification("success", result.message)
             })
             .catch(error => {
                 localStorage.setItem("isLoggedIn", false)
-                alert(error.message)
-                window.location.href = "/login"
+                createNotification("error", error.message)
+                // window.location.href = "/login"
             })
     }
 
@@ -69,8 +69,8 @@ function Story_Card({ story }) {
                         <i className='fas fa-book book' data-toggle="tooltip" data-placement="top" title="Add to library" style={{ color: "darkmagenta" }} onClick={() => addToLibrary(story.IDStory)}></i>
                     </small>
                 </p>
-                {starRatingToggle && <StarRating idStory={story.IDStory} />}
-                {commentsToggle && <Comments idStory={story.IDStory} />}
+                {starRatingToggle && <StarRating createNotification={(type, message) => createNotification(type, message)} idStory={story.IDStory} />}
+                {commentsToggle && <Comments createNotification={(type, message) => createNotification(type, message)} idStory={story.IDStory} />}
 
 
             </div>

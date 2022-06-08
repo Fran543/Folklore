@@ -9,13 +9,13 @@ const toBase64 = file => new Promise((resolve, reject) => {
   reader.onerror = error => reject(error);
 });
 
-export default function Paragraph({ post, postNbr, paragraphNbr }) {
+export default function Paragraph({ post, postNbr, paragraphNbr, bgColor }) {
 
   const [selectedFile, setSelectedFile] = useState()
   const [preview, setPreview] = useState()
   const [content, setContent] = useState("")
   const [imageBlob, setImageBlob] = useState()
-  const [choices, setChoices] = useState([{ choiceValue: "" }, { choiceValue: "" }])
+  const [choices, setChoices] = useState([])
   const [condition1, setConditions1] = useState("")
   const [condition2, setConditions2] = useState("")
 
@@ -67,6 +67,7 @@ export default function Paragraph({ post, postNbr, paragraphNbr }) {
       (option) => option.value
     );
     post.conditions = (value)
+    setChoices(value)
   }
 
   return (
@@ -78,20 +79,20 @@ export default function Paragraph({ post, postNbr, paragraphNbr }) {
             <input type="file" id="paragraphImg" accept="image/*" onChange={onSelectFile}></input>
           </div>
           <div name="ddlHolder" className="ddlHolder">
-            <select multiple="multiple" className="ddlChoices" onChange={(e) => addConditions(e)}>
+            <select multiple="multiple" className="ddlChoices" onChange={(e) => addConditions(e)} style={{ backgroundColor: (choices.length === 0 && postNbr !== 1) && bgColor }}>
               {[...Array(paragraphNbr * 2)].map((x, i) =>
                 <option key={i} value={i} >{i + 1}</option>
               )}
             </select>
           </div>
           <div className="storyPart ui-widget-content">
-            <textarea className="paragraph" value={content} onChange={async (e) => updateContent(e.target.value)}></textarea>
+            <textarea className="paragraph" style={{ backgroundColor: content.length === 0 && bgColor }} value={content} onChange={async (e) => updateContent(e.target.value)} ></textarea>
             <hr />
             <div className="options">
               <div className="number">{postNbr * 2 - 1}</div>
-              <textarea className="option" value={condition1} onChange={(e) => updateChoice(e.target.value, 0)}></textarea>
+              <textarea className="option" style={{ backgroundColor: condition1.length === 0 && bgColor }} value={condition1} onChange={(e) => updateChoice(e.target.value, 0)}></textarea>
               <div className="number">{postNbr * 2}</div>
-              <textarea className="option" value={condition2} onChange={(e) => updateChoice(e.target.value, 1)}></textarea>
+              <textarea className="option" style={{ backgroundColor: condition2.length === 0 && bgColor }} value={condition2} onChange={(e) => updateChoice(e.target.value, 1)}></textarea>
             </div>
           </div>
         </div>

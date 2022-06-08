@@ -5,6 +5,7 @@ import { Stories, TrendingStories, SearchBox } from "../../Components";
 import EndPoints from "../../constants/endPoints";
 
 import { NotificationContainer } from 'react-notifications';
+import { default as createNotification } from "../../Utils/createNotification";
 
 
 
@@ -17,6 +18,7 @@ function Home() {
 
 
     useEffect(() => {
+        import('react-notifications/lib/notifications.css');
         import('./home.css')
         fetch(getStoriesEndPoint)
             .then(res => res.json())
@@ -38,7 +40,8 @@ function Home() {
             <TrendingStories />
             <SearchBox filter={filter} setFilter={(filter) => setFilter(filter)}
             />
-            <Stories stories={stories} filter={filter} />
+            <Stories createNotification={(type, message) => createNotification(type, message)} stories={stories} filter={filter} />
+            <NotificationContainer />
         </div>
     );
 }

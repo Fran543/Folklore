@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import EndPoints from "../../constants/endPoints";
+import { default as createNotification } from "../../Utils/createNotification";
 
 
 
 var addScoreToStory = EndPoints.addScoreToStory
 var getUserStoryScore = EndPoints.getUserStoryScore
 
-function Star_Rating({ idStory }) {
+function Star_Rating({ idStory, createNotification }) {
 
     const [score, setScore] = useState(0)
     const [orgScore, setOrgScore] = useState(0)
@@ -53,7 +54,8 @@ function Star_Rating({ idStory }) {
             })
             .catch(error => {
                 localStorage.setItem("isLoggedIn", false)
-                window.location.href = "/login"
+                createNotification("error", error.message)
+                // window.location.href = "/login"
             })
     }
 

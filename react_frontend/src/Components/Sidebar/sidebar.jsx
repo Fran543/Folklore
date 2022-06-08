@@ -15,7 +15,7 @@ const toBase64 = file => new Promise((resolve, reject) => {
 });
 
 
-export default function Sidebar({ title, setTitle, summary, setSummary, setWarnings, setImage }) {
+export default function Sidebar({ title, setTitle, summary, setSummary, setWarnings, setImage, bgColor }) {
 
 
     const [selectedFile, setSelectedFile] = useState()
@@ -99,11 +99,17 @@ export default function Sidebar({ title, setTitle, summary, setSummary, setWarni
             </header>
             <div className="menu-bar">
                 <div className="menu">
-                    <li className="search-box">
+                    <li className="search-box" style={{ backgroundColor: title.length === 0 && bgColor }}>
                         <i className='bx bx-pen icon'></i>
-                        <input type="text" placeholder="Title..." maxLength="50" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                        <input type="text"
+                            placeholder="Title..."
+                            maxLength="50"
+                            id="title"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                        />
                     </li>
-                    <li className="search-box">
+                    <li className="search-box" style={{ backgroundColor: summary.length === 0 && bgColor }}>
                         <i className='bx bx-text icon' ></i>
                         <textarea type="text" maxLength="500" id="summary" placeholder="Summary..." value={summary} onChange={(e) => setSummary(e.target.value)}></textarea>
                     </li>

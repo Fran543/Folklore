@@ -7,29 +7,9 @@ import { useCookies } from 'react-cookie';
 
 var getLogOutPoint = "http://127.0.0.1:8091/logout"
 
-function getCookie(name) {
-    var dc = document.cookie;
-    var prefix = name + "=";
-    var begin = dc.indexOf("; " + prefix);
-    if (begin == -1) {
-        begin = dc.indexOf(prefix);
-        if (begin != 0) return null;
-    }
-    else {
-        begin += 2;
-        var end = document.cookie.indexOf(";", begin);
-        if (end == -1) {
-            end = dc.length;
-        }
-    }
-    return decodeURI(dc.substring(begin + prefix.length, end));
-}
 
 function Navigation() {
-    // const [cookie, setCookie] = useState(Cookies.get('jwt'))
 
-
-    const [cookies, setCookie, removeCookie] = useCookies(['jwt']);
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn"));
 
     useEffect(() => {
@@ -48,6 +28,8 @@ function Navigation() {
             .then(
                 (result) => {
                     console.log(result)
+                    window.location.reload(false);
+
                     setIsLoggedIn(false)
                 },
                 // Note: it's important to handle errors here
@@ -59,13 +41,7 @@ function Navigation() {
             )
     }
 
-    const getJwtCookie = () => {
-        console.log("Cookie:")
-        console.log(getCookie("jwt"))
-        console.log(Cookies.get('jwt'))
-        console.log(cookies)
 
-    }
 
     return (
         <div className="navigation">
@@ -79,7 +55,7 @@ function Navigation() {
                         <li className="nav-item">
                             <a href="/" className="nav-link">HOME</a>
                         </li>
-                        {isLoggedIn === "true" &&
+                        {isLoggedIn === "true" ?
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="*" id="dropdown04" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
@@ -91,6 +67,9 @@ function Navigation() {
                                     <a className="dropdown-item" href="/library">Library</a>
                                     <a className="dropdown-item" href="/postCreator">Create post</a>
                                 </div>
+                            </li> :
+                            <li className="nav-item">
+                                <a href="/login" className="nav-link">SIGN IN</a>
                             </li>
                         }
                         <li className="nav-item">
