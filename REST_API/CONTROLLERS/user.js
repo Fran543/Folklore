@@ -19,7 +19,12 @@ exports.getUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
     try {
         var user = await dbOperations.deleteUser(req.body.userID);
-        res.clearCookie("jwt");
+        const cookieOptions = {
+            sameSite: "None",
+            secure: true,
+            httpOnly: false
+        }
+        res.clearCookie("jwt", cookieOptions);
         res.status(200).send({ message: "User deleted" });
     } catch (error) {
         return res.status(400).send(error);

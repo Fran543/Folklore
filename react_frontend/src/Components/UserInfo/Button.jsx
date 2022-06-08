@@ -19,6 +19,8 @@ function Button() {
       })
       .then(async (result) => {
         console.log(result)
+        localStorage.setItem("isLoggedIn", false)
+        window.location.href = "/"
       })
       .catch(error => {
         localStorage.setItem("isLoggedIn", false)
