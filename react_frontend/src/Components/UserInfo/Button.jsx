@@ -12,18 +12,18 @@ function Button() {
     fetch(deleteUserEndPoint, {
       credentials: 'include'
     })
-      .then(res => res.json())
-      .then(
-        (result) => {
-          console.log(result)
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          console.log(error)
-        }
-      )
+      .then(async (response) => {
+        let message = await response.json()
+        if (!response.ok) throw new Error(message.message);
+        else return message.message;
+      })
+      .then(async (result) => {
+        console.log(result)
+      })
+      .catch(error => {
+        localStorage.setItem("isLoggedIn", false)
+        window.location.href = "/login"
+      })
   };
 
   return (

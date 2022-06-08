@@ -36,9 +36,11 @@ function Login_Form({ createNotification }) {
                 else return message.message;
             })
             .then(async (data) => {
+                localStorage.setItem("isLoggedIn", true)
                 navigate("/")
             })
             .catch(error => {
+                localStorage.setItem("isLoggedIn", false)
                 createNotification('error', error.message)
             })
     }

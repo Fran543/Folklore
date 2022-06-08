@@ -17,6 +17,8 @@ import {
 function App() {
   const [loading, setLoading] = useState(true);
   const [cookies, setCookie] = useCookies();
+  const [isLoggedIn, setisLoggedIn] = useState(localStorage.getItem("isLoggedIn"));
+
 
   useLayoutEffect(() => {
     import('./App.css');
@@ -34,12 +36,12 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<><Navigation /><Home /></>} />
-          <Route path="/profile" element={<><Navigation /><Profile /></>} />
-          <Route path="/library" element={<><Navigation /><Library /></>} />
+          <Route path="/profile" element={isLoggedIn === "true" ? <><Navigation /><Profile /></> : <Login />} />
+          <Route path="/library" element={isLoggedIn === "true" ? <><Navigation /><Library /></> : <Login />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/postCreator" element={<><Navigation /><PostCreator /></>} />
-          <Route path="/storyCreator" element={<StoryCreator />} />
-          <Route path="/blogCreator" element={<BlogCreator />} />
+          <Route path="/postCreator" element={isLoggedIn === "true" ? <><Navigation /><PostCreator /></> : <Login />} />
+          <Route path="/storyCreator" element={isLoggedIn === "true" ? <StoryCreator /> : <Login />} />
+          <Route path="/blogCreator" element={isLoggedIn === "true" ? <BlogCreator /> : <Login />} />
           <Route path="/postFullscreen/:id" element={<PostFullScreen />} />
         </Routes>
       </Router>

@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, } from "react";
-import { NotificationContainer, NotificationManager } from 'react-notifications';
+import { NotificationContainer } from 'react-notifications';
+import { default as createNotification } from "../../Utils/createNotification";
 
 
 import { RegisterForm, LoginForm } from "../../Components";
@@ -13,24 +14,6 @@ function Login() {
         import('./login.css');
         import('react-notifications/lib/notifications.css');
     }, [])
-
-    const createNotification = (type, message) => {
-        switch (type) {
-            case 'info':
-                NotificationManager.info(message, 'Info!', 3000);
-                break;
-            case 'success':
-                NotificationManager.success(message, 'Success!', 3000);
-                break;
-            case 'warning':
-                NotificationManager.warning(message, 'Warning!', 3000);
-                break;
-            case 'error':
-                console.log(type)
-                NotificationManager.error(message, 'Error!', 5000);
-                break;
-        }
-    };
 
     return (
         <div>

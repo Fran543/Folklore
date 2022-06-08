@@ -36,12 +36,15 @@ export default function StoryCreator() {
             })
             .then(async (data) => {
                 console.log(data);
-                navigate("/")
+                window.location.href = "/"
 
             })
             .catch((error) => {
-                console.log(error);
+                alert(error)
+                localStorage.setItem("isLoggedIn", false)
+                window.location.href = "/login"
             });
+
     }
 
     const collectData = async () => {

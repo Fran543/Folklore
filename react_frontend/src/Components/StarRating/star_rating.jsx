@@ -22,20 +22,17 @@ function Star_Rating({ idStory }) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ idStory: idStory })
         })
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    setScore(result.score)
-                    setOrgScore(result.score)
-                    console.log(result.score)
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                    console.log(error)
-                }
-            )
+            .then(async (response) => {
+                let message = await response.json()
+                if (!response.ok) throw new Error(message.message);
+                else return message;
+            })
+            .then(async (result) => {
+                setScore(result.score)
+                setOrgScore(result.score)
+            })
+            .catch(error => {
+            })
     }, [])
 
     const sendScore = (score) => {
@@ -45,19 +42,19 @@ function Star_Rating({ idStory }) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ score: score, idStory: orgIdStory })
         })
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    console.log(result)
-                    window.location.reload(false);
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                    console.log(error)
-                }
-            )
+            .then(async (response) => {
+                let message = await response.json()
+                if (!response.ok) throw new Error(message.message);
+                else return message;
+            })
+            .then(async (result) => {
+                console.log(result)
+                window.location.reload(false);
+            })
+            .catch(error => {
+                localStorage.setItem("isLoggedIn", false)
+                window.location.href = "/login"
+            })
     }
 
     return (

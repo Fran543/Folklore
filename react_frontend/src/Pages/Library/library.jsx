@@ -16,48 +16,38 @@ function Library() {
         await fetch(getUserLibraryEndPoint, {
             credentials: 'include',
         })
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    setStores(result)
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                    console.log(error)
-                }
-            )
+            .then(async (response) => {
+                let message = await response.json()
+                if (!response.ok) throw new Error(message.message);
+                else return message;
+            })
+            .then(async (result) => {
+                setStores(result)
+            })
+            .catch(error => {
+                localStorage.setItem("isLoggedIn", false)
+                window.location.href = "/login"
+            })
     }
 
     const removeStory = (story) => {
 
-        const check_cookie_name = (name) => {
-            var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-            if (match) {
-                console.log(match[2]);
-            }
-            else {
-                console.log('--something went wrong---');
-            }
-        }
-        check_cookie_name("jwt")
-        console.log(story)
+
         fetch(removeStoryFromUserEndPoint + "?storyID=" + story.IDStory, {
             credentials: 'include',
         })
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    console.log(result)
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                    console.log(error)
-                }
-            )
+            .then(async (response) => {
+                let message = await response.json()
+                if (!response.ok) throw new Error(message.message);
+                else return message;
+            })
+            .then(async (result) => {
+                console.log(result)
+            })
+            .catch(error => {
+                localStorage.setItem("isLoggedIn", false)
+                window.location.href = "/login"
+            })
     }
 
     useEffect(() => {
@@ -66,7 +56,7 @@ function Library() {
     }, [])
 
     return (
-        <Carousel>
+        <Carousel interval={null}>
             {stories.map((story, i) => (
                 <Carousel.Item key={i}>
                     <LibraryStory removeStory={(story) => removeStory(story)} story={story} />

@@ -37,11 +37,10 @@ function Register_Form({ createNotification }) {
             })
             .then(async (data) => {
                 createNotification('success', data)
-                console.log(data);
             })
             .catch(error => {
+                localStorage.setItem("isLoggedIn", false)
                 createNotification('error', error.message)
-                console.log(error);
 
             })
     }

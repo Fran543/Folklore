@@ -30,12 +30,15 @@ function Navigation() {
 
 
     const [cookies, setCookie, removeCookie] = useCookies(['jwt']);
+    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn"));
 
     useEffect(() => {
         import('./navigation.css')
-        console.log(Cookies.get('jwt'))
-        console.log(getCookie("jwt"))
     }, [])
+
+    useEffect(() => {
+        localStorage.setItem("isLoggedIn", isLoggedIn);
+    }, [isLoggedIn]);
 
     const logOut = () => {
         fetch(getLogOutPoint, {
@@ -45,6 +48,7 @@ function Navigation() {
             .then(
                 (result) => {
                     console.log(result)
+                    setIsLoggedIn(false)
                 },
                 // Note: it's important to handle errors here
                 // instead of a catch() block so that we don't swallow
@@ -75,21 +79,20 @@ function Navigation() {
                         <li className="nav-item">
                             <a href="/" className="nav-link">HOME</a>
                         </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="*" id="dropdown04" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <span className="fa fa-user"></span>
-                            </a>
-                            <div className="dropdown-menu" aria-labelledby="dropdown04">
-                                <a className="dropdown-item" href="/profile">My profile</a>
-                                <a className="dropdown-item" id="btnLogOut" onClick={(e) => logOut()}>Log out</a>
-                                <a className="dropdown-item" href="/library">Library</a>
-                                <a className="dropdown-item" href="/postCreator">Create post</a>
-                                <a className="dropdown-item" href="/">{Cookies.get('jwt')}</a>
-                                <a className="dropdown-item" href="/">{getCookie("jwt")}</a>
-                                <button onClick={getJwtCookie}>get cookie</button>
-                            </div>
-                        </li>
+                        {isLoggedIn === "true" &&
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="*" id="dropdown04" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span className="fa fa-user"></span>
+                                </a>
+                                <div className="dropdown-menu" aria-labelledby="dropdown04">
+                                    <a className="dropdown-item" href="/profile">My profile</a>
+                                    <a className="dropdown-item" id="btnLogOut" onClick={(e) => logOut()}>Log out</a>
+                                    <a className="dropdown-item" href="/library">Library</a>
+                                    <a className="dropdown-item" href="/postCreator">Create post</a>
+                                </div>
+                            </li>
+                        }
                         <li className="nav-item">
                             <div className="dropdown">
                                 <div id="google_translate_element"></div>

@@ -37,10 +37,13 @@ export default function BlogCreator() {
         else return message.message;
       })
       .then(async (data) => {
-        navigate("/")
+        console.log(data)
+        window.location.href = "/"
       })
       .catch(error => {
-        console.log(error.message);
+        alert(error)
+        localStorage.setItem("isLoggedIn", false)
+        window.location.href = "/login"
       })
   }
 

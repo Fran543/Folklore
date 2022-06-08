@@ -17,19 +17,18 @@ function User_Profile() {
         await fetch(getUserEndPoint, {
             credentials: 'include'
         })
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    setUser(result)
-                    return result
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                    console.log(error)
-                }
-            )
+            .then(async (response) => {
+                var msg = await response.text();
+                if (!response.ok) throw new Error(msg);
+                else return msg;
+            })
+            .then(async (data) => {
+                setUser(data)
+            })
+            .catch((error) => {
+                localStorage.setItem("isLoggedIn", false)
+                window.location.href = "/login"
+            });
         setIsLoading(false)
     }
 

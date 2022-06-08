@@ -41,7 +41,7 @@ function Library_Story({ story, removeStory }) {
                         </p>
                     </div>
                 </div>
-                <div className="story_desc">
+                <div className="col-12 col-md-6 story_desc">
                     <p className="text">
                         {story.Summary}
                     </p>

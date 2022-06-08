@@ -33,15 +33,19 @@ function Story_Card({ story }) {
                 "Content-Type": "application/json",
             },
         })
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    alert(result.message)
-                },
-                (error) => {
-                    alert(error.message)
-                }
-            )
+            .then(async (response) => {
+                let message = await response.json()
+                if (!response.ok) throw new Error(message.message);
+                else return message;
+            })
+            .then(async (result) => {
+                alert(result.message)
+            })
+            .catch(error => {
+                localStorage.setItem("isLoggedIn", false)
+                alert(error.message)
+                window.location.href = "/login"
+            })
     }
 
     return (
