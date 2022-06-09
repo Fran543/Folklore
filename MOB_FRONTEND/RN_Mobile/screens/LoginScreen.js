@@ -1,6 +1,6 @@
 import { View, StyleSheet } from 'react-native';
 import AuthContent from '../components/Authentication/AuthContent';
-import { Button, Snackbar } from 'react-native-paper';
+import { Snackbar } from 'react-native-paper';
 import * as React from 'react';
 
 

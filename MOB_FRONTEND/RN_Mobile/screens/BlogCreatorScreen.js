@@ -1,6 +1,7 @@
 import { StyleSheet, TextInput, View } from "react-native";
 import MetadataModal from "../components/home/MetadataModal";
 import ButtonMenu from "../components/home/ButtonMenu";
+import { Snackbar } from 'react-native-paper';
 import { useState } from 'react'
 import * as ImagePicker from 'expo-image-picker';
 
@@ -12,6 +13,12 @@ export default function BlogCreatorScreen() {
     const [title, setTitle] = useState('');
     const [summary, setSummary] = useState('');
     const isStory = false;
+
+    const [visible, setVisible] = useState(false);
+    const [message, setMessage] = useState('');
+    const onToggleSnackBar = () => setVisible(!visible);
+    const onDismissSnackBar = () => setVisible(false);
+
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -57,11 +64,12 @@ export default function BlogCreatorScreen() {
     }
 
     function onRemove(selectedList, removedItem) {
-        setValue({
-            value: value.filter(function (v) {
-                return v !== removedItem.id.IDWarning
-            })
-        });
+        var array = [...value];
+        var index = array.indexOf(removedItem.id.IDWarning)
+        if (index !== -1) {
+            array.splice(index, 1);
+            setValue(array);
+        }
     }
 
     const blogItemProps = {
@@ -79,6 +87,9 @@ export default function BlogCreatorScreen() {
                 closeModal={closeModal}
                 isStory={isStory}
                 deleteBlog={deleteBlog}
+                message={message}
+                setMessage={(e) => setMessage(e)}
+                onToggleSnackBar={onToggleSnackBar}
                 style={styles.buttonHolder}
                 {...blogItemProps}
             />
@@ -97,6 +108,19 @@ export default function BlogCreatorScreen() {
                 onChangeSummaryText={onChangeSummaryText}
                 onSelect={onSelect}
                 onRemove={onRemove} />
+            <View style={styles.snackContainer}>
+                <Snackbar
+                    visible={visible}
+                    onDismiss={onDismissSnackBar}
+                    action={{
+                        label: 'Undo',
+                        onPress: () => {
+                            // Do something
+                        },
+                    }}>
+                    {message}
+                </Snackbar>
+            </View>
         </View>
     );
 }
@@ -111,5 +135,9 @@ const styles = StyleSheet.create({
     textInput: {
         flex: 10,
         color: 'white',
-    }
+    },
+    snackContainer: {
+        justifyContent: 'space-between',
+        flex: 1
+    },
 })

@@ -20,7 +20,10 @@ export default function ButtonMenu(props) {
                 <ButtonBack />
                 <ShowModalButton onPress={props.showModal} />
                 {props.isStory && <AddParagraphButton addParagraphToCanvas={() => props.addParagraphToCanvas()}/>}
-                <ButtonUpload {...blogItemProps}/>
+                <ButtonUpload {...blogItemProps} 
+                message={props.message} 
+                setMessage={(e) => props.setMessage(e)} 
+                onToggleSnackBar={props.onToggleSnackBar}/>
                 <ButtonDelete onPress={props.deleteBlog}/>
             </View>
     );

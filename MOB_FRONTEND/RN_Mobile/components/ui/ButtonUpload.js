@@ -17,7 +17,6 @@ export default function ButtonUpload(props) {
 
 
   async function uploadPost() {
-    console.log(blogItemProps)
     if (validateBlog(props.title, props.summary, props.post)) {
       fetch(EndPoints.createStoryEndPoint, {
         method: "POST",
@@ -33,14 +32,15 @@ export default function ButtonUpload(props) {
           else return msg;
         })
         .then((data) => {
-          console.log(data);
           navigation.navigate("My Profile")
         })
         .catch((error) => {
-          console.log(error);
+          props.setMessage(error);
+          props.onToggleSnackBar()
         });
     } else {
-      console.log('nemre')
+      props.setMessage('Required fields are empty!');
+      props.onToggleSnackBar()
     }
   }
 
