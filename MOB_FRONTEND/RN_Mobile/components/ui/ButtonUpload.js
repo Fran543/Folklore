@@ -17,7 +17,7 @@ export default function ButtonUpload(props) {
 
 
   async function uploadPost() {
-    if (validateBlog(props.title, props.summary, props.post)) {
+    if (validateBlog(props.title, props.summary, props.content)) {
       fetch(EndPoints.createStoryEndPoint, {
         method: "POST",
         credentials: 'include',
