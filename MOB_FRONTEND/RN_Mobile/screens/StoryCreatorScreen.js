@@ -36,7 +36,6 @@ export default function StoryCreatorScreen() {
         if (!result.cancelled) {
             setImage(result.uri);
         }
-        console.log(image)
     };
 
     function deleteBlog() {
@@ -63,8 +62,17 @@ export default function StoryCreatorScreen() {
         setSummary(e)
     }
 
-    function onChangeWarningValue(e) {
-        setValue(e)
+    function onSelect(selectedList, selectedItem) {
+        setValue(value => [...value, selectedItem.id.IDWarning]);
+    }
+
+    function onRemove(selectedList, removedItem) {
+        var array = [...value];
+        var index = array.indexOf(removedItem.id.IDWarning)
+        if (index !== -1) {
+            array.splice(index, 1);
+            setValue(array);
+        }
     }
 
     const blogItemProps = {
@@ -90,14 +98,13 @@ export default function StoryCreatorScreen() {
                 pickImage={pickImage}
                 onChangeTitleText={onChangeTitleText}
                 onChangeSummaryText={onChangeSummaryText}
-                onChangeWarningValue={onChangeWarningValue} />
+                onSelect={onSelect}
+                onRemove={onRemove}/>
             {paragraphlist.map((p, i) => {
                 return (
                     <Suspense key={i} fallback={<div>Loading Component....</div>}>
                         <ParagraphCard post={p} postNbr={i + 1}
-                            {...blogItemProps}
-                            isFirst={i === 0 ? true : false}
-                            pickImage={pickImage} />
+                            isFirst={i === 0 ? true : false}/>
                     </Suspense>)
             })}
         </ScrollView>

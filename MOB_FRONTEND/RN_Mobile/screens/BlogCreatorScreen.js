@@ -29,10 +29,8 @@ export default function BlogCreatorScreen() {
         });
 
         if (!result.cancelled) {
-            console.log('uslo')
             setImage(result.uri);
         }
-        console.log(image)
     };
 
     function showModal() {

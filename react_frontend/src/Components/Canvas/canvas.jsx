@@ -7,11 +7,7 @@ export default function Canvas({ posts, clearPosts, addPost, uploadStory, paragr
     useLayoutEffect(() => {
         import("./canvas.css")
     })
-
-    const [paragraphs, setDynamicParagraphs] = React.useState(0);
-
-
-
+    
     return (
         <section className="home">
             <div className="text">Canvas</div>
