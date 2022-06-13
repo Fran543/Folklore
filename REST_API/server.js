@@ -37,3 +37,7 @@ app.use('/', require('./ROUTES/pages'));
 var port = process.env.PORT || 8091;
 server.listen(port);
 console.log('User API is running at ' + port);
+
+module.exports = {
+    app
+}
