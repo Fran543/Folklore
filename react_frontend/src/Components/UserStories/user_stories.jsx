@@ -12,14 +12,13 @@ function User_Stories({ user }) {
 
     useEffect(() => {
         import('./userStories.css');
-        console.log(user)
     })
 
     return (
         <section className="second">
             {blogsToggle &&
                 <div className="blogs col-md-12" id="blogContainer">
-                    <Stories stories={user.blogs} filter="" />
+                    <Stories stories={user && user.blogs} filter="" />
                     {/* {user.blogs.map((story, i) => (
                         <StoryCard key={i} story={story} />
                     ))} */}
@@ -36,7 +35,7 @@ function User_Stories({ user }) {
             {
                 storiesToggle &&
                 <div className="stories col-md-12" id="storyContainer">
-                    <Stories stories={user.stories} filter="" />
+                        <Stories stories={user && user.stories} filter="" />
                     {/* {user.stories.map((story, i) => (
                         <StoryCard key={i} story={story} />
                     ))} */}

@@ -4,11 +4,10 @@ import { default as Comment } from '../Comment/comment';
 import EndPoints from "../../constants/endPoints";
 
 
-
 var getStoryCommentsEndPoint = EndPoints.getStoryCommentsEndPoint
 
 
-function Comments({ idStory, createNotification }) {
+function Comments({ idStory }) {
 
     const [comments, setComments] = useState([])
 
@@ -32,11 +31,11 @@ function Comments({ idStory, createNotification }) {
     }, [])
 
     return (
-        <section className='mt-5 comments' id={idStory}>
+        <section className='mt-5 comments' data-testid="idStory" id={idStory}>
             <div className='container'>
                 <div className='row'>
                     <div className='col-sm-12'>
-                        <AddNewCommentForm createNotification={(type, message) => createNotification(type, message)} idStory={idStory} />
+                        <AddNewCommentForm idStory={idStory} />
                         <hr />
                         <p>Comments</p>
                         {comments.map((comment, i) => (

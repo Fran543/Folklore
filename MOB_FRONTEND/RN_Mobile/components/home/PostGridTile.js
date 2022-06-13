@@ -8,7 +8,7 @@ import StarButton from "../ui/StarButton";
 import CommentButton from "../ui/CommentButton";
 import AddToLibraryButton from "../ui/AddToLibraryButton";
 
-export default function PostGridTile(props, { pubDate }) {
+export default function PostGridTile(props) {
 
 
 
@@ -61,7 +61,7 @@ export default function PostGridTile(props, { pubDate }) {
                         </View>
                         <View style={styles.reviewsContainer}>
                             <MaterialCommunityIcons name="calendar" color={'white'} size={26} />
-                            <Text style={styles.text}>{Moment({ pubDate }).format('ddd,MMM,YY')}</Text>
+                            <Text style={styles.text}>{Moment(props.pubDate).format('ddd,MMM,YY')}</Text>
                         </View>
                         <CommentButton onPress={commentsToggleHandler} commentNbr={props.commentNbr} />
                         <AddToLibraryButton idStory={props.idStory} />

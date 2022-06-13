@@ -4,16 +4,15 @@ import { default as StarRating } from '../StarRating/star_rating';
 import { default as Comments } from '../Comments/comments';
 import { useNavigate } from 'react-router-dom';
 import EndPoints from "../../constants/endPoints";
+import { default as createNotification } from "../../Utils/createNotification";
 
 
 const addStoryToUserLibraryEndPoint = EndPoints.addStoryToUserLibraryEndPoint
 
-function Story_Card({ story, createNotification }) {
+function Story_Card({ story }) {
 
     const [starRatingToggle, setStarRatingToggle] = useState(false)
     const [commentsToggle, setCommentsToggle] = useState(false)
-    const navigate = useNavigate();
-
 
     useEffect(() => {
         import('./storyCard.css');
@@ -49,7 +48,7 @@ function Story_Card({ story, createNotification }) {
     }
 
     return (
-        <div className='card' key={story.IDStory} onDoubleClick={(e) => showPost(e)}>
+        <div data-testid="story" className='card' key={story.IDStory} onDoubleClick={(e) => showPost(e)}>
             <img className='card-img-top' src={story.ImageBlob} alt='Card image cap' />
             <div className='card-body'>
                 <h5 className='card-title'> {story.StoryName}</h5>
@@ -69,8 +68,8 @@ function Story_Card({ story, createNotification }) {
                         <i className='fas fa-book book' data-toggle="tooltip" data-placement="top" title="Add to library" style={{ color: "darkmagenta" }} onClick={() => addToLibrary(story.IDStory)}></i>
                     </small>
                 </p>
-                {starRatingToggle && <StarRating createNotification={(type, message) => createNotification(type, message)} idStory={story.IDStory} />}
-                {commentsToggle && <Comments createNotification={(type, message) => createNotification(type, message)} idStory={story.IDStory} />}
+                {starRatingToggle && <StarRating idStory={story.IDStory} />}
+                {commentsToggle && <Comments idStory={story.IDStory} />}
 
 
             </div>

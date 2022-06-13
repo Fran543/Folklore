@@ -8,7 +8,8 @@ import EndPoints from "../../constants/endPoints";
 var getUserEndPoint = EndPoints.getUserEndPoint
 
 
-function User_Profile() {
+function
+    User_Profile() {
 
     const [user, setUser] = useState(null)
     const [isLoading, setIsLoading] = useState(true);
@@ -41,12 +42,14 @@ function User_Profile() {
 
 
     return (
-        <>{isLoading ? "Loading..." :
-            <div >
-                <UserInfo user={user} />
-                <UserStories user={user} />
+        <>
+            <div data-testid="user">
+                {isLoading ? "Loading..." : <>
+                    <UserInfo user={user} />
+                    <UserStories user={user} />
+                </>
+                }
             </div>
-        }
             <Helmet>
                 <script src="./particles.js"></script>
             </Helmet>

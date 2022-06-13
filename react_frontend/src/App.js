@@ -45,7 +45,8 @@ function App() {
           <Route path="/postFullscreen/:id" element={<PostFullScreen />} />
         </Routes>
       </Router>
-    }</>
+    }
+    </>
   );
 }
 

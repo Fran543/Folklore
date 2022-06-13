@@ -56,7 +56,7 @@ function Library() {
     }, [])
 
     return (
-        <Carousel interval={null}>
+        <Carousel data-testid="library" interval={null}>
             {stories.map((story, i) => (
                 <Carousel.Item key={i}>
                     <LibraryStory removeStory={(story) => removeStory(story)} story={story} />

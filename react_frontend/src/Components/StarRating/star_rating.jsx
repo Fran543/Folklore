@@ -7,7 +7,7 @@ import { default as createNotification } from "../../Utils/createNotification";
 var addScoreToStory = EndPoints.addScoreToStory
 var getUserStoryScore = EndPoints.getUserStoryScore
 
-function Star_Rating({ idStory, createNotification }) {
+function Star_Rating({ idStory }) {
 
     const [score, setScore] = useState(0)
     const [orgScore, setOrgScore] = useState(0)
@@ -60,7 +60,7 @@ function Star_Rating({ idStory, createNotification }) {
     }
 
     return (
-        <div className='star-rating' id={idStory} onMouseLeave={(e) => setScore(orgScore)}>
+        <div data-testid="idStory" className='star-rating' id={idStory} onMouseLeave={(e) => setScore(orgScore)}>
             <input id='star-5' type='radio' name='rating' value='5' onClick={(e) => { sendScore(e.target.value) }} />
             <label htmlFor='star-5' title='5 stars' style={{ color: score > 4 && '#000000' }} onMouseEnter={(e) => setScore(5)}>
                 <i className='active fa fa-star' aria-hidden='true' ></i>

@@ -1,11 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import EndPoints from "../../constants/endPoints";
+import { default as createNotification } from "../../Utils/createNotification";
 
 var addCommentToStory = EndPoints.addCommentToStory
 
 
-function Add_New_Comment_Form({ idStory, createNotification }) {
+function Add_New_Comment_Form({ idStory }) {
 
     const [comment, setComment] = useState("")
 

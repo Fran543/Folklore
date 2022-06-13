@@ -5,7 +5,6 @@ import { Stories, TrendingStories, SearchBox } from "../../Components";
 import EndPoints from "../../constants/endPoints";
 
 import { NotificationContainer } from 'react-notifications';
-import { default as createNotification } from "../../Utils/createNotification";
 
 
 
@@ -40,7 +39,7 @@ function Home() {
             <TrendingStories />
             <SearchBox filter={filter} setFilter={(filter) => setFilter(filter)}
             />
-            <Stories createNotification={(type, message) => createNotification(type, message)} stories={stories} filter={filter} />
+            <Stories stories={stories} filter={filter} />
             <NotificationContainer />
         </div>
     );
