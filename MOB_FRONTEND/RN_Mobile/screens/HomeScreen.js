@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, View, RefreshControl, ActivityIndicator, Text } from "react-native";
 import PostGridTile from "../components/home/PostGridTile";
 import EndPoints from '../constants/endPoints'
 import SearchBar from "../components/home/SearchBar";
 
 export default function HomeScreen({ navigation }) {
     const [postItems, setPostItems] = useState([])
+    const [refreshing, setRefreshing] = useState(true);
 
     useEffect(() => {
         getAllPosts()
@@ -14,13 +15,16 @@ export default function HomeScreen({ navigation }) {
         };
     }, [])
 
+
+
     async function getAllPosts() {
         await fetch(EndPoints.getStoriesEndPoint)
             .then(res => res.json())
             .then(
                 (result) => {
+                    console.log("refreshed")
+                    setRefreshing(false);
                     setPostItems(result)
-                    console.log(result)
                 },
                 (error) => {
                     console.log(error)
@@ -51,15 +55,22 @@ export default function HomeScreen({ navigation }) {
         }
     }
 
-
-
     return (
         <View style={styles.rootContainer}>
             <SearchBar style={styles.searchBar} />
-            <FlatList style={styles.flatList} data={postItems} renderItem={renderPostItem}
+            {refreshing ? <ActivityIndicator /> : null}
+            <FlatList
+                style={styles.flatList}
+                data={postItems}
+                renderItem={renderPostItem}
                 keyExtractor={(item, index) => {
                     return item.IDStory
                 }}
+                refreshControl={
+                    <RefreshControl refreshing={refreshing}
+                        onRefresh={getAllPosts}
+                        enabled={true} />
+                }
             />
         </View>
     );
@@ -76,5 +87,5 @@ const styles = StyleSheet.create({
     },
     flatList: {
         flex: 2
-    }
+    },
 })

@@ -7,7 +7,7 @@ import Button from '../components/ui/Button';
 
 
 
-export default function UserProfileScreen({ navigation }) {
+export default function UserProfileScreen({ navigation }, props) {
     const [user, setUser] = useState({ username: "", email: "" })
 
     useEffect(() => {
@@ -66,6 +66,7 @@ export default function UserProfileScreen({ navigation }) {
             .then(
                 (result) => {
                     console.log(result)
+                    props.logOutUser()
                 },
                 (error) => {
                     console.log(error)
@@ -75,6 +76,24 @@ export default function UserProfileScreen({ navigation }) {
 
     function submitHandler() {
         LogoutUser();
+    }
+
+    function deleteUserProfile() {
+        fetch(EndPoints.deleteUserEndPoint, {
+            credentials: 'include'
+        })
+            .then(async (response) => {
+                let message = await response.json()
+                if (!response.ok) throw new Error(message.message);
+                else return message.message;
+            })
+            .then(async (result) => {
+                console.log(result)
+                navigation.navigate("HomeScreen")
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     return (
@@ -88,6 +107,9 @@ export default function UserProfileScreen({ navigation }) {
                     <Text style={styles.userInfo}>{user.email}</Text>
                     <Button onPress={submitHandler}>
                         Logout
+                    </Button>
+                    <Button onPress={deleteUserProfile}>
+                        Delete Profile
                     </Button>
                 </View>
             </View>

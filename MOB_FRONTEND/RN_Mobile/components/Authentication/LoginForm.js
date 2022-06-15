@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import EndPoints from "../../constants/endPoints";
+import { useNavigation } from '@react-navigation/native';
 
 import Button from '../ui/Button';
 import Input from './Input';
@@ -8,6 +9,7 @@ import Input from './Input';
 export default function AuthForm(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigation = useNavigation();
 
     // const {
     //     email: emailIsInvalid,
@@ -30,9 +32,10 @@ export default function AuthForm(props) {
                 else return message.message;
             })
             .then(async (data) => {
+                localStorage.setItem("isLoggedIn", true)
                 props.setMessage(data);
                 props.onToggleSnackBar()
-                console.log(data);
+                navigation.navigate("HomeScreen")
             })
             .catch(error => {
                 props.setMessage(error.message );

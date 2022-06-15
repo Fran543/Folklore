@@ -1,4 +1,5 @@
 import { StyleSheet, StatusBar } from "react-native";
+import { useState, useEffect } from "react";
 import HomeScreen from "./screens/HomeScreen";
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
@@ -16,6 +17,17 @@ const Tab = createMaterialBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 function Home() {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn"));
+
+  useEffect(() => {
+    localStorage.setItem("isLoggedIn", isLoggedIn);
+  }, [isLoggedIn]);
+
+  function logOutUser() {
+    setIsLoggedIn(false)
+  }
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -23,14 +35,6 @@ function Home() {
       shifting={true}
       activeColor="white"
       inactiveColor="#cccccc">
-
-      <Tab.Screen name="My Profile" component={UserProfileScreen}
-        options={{
-          tabBarColor: '#6E6A91',
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="account" color={color} size={26} />
-          )
-        }} />
 
       <Tab.Screen name="Home" component={HomeScreen}
         options={{
@@ -40,21 +44,39 @@ function Home() {
           )
         }} />
 
-      <Tab.Screen name="Create Post" component={PostCreatorScreen}
-        options={{
-          tabBarColor: '#B88FAE',
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="plus" color={color} size={26} />
-          )
-        }} />
+      {isLoggedIn === "true" ? (
+        <Tab.Screen name="My Profile" children={()=><UserProfileScreen logOutUser={logOutUser}/>}
+          options={{
+            tabBarColor: '#6E6A91',
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="account" color={color} size={26} />
+            )
+          }} />) :
+        null
+      }
 
-      <Tab.Screen name="Library" component={LibraryScreen}
-        options={{
-          tabBarColor: '#3d6082',
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="book" color={color} size={26} />
-          )
-        }} />
+
+      {isLoggedIn === "true" ? (
+        <Tab.Screen name="Create Post" component={PostCreatorScreen}
+          options={{
+            tabBarColor: '#B88FAE',
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="plus" color={color} size={26} />
+            )
+          }} />) :
+        null
+      }
+
+      {isLoggedIn === "true" ? (
+        <Tab.Screen name="Library" component={LibraryScreen}
+          options={{
+            tabBarColor: '#3d6082',
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="book" color={color} size={26} />
+            )
+          }} />) :
+        null
+      }
 
       <Tab.Screen name="Login" component={LoginScreen}
         options={{
@@ -63,7 +85,6 @@ function Home() {
             <MaterialCommunityIcons name="login" color={color} size={26} />
           )
         }} />
-
     </Tab.Navigator>
   );
 }
