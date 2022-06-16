@@ -10,10 +10,7 @@ export default function HomeScreen({ navigation }) {
 
     useEffect(() => {
         getAllPosts()
-        return () => {
-            setPostItems([]);
-        };
-    }, [])
+    }, [postItems])
 
 
 

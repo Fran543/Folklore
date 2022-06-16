@@ -35,7 +35,7 @@ export default function AuthForm(props) {
                 localStorage.setItem("isLoggedIn", true)
                 props.setMessage(data);
                 props.onToggleSnackBar()
-                navigation.navigate("HomeScreen")
+                navigation.navigate("Home")
             })
             .catch(error => {
                 props.setMessage(error.message );

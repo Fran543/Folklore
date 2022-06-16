@@ -7,7 +7,7 @@ import Button from '../components/ui/Button';
 
 
 
-export default function UserProfileScreen({ navigation }, props) {
+export default function UserProfileScreen({ navigation, logOutUser }) {
     const [user, setUser] = useState({ username: "", email: "" })
 
     useEffect(() => {
@@ -66,7 +66,7 @@ export default function UserProfileScreen({ navigation }, props) {
             .then(
                 (result) => {
                     console.log(result)
-                    props.logOutUser()
+                    logOutUser();
                 },
                 (error) => {
                     console.log(error)
@@ -89,7 +89,7 @@ export default function UserProfileScreen({ navigation }, props) {
             })
             .then(async (result) => {
                 console.log(result)
-                navigation.navigate("HomeScreen")
+                logOutUser();
             })
             .catch(error => {
                 console.log(error);
