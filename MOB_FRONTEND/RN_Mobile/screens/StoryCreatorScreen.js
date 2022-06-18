@@ -14,7 +14,8 @@ export default function StoryCreatorScreen() {
     const [summary, setSummary] = useState('');
     // PARAGRAPH DATA
     const [paragraphlist, setParagraphList] = useState([]);
-    
+    const [paragraphNbr, setParagraphNbr] = useState(0);
+
 
     const addParagraphToCanvas = () => {
         setParagraphList(paragraphlist => [...paragraphlist, {
@@ -23,6 +24,7 @@ export default function StoryCreatorScreen() {
             conditions: [],
             choices: [{ choiceValue: "" }, { choiceValue: "" }]
         }])
+        setParagraphNbr(paragraphNbr + 1);
     }
 
     const pickImage = async () => {
@@ -79,7 +81,8 @@ export default function StoryCreatorScreen() {
         title: title,
         summary: summary,
         imageBlob: image,
-        warnings: value
+        warnings: value,
+        posts: paragraphlist
     }
 
     return (
@@ -99,12 +102,12 @@ export default function StoryCreatorScreen() {
                 onChangeTitleText={onChangeTitleText}
                 onChangeSummaryText={onChangeSummaryText}
                 onSelect={onSelect}
-                onRemove={onRemove}/>
+                onRemove={onRemove} />
             {paragraphlist.map((p, i) => {
                 return (
                     <Suspense key={i} fallback={<div>Loading Component....</div>}>
-                        <ParagraphCard post={p} postNbr={i + 1}
-                            isFirst={i === 0 ? true : false}/>
+                        <ParagraphCard post={p} paragraphNbr={paragraphNbr} postNbr={i + 1}
+                            isFirst={i === 0 ? true : false} />
                     </Suspense>)
             })}
         </ScrollView>

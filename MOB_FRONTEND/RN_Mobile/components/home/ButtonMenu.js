@@ -12,20 +12,20 @@ export default function ButtonMenu(props) {
         summary: props.summary,
         imageBlob: props.imageBlob,
         warnings: props.warnings,
-        content: props.content
+        posts: props.posts
     }
 
     return (
-            <View style={styles.buttonContainer}>
-                <ButtonBack />
-                <ShowModalButton onPress={props.showModal} />
-                {props.isStory && <AddParagraphButton addParagraphToCanvas={() => props.addParagraphToCanvas()}/>}
-                <ButtonUpload {...blogItemProps} 
-                message={props.message} 
-                setMessage={(e) => props.setMessage(e)} 
-                onToggleSnackBar={props.onToggleSnackBar}/>
-                <ButtonDelete onPress={props.deleteBlog}/>
-            </View>
+        <View style={styles.buttonContainer}>
+            <ButtonBack />
+            <ShowModalButton onPress={props.showModal} />
+            {props.isStory && <AddParagraphButton addParagraphToCanvas={() => props.addParagraphToCanvas()} />}
+            <ButtonUpload {...blogItemProps}
+                message={props.message}
+                setMessage={(e) => props.setMessage(e)}
+                onToggleSnackBar={props.onToggleSnackBar} />
+            <ButtonDelete onPress={props.deleteBlog} />
+        </View>
     );
 }
 

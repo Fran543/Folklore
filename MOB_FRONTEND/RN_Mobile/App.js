@@ -22,10 +22,14 @@ function Home() {
 
   useEffect(() => {
     localStorage.setItem("isLoggedIn", isLoggedIn);
+    console.log("setIsLoggedIn")
   }, [isLoggedIn]);
 
   function logOutUser() {
     setIsLoggedIn(false)
+  }
+  function logInUser() {
+    setIsLoggedIn(true)
   }
 
   return (
@@ -44,41 +48,32 @@ function Home() {
           )
         }} />
 
-      {isLoggedIn === "true" ? (
-        <Tab.Screen name="My Profile" children={()=><UserProfileScreen logOutUser={logOutUser}/>}
-          options={{
-            tabBarColor: '#6E6A91',
-            tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="account" color={color} size={26} />
-            )
-          }} />) :
-        null
+      {isLoggedIn === "true" &&
+        <>
+          <Tab.Screen name="My Profile" children={() => <UserProfileScreen logOutUser={logOutUser} />}
+            options={{
+              tabBarColor: '#6E6A91',
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons name="account" color={color} size={26} />
+              )
+            }} />
+          <Tab.Screen name="Create Post" component={PostCreatorScreen}
+            options={{
+              tabBarColor: '#B88FAE',
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons name="plus" color={color} size={26} />
+              )
+            }} />
+          <Tab.Screen name="Library" component={LibraryScreen}
+            options={{
+              tabBarColor: '#3d6082',
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons name="book" color={color} size={26} />
+              )
+            }} />
+        </>
       }
-
-
-      {isLoggedIn === "true" ? (
-        <Tab.Screen name="Create Post" component={PostCreatorScreen}
-          options={{
-            tabBarColor: '#B88FAE',
-            tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="plus" color={color} size={26} />
-            )
-          }} />) :
-        null
-      }
-
-      {isLoggedIn === "true" ? (
-        <Tab.Screen name="Library" component={LibraryScreen}
-          options={{
-            tabBarColor: '#3d6082',
-            tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="book" color={color} size={26} />
-            )
-          }} />) :
-        null
-      }
-
-      <Tab.Screen name="Login" component={LoginScreen}
+      <Tab.Screen name="Login" children={() => <LoginScreen logInUser={logInUser} />}
         options={{
           tabBarColor: '#610440',
           tabBarIcon: ({ color }) => (

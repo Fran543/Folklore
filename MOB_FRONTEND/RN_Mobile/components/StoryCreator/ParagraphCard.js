@@ -1,19 +1,29 @@
 import { TextInput, View, Text, StyleSheet, Image, Pressable } from "react-native";
 import { RadioButton } from 'react-native-paper'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import * as ImagePicker from 'expo-image-picker';
+import Multiselect from 'multiselect-react-dropdown';
 
 var counter = 1;
 
 export default function ParagraphCard(props) {
-    const [checked, setChecked] = useState('first');
+    // const [checked, setChecked] = useState('first');
     const [image, setImage] = useState(null);
     const [content, setContent] = useState("");
     const [choice1, setChoice1] = useState("");
     const [choice2, setChoice2] = useState("");
+    const [conditions, setConditions] = useState([{}]);
+    const [selectedConditions, setSelectedConditions] = useState([]);
 
     var c = counter;
+
+    useEffect(() => {
+        setConditions([])
+        for (let i = 0; i < props.paragraphNbr * 2; i++) {
+            setConditions(conditions => [...conditions, { value: i, label: i + 1 }])
+        }
+    }, [props.paragraphNbr]);
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -25,44 +35,55 @@ export default function ParagraphCard(props) {
 
         if (!result.cancelled) {
             setImage(result.uri);
+            props.post.imageBlob = result.uri
         }
     };
 
     function contentHandler(e) {
         setContent(e)
+        props.post.content = e
     }
 
     function firstChoiceHandler(e) {
         setChoice1(e)
+        props.post.choices[0].choiceValue = e
     }
 
     function secondChoiceHandler(e) {
         setChoice2(e)
+        props.post.choices[1].choiceValue = e
+    }
+
+    function onSelect(selectedList, selectedItem) {
+        setSelectedConditions(selectedConditions => [...selectedConditions, selectedItem.value]);
+        let value = Array.from(
+            selectedList,
+            (option) => option.value
+        );
+        props.post.conditions = value;
+    }
+
+    function onRemove(selectedList, removedItem) {
+        var array = [...selectedConditions];
+        var index = array.indexOf(removedItem.value)
+        if (index !== -1) {
+            array.splice(index, 1);
+            setSelectedConditions(array);
+            props.post.conditions = array
+        }
     }
 
     return (
         <View style={styles.container}>
             {!props.isFirst &&
-                <View>
-                    <Text style={styles.text}>This paragraph will appear if user chooses option: </Text>
-                    <View style={styles.rbHolder}>
-                        <View style={{ flex: 1 }}>
-                            <RadioButton
-                                value={--c}
-                                status={checked === 'first' ? 'checked' : 'unchecked'}
-                                onPress={() => setChecked('first')}
-                                color='pink'
-                            />
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <RadioButton
-                                value={--c}
-                                status={checked === 'second' ? 'checked' : 'unchecked'}
-                                onPress={() => setChecked('second')}
-                                color='lightblue'
-                            />
-                        </View>
-                    </View>
+                <View style={styles.multiselect}>
+                    <Multiselect
+                        options={conditions} // Options to display in the dropdown
+                        onSelect={onSelect} // Function will trigger on select event
+                        onRemove={onRemove} // Function will trigger on remove event
+                        displayValue="label" // Property name to display in the dropdown options
+                        placeholder="Select conditions..."
+                    />
                 </View>
             }
             <View>
@@ -82,7 +103,7 @@ export default function ParagraphCard(props) {
                 />
                 <View style={styles.contentHolder}>
                     <View>
-                        <Text style={styles.text}>{counter++}</Text>
+                        <Text style={styles.text}>{props.postNbr * 2 - 1}</Text>
                         <TextInput
                             multiline={true}
                             placeholder="Enter option..."
@@ -91,7 +112,7 @@ export default function ParagraphCard(props) {
                             style={styles.textInput} />
                     </View>
                     <View>
-                        <Text style={styles.text}>{counter++}</Text>
+                        <Text style={styles.text}>{props.postNbr * 2}</Text>
                         <TextInput
                             multiline={true}
                             placeholder="Enter option..."
@@ -130,5 +151,8 @@ const styles = StyleSheet.create({
     rbHolder: {
         flexDirection: 'row',
         alignItems: 'center'
+    },
+    multiselect: {
+        zIndex: 5,
     }
 })

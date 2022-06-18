@@ -75,7 +75,7 @@ export default function BlogCreatorScreen() {
         summary: summary,
         imageBlob: image,
         warnings: value,
-        content: blogContent
+        posts: [{ content: blogContent }]
     }
 
     return (

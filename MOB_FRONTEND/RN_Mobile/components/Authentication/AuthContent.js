@@ -51,7 +51,7 @@ export default function AuthContent(props) {
 
     return (
         <View style={styles.authContent}>
-            {isLogin ? <LoginForm message={props.message} setMessage={(e) => props.setMessage(e)} onToggleSnackBar={props.onToggleSnackBar}/> : <SignupForm message={props.message} setMessage={(e) => props.setMessage(e)} onToggleSnackBar={props.onToggleSnackBar}/>}
+            {isLogin ? <LoginForm logInUser={props.logInUser} message={props.message} setMessage={(e) => props.setMessage(e)} onToggleSnackBar={props.onToggleSnackBar} /> : <SignupForm message={props.message} setMessage={(e) => props.setMessage(e)} onToggleSnackBar={props.onToggleSnackBar} />}
             <View style={styles.buttons}>
                 <FlatButton onPress={switchAuthModeHandler}>
                     {isLogin ? 'Create a new user' : 'Log in instead'}

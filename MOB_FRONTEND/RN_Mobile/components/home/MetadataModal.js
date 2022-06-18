@@ -91,7 +91,8 @@ const styles = StyleSheet.create({
     },
     userInputContainer: {
         flexDirection: 'row',
-        paddingVertical: 20
+        paddingVertical: 20,
+        zIndex: 5,
     },
     buttonClose: {
         backgroundColor: "#B88FAE",

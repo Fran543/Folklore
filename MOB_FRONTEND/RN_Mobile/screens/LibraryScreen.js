@@ -14,7 +14,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const { width: windowWidth } = Dimensions.get('window');
 
-const ITEM_WIDTH = 0.7 * windowWidth;
+const ITEM_WIDTH = 0.9 * windowWidth;
 const SEPARATOR_WIDTH = 10;
 
 export default function LibraryScreen(props) {
@@ -63,7 +63,6 @@ export default function LibraryScreen(props) {
         function pressHandler() {
             navigation.navigate("PostFullScreen", { idStory: item.IDStory })
         }
-        console.log(item)
         return (
             <Pressable
                 activeOpacity={1}
@@ -107,5 +106,7 @@ const styles = StyleSheet.create({
         width: windowWidth,
         height: "100%",
         flexGrow: 0,
+        paddingLeft: 20,
+        paddingRight: 20
     },
 });

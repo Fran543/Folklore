@@ -41,7 +41,7 @@ export default function PostFullScreen({ route, navigation }) {
     }
 
     function renderPostItem(itemData) {
-        return <Text style={styles.text}>{itemData.item.Content}</Text>
+        return <Text style={styles.text}>{itemData.item?.Content}</Text>
     }
 
     async function renderNextPost(choiceID) {

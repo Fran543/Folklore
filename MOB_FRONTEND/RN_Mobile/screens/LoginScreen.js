@@ -4,7 +4,7 @@ import { Snackbar } from 'react-native-paper';
 import * as React from 'react';
 
 
-export default function LoginScreen() {
+export default function LoginScreen({ logInUser }) {
 
     const [visible, setVisible] = React.useState(false);
 
@@ -17,6 +17,7 @@ export default function LoginScreen() {
     return (
         <View style={styles.container}>
             <AuthContent
+                logInUser={logInUser}
                 message={message}
                 setMessage={(e) => setMessage(e)}
                 onToggleSnackBar={onToggleSnackBar} />

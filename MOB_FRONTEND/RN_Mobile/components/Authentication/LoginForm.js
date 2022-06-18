@@ -32,13 +32,13 @@ export default function AuthForm(props) {
                 else return message.message;
             })
             .then(async (data) => {
-                localStorage.setItem("isLoggedIn", true)
+                props.logInUser()
                 props.setMessage(data);
                 props.onToggleSnackBar()
                 navigation.navigate("Home")
             })
             .catch(error => {
-                props.setMessage(error.message );
+                props.setMessage(error.message);
                 props.onToggleSnackBar()
                 console.log(error);
             })

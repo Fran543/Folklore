@@ -12,12 +12,13 @@ export default function ButtonUpload(props) {
     summary: props.summary,
     image: props.imageBlob,
     warnings: props.warnings,
-    posts: [{ content: props.content }]
+    posts: props.posts
   }
 
 
   async function uploadPost() {
-    if (validateBlog(props.title, props.summary, props.content)) {
+    console.log(props)
+    if (validateBlog(props.title, props.summary, props.posts)) {
       fetch(EndPoints.createStoryEndPoint, {
         method: "POST",
         credentials: 'include',

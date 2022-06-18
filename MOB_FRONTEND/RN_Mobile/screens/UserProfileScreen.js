@@ -1,14 +1,23 @@
-import { StyleSheet, Text, View, Image, FlatList, ScrollView } from "react-native";
+import React, { useRef } from 'react';
+import { StyleSheet, Text, View, Image, FlatList, Dimensions, Pressable, ScrollView } from "react-native";
 import { useEffect, useState } from 'react'
 import EndPoints from "../constants/endPoints";
 
 import PostGridTile from "../components/home/PostGridTile";
 import Button from '../components/ui/Button';
 
+import Carousel from 'react-native-anchor-carousel';
 
+
+const { width: windowWidth } = Dimensions.get('window');
+
+const ITEM_WIDTH = 0.9 * windowWidth;
+const SEPARATOR_WIDTH = 10;
 
 export default function UserProfileScreen({ navigation, logOutUser }) {
+
     const [user, setUser] = useState({ username: "", email: "" })
+    const carouselRef = useRef(null);
 
     useEffect(() => {
         getUser()
@@ -40,6 +49,36 @@ export default function UserProfileScreen({ navigation, logOutUser }) {
         }
     }
 
+    function renderItem({ item, index }) {
+        const postItemProps = {
+            idStory: item.IDStory,
+            title: item.StoryName,
+            summary: item.Summary,
+            pubDate: item.PubDate,
+            imageBlob: item.ImageBlob,
+            idUser: item.UserID,
+            commentNbr: item.CommentNbr,
+            score: item.Score,
+            username: item.Username,
+            warnings: item.warnings
+        }
+
+        function pressHandler() {
+            navigation.navigate("PostFullScreen", { idStory: item.IDStory })
+        }
+        return (
+            <Pressable
+                activeOpacity={1}
+                onPress={() => {
+                    carouselRef.current.scrollToIndex(index);
+                }}>
+                <PostGridTile
+                    {...postItemProps}
+                    onPress={pressHandler} />
+            </Pressable>
+        );
+    }
+
     async function getUser() {
         await fetch(EndPoints.getUserEndPoint, {
             credentials: "include",
@@ -48,7 +87,6 @@ export default function UserProfileScreen({ navigation, logOutUser }) {
             .then(
                 (result) => {
                     setUser(result)
-                    console.log(result)
                 },
                 (error) => {
                     console.log(error)
@@ -116,19 +154,41 @@ export default function UserProfileScreen({ navigation, logOutUser }) {
 
             <View style={styles.body}>
                 <h1>Blogs:</h1>
-                <FlatList data={user.blogs} renderItem={renderPostItem}
+                {/* <FlatList data={user.blogs} renderItem={renderPostItem}
                     keyExtractor={(item, index) => {
                         return item.IDStory
                     }}
+                /> */}
+                <Carousel style={styles.carousel}
+                    keyExtractor={item => item?.IDStory}
+                    ref={carouselRef}
+                    data={user.blogs}
+                    renderItem={renderItem}
+                    itemWidth={ITEM_WIDTH}
+                    separatorWidth={SEPARATOR_WIDTH}
+                    inActiveScale={1}
+                    inActiveOpacity={1}
+                    containerWidth={windowWidth}
                 />
             </View>
 
             <View style={styles.body}>
                 <h1>Stories:</h1>
-                <FlatList data={user.stories} renderItem={renderPostItem}
+                {/* <FlatList data={user.stories} renderItem={renderPostItem}
                     keyExtractor={(item, index) => {
                         return item.IDStory
                     }}
+                /> */}
+                <Carousel style={styles.carousel}
+                    keyExtractor={item => item?.IDStory}
+                    ref={carouselRef}
+                    data={user.stories}
+                    renderItem={renderItem}
+                    itemWidth={ITEM_WIDTH}
+                    separatorWidth={SEPARATOR_WIDTH}
+                    inActiveScale={1}
+                    inActiveOpacity={1}
+                    containerWidth={windowWidth}
                 />
             </View>
         </ScrollView>
@@ -163,9 +223,15 @@ const styles = StyleSheet.create({
     },
     body: {
         backgroundColor: "#778899",
-        height: 500,
+        // height: 500,
         alignItems: 'center',
-        padding: 20
+        padding: 20,
     },
-
+    carousel: {
+        width: windowWidth,
+        height: "100%",
+        flexGrow: 0,
+        paddingLeft: 20,
+        paddingRight: 20
+    },
 })

@@ -37,8 +37,5 @@
     "@babel/core": "^7.12.9",
     "jest": "^28.1.1"
   },
-  "jest": {
-    "preset": "react-native"
-  },
   "private": true
 }

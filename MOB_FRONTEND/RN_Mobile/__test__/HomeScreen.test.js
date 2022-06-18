@@ -1,8 +1,2 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+// import renderer from 'react-test-renderer';
 import { default as HomeScreen } from '../screens/HomeScreen';
-
-test('renders correctly', () => {
-    const tree = renderer.create(<HomeScreen />).toJSON();
-    expect(tree).toMatchSnapshot();
-})
