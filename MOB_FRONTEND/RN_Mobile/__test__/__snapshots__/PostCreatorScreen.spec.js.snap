@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PostCreatorScreen /> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "black",
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "blue",
+        "borderRadius": 20,
+        "flex": 1,
+        "justifyContent": "center",
+        "marginVertical": 20,
+        "width": "80%",
+      }
+    }
+  >
+    <View>
+      <Text
+        style={
+          Object {
+            "color": "white",
+            "fontWeight": "bold",
+            "letterSpacing": 3,
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Blog
+      </Text>
+    </View>
+  </View>
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#f5bc1d",
+        "borderRadius": 20,
+        "flex": 1,
+        "justifyContent": "center",
+        "marginVertical": 20,
+        "width": "80%",
+      }
+    }
+  >
+    <View>
+      <Text
+        style={
+          Object {
+            "color": "white",
+            "fontWeight": "bold",
+            "letterSpacing": 3,
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Interactive Story
+      </Text>
+    </View>
+  </View>
+</View>
+`;

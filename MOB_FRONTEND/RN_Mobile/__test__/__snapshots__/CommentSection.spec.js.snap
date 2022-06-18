@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CommentSection /> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "paddingBottom": 20,
+      "paddingHorizontal": 20,
+    }
+  }
+>
+  <TextInput
+    keyboardType="default"
+    maxLength={500}
+    multiline={true}
+    onChangeText={[Function]}
+    placeholder="Enter your comment here..."
+    style={
+      Object {
+        "borderColor": "#808080",
+        "borderRadius": 5,
+        "borderWidth": 1,
+        "color": "white",
+        "height": 100,
+        "padding": 12,
+      }
+    }
+    textAlign="left"
+  />
+  <View
+    style={
+      Object {
+        "borderRadius": 28,
+        "margin": 4,
+        "overflow": "hidden",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "backgroundColor": "#72063C",
+          "paddingHorizontal": 16,
+          "paddingVertical": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "white",
+            "letterSpacing": 3,
+            "textAlign": "center",
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Submit
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "paddingTop": 30,
+      }
+    }
+  >
+    <RCTScrollView
+      data={Array []}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      keyExtractor={[Function]}
+      onContentSizeChange={[Function]}
+      onLayout={[Function]}
+      onMomentumScrollBegin={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      removeClippedSubviews={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      viewabilityConfigCallbackPairs={Array []}
+    >
+      <View />
+    </RCTScrollView>
+  </View>
+</View>
+`;
